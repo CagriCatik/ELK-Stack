@@ -1,0 +1,186 @@
+[project]
+site_name = "ELK-Stack"
+site_description = "A structured Zensical course map covering Elasticsearch, Logstash, Kibana, Beats, operations, cloud, and vector search."
+site_author = "Course outline reconstructed from supplied screenshots"
+repo_url = "https://github.com/CagriCatik/ELK-Stack"
+repo_name = "CagriCatik/ELK-Stack"
+docs_dir = "docs"
+site_dir = "site"
+use_directory_urls = false
+copyright = "Structured learning map for Elasticsearch and the Elastic Stack"
+extra_css = ["stylesheets/extra.css"]
+nav = [
+  {"Course Overview" = "index.md"},
+  {"Section 1: Installing and Understanding Elasticsearch" = [
+    "sections/01-installing-and-understanding-elasticsearch/index.md",
+    {"1. Introduction" = "sections/01-installing-and-understanding-elasticsearch/001-intro.md"},
+    {"2. Installing Elasticsearch" = "sections/01-installing-and-understanding-elasticsearch/002-installing-elasticsearch-step-by-step.md"},
+    {"Windows companion: Installing the Elastic Stack" = "sections/01-installing-and-understanding-elasticsearch/002-windows-installation.md"},
+    {"3. Elasticsearch Overview" = "sections/01-installing-and-understanding-elasticsearch/003-elasticsearch-overview.md"},
+    {"4. Intro to HTTP and RESTful API's" = "sections/01-installing-and-understanding-elasticsearch/004-intro-to-http-and-restful-api-s.md"},
+    {"5. Elasticsearch Basics: Logical Concepts" = "sections/01-installing-and-understanding-elasticsearch/005-elasticsearch-basics-logical-concepts.md"},
+    {"6. Term Frequency / Inverse Document Frequency (TF/IDF)" = "sections/01-installing-and-understanding-elasticsearch/006-term-frequency-inverse-document-frequency-tf-idf.md"},
+    {"7. Using Elasticsearch" = "sections/01-installing-and-understanding-elasticsearch/007-using-elasticsearch.md"},
+    {"8. How Elasticsearch Scales" = "sections/01-installing-and-understanding-elasticsearch/008-how-elasticsearch-scales.md"},
+    {"9. Quiz: Elasticsearch Concepts and Architecture" = "sections/01-installing-and-understanding-elasticsearch/009-quiz-elasticsearch-concepts-and-architecture.md"},
+    {"10. Wrap-up" = "sections/01-installing-and-understanding-elasticsearch/010-wrap-up.md"}
+  ]},
+  {"Section 2: Mapping and Indexing Data" = [
+    "sections/02-mapping-and-indexing-data/index.md",
+    {"1. Introduction" = "sections/02-mapping-and-indexing-data/001-intro.md"},
+    {"2. Connecting to your Cluster" = "sections/02-mapping-and-indexing-data/002-connecting-to-your-cluster.md"},
+    {"3. Introducing the MovieLens Data Set" = "sections/02-mapping-and-indexing-data/003-introducing-the-movielens-data-set.md"},
+    {"4. Analyzers" = "sections/02-mapping-and-indexing-data/004-analyzers.md"},
+    {"5. A Note on Entering curl Commands" = "sections/02-mapping-and-indexing-data/005-a-note-on-entering-curl-commands.md"},
+    {"6. Import a Single Movie via JSON / REST" = "sections/02-mapping-and-indexing-data/006-import-a-single-movie-via-json-rest.md"},
+    {"7. Insert Many Movies at Once with the Bulk API" = "sections/02-mapping-and-indexing-data/007-insert-many-movies-at-once-with-the-bulk-api.md"},
+    {"8. Updating Data in Elasticsearch" = "sections/02-mapping-and-indexing-data/008-updating-data-in-elasticsearch.md"},
+    {"9. Deleting Data in Elasticsearch" = "sections/02-mapping-and-indexing-data/009-deleting-data-in-elasticsearch.md"},
+    {"10. Insert, Update and Delete a Movie" = "sections/02-mapping-and-indexing-data/010-exercise-insert-update-and-delete-a-movie.md"},
+    {"11. Dealing with Concurrency" = "sections/02-mapping-and-indexing-data/011-dealing-with-concurrency.md"},
+    {"12. Using Analyzers and Tokenizers" = "sections/02-mapping-and-indexing-data/012-using-analyzers-and-tokenizers.md"},
+    {"13. Data Modeling and Parent/Child Relationships, Part 1" = "sections/02-mapping-and-indexing-data/013-data-modeling-and-parent-child-relationships-part-1.md"},
+    {"14. Data Modeling and Parent/Child Relationships, Part 2" = "sections/02-mapping-and-indexing-data/014-data-modeling-and-parent-child-relationships-part-2.md"},
+    {"15. Flattened Datatype" = "sections/02-mapping-and-indexing-data/015-flattened-datatype.md"},
+    {"16. Dealing with Mapping Exceptions" = "sections/02-mapping-and-indexing-data/016-dealing-with-mapping-exceptions.md"},
+    {"17. Wrap-up" = "sections/02-mapping-and-indexing-data/017-wrapup.md"}
+  ]},
+  {"Section 3: Searching with Elasticsearch" = [
+    "sections/03-searching-with-elasticsearch/index.md",
+    {"1. Intro" = "sections/03-searching-with-elasticsearch/001-intro.md"},
+    {"2. \"Query Lite\" interface" = "sections/03-searching-with-elasticsearch/002-query-lite-interface.md"},
+    {"3. JSON Search In-Depth" = "sections/03-searching-with-elasticsearch/003-json-search-in-depth.md"},
+    {"4. Phrase Matching" = "sections/03-searching-with-elasticsearch/004-phrase-matching.md"},
+    {"5. Querying in Different Ways" = "sections/03-searching-with-elasticsearch/005-exercise-querying-in-different-ways.md"},
+    {"6. Pagination" = "sections/03-searching-with-elasticsearch/006-pagination.md"},
+    {"7. Sorting" = "sections/03-searching-with-elasticsearch/007-sorting.md"},
+    {"8. More with Filters" = "sections/03-searching-with-elasticsearch/008-more-with-filters.md"},
+    {"9. Using Filters" = "sections/03-searching-with-elasticsearch/009-exercise-using-filters.md"},
+    {"10. Fuzzy Queries" = "sections/03-searching-with-elasticsearch/010-fuzzy-queries.md"},
+    {"11. Partial Matching" = "sections/03-searching-with-elasticsearch/011-partial-matching.md"},
+    {"12. Query-time Search As You Type" = "sections/03-searching-with-elasticsearch/012-query-time-search-as-you-type.md"},
+    {"13. N-Grams, Part 1" = "sections/03-searching-with-elasticsearch/013-n-grams-part-1.md"},
+    {"14. N-Grams, Part 2" = "sections/03-searching-with-elasticsearch/014-n-grams-part-2.md"},
+    {"15. \"Search as you Type\" Field Type" = "sections/03-searching-with-elasticsearch/015-search-as-you-type-field-type.md"},
+    {"16. Section 3 Wrapup" = "sections/03-searching-with-elasticsearch/016-section-3-wrapup.md"}
+  ]},
+  {"Section 4: Importing Data into your Index - Big or Small" = [
+    "sections/04-importing-data-into-your-index-big-or-small/index.md",
+    {"46. Section 4 Intro" = "sections/04-importing-data-into-your-index-big-or-small/046-section-4-intro.md"},
+    {"47. Importing Data with a Script" = "sections/04-importing-data-into-your-index-big-or-small/047-importing-data-with-a-script.md"},
+    {"48. Importing with Client Libraries" = "sections/04-importing-data-into-your-index-big-or-small/048-importing-with-client-libraries.md"},
+    {"49. Importing with a Script" = "sections/04-importing-data-into-your-index-big-or-small/049-exercise-importing-with-a-script.md"},
+    {"50. Introducing Logstash" = "sections/04-importing-data-into-your-index-big-or-small/050-introducing-logstash.md"},
+    {"51. Installing Logstash" = "sections/04-importing-data-into-your-index-big-or-small/051-installing-logstash.md"},
+    {"52. Running Logstash" = "sections/04-importing-data-into-your-index-big-or-small/052-running-logstash.md"},
+    {"53. Logstash and MySQL, Part 1" = "sections/04-importing-data-into-your-index-big-or-small/053-logstash-and-mysql-part-1.md"},
+    {"54. Logstash and MySQL, Part 2" = "sections/04-importing-data-into-your-index-big-or-small/054-logstash-and-mysql-part-2.md"},
+    {"55. Importing CSV Data with Logstash" = "sections/04-importing-data-into-your-index-big-or-small/055-importing-csv-data-with-logstash.md"},
+    {"56. Importing JSON Data with Logstash" = "sections/04-importing-data-into-your-index-big-or-small/056-importing-json-data-with-logstash.md"},
+    {"57. Logstash and S3" = "sections/04-importing-data-into-your-index-big-or-small/057-logstash-and-s3.md"},
+    {"58. Parsing and Filtering Logstash with Grok" = "sections/04-importing-data-into-your-index-big-or-small/058-parsing-and-filtering-logstash-with-grok.md"},
+    {"59. Workaround if the Grok Debugger app in the next lecture is down..." = "sections/04-importing-data-into-your-index-big-or-small/059-workaround-if-the-grok-debugger-app-in-the-next-lecture-is-down.md"},
+    {"60. Logstash Grok Examples for Common Log Formats" = "sections/04-importing-data-into-your-index-big-or-small/060-logstash-grok-examples-for-common-log-formats.md"},
+    {"61. Logstash Input Plugins, Part 1: Heartbeat" = "sections/04-importing-data-into-your-index-big-or-small/061-logstash-input-plugins-part-1-heartbeat.md"},
+    {"62. Logstash Input Plugins, Part 2: Generator Input and Dead Letter Queue" = "sections/04-importing-data-into-your-index-big-or-small/062-logstash-input-plugins-part-2-generator-input-and-dead-letter-queue.md"},
+    {"63. Logstash Input Plugins, Part 3: HTTP Poller" = "sections/04-importing-data-into-your-index-big-or-small/063-logstash-input-plugins-part-3-http-poller.md"},
+    {"64. Syslog with Logstash Deep Dive" = "sections/04-importing-data-into-your-index-big-or-small/064-syslog-with-logstash-deep-dive.md"},
+    {"65. Elasticsearch and Kafka, Part 1" = "sections/04-importing-data-into-your-index-big-or-small/065-elasticsearch-and-kafka-part-1.md"},
+    {"66. Elasticsearch and Kafka, Part 2" = "sections/04-importing-data-into-your-index-big-or-small/066-elasticsearch-and-kafka-part-2.md"},
+    {"67. Elasticsearch and Apache Spark, Part 1" = "sections/04-importing-data-into-your-index-big-or-small/067-elasticsearch-and-apache-spark-part-1.md"},
+    {"68. Elasticsearch and Apache Spark, Part 2" = "sections/04-importing-data-into-your-index-big-or-small/068-elasticsearch-and-apache-spark-part-2.md"},
+    {"69. Importing Data with Spark" = "sections/04-importing-data-into-your-index-big-or-small/069-exercise-importing-data-with-spark.md"},
+    {"70. Using Elasticsearch as a Vector Database with Embeddings and dense_vector" = "sections/04-importing-data-into-your-index-big-or-small/070-using-elasticsearch-as-a-vector-database-with-embeddings-and-dense-vecto.md"},
+    {"71. Section 4 Wrapup" = "sections/04-importing-data-into-your-index-big-or-small/071-section-4-wrapup.md"}
+  ]},
+  {"Section 5: Aggregation" = [
+    "sections/05-aggregation/index.md",
+    {"72. Section 5 Intro" = "sections/05-aggregation/072-section-5-intro.md"},
+    {"73. Aggregations, Buckets, and Metrics" = "sections/05-aggregation/073-aggregations-buckets-and-metrics.md"},
+    {"74. Histograms" = "sections/05-aggregation/074-histograms.md"},
+    {"75. Time Series" = "sections/05-aggregation/075-time-series.md"},
+    {"76. Generating Histogram Data" = "sections/05-aggregation/076-exercise-generating-histogram-data.md"},
+    {"77. Nested Aggregations, Part 1" = "sections/05-aggregation/077-nested-aggregations-part-1.md"},
+    {"78. Nested Aggregations, Part 2" = "sections/05-aggregation/078-nested-aggregations-part-2.md"},
+    {"79. Section 5 Wrapup" = "sections/05-aggregation/079-section-5-wrapup.md"}
+  ]},
+  {"Section 6: Using Kibana" = [
+    "sections/06-using-kibana/index.md",
+    {"80. Section 6 Intro" = "sections/06-using-kibana/080-section-6-intro.md"},
+    {"81. Installing Kibana" = "sections/06-using-kibana/081-installing-kibana.md"},
+    {"82. Playing with Kibana" = "sections/06-using-kibana/082-playing-with-kibana.md"},
+    {"83. Exploring Data with Kibana" = "sections/06-using-kibana/083-exercise-exploring-data-with-kibana.md"},
+    {"84. Kibana Lens" = "sections/06-using-kibana/084-kibana-lens.md"},
+    {"85. Kibana Management" = "sections/06-using-kibana/085-kibana-management.md"},
+    {"86. Elasticsearch SQL" = "sections/06-using-kibana/086-elasticsearch-sql.md"},
+    {"87. Section 6 Wrapup" = "sections/06-using-kibana/087-section-6-wrapup.md"}
+  ]},
+  {"Section 7: Analyzing Log Data with the Elastic Stack" = [
+    "sections/07-analyzing-log-data-with-the-elastic-stack/index.md",
+    {"88. Section 7 Intro" = "sections/07-analyzing-log-data-with-the-elastic-stack/088-section-7-intro.md"},
+    {"89. Data Frame Transforms" = "sections/07-analyzing-log-data-with-the-elastic-stack/089-data-frame-transforms.md"},
+    {"90. FileBeat and the Elastic Stack Architecture" = "sections/07-analyzing-log-data-with-the-elastic-stack/090-filebeat-and-the-elastic-stack-architecture.md"},
+    {"91. X-Pack Security" = "sections/07-analyzing-log-data-with-the-elastic-stack/091-x-pack-security.md"},
+    {"92. Installing FileBeat" = "sections/07-analyzing-log-data-with-the-elastic-stack/092-installing-filebeat.md"},
+    {"93. Analyzing Logs with Kibana Dashboards" = "sections/07-analyzing-log-data-with-the-elastic-stack/093-analyzing-logs-with-kibana-dashboards.md"},
+    {"94. Log analysis with Kibana" = "sections/07-analyzing-log-data-with-the-elastic-stack/094-exercise-log-analysis-with-kibana.md"},
+    {"95. Section 7 Wrapup" = "sections/07-analyzing-log-data-with-the-elastic-stack/095-section-7-wrapup.md"}
+  ]},
+  {"Section 8: Elasticsearch Operations" = [
+    "sections/08-elasticsearch-operations/index.md",
+    {"96. Section 8 Intro" = "sections/08-elasticsearch-operations/096-section-8-intro.md"},
+    {"97. Choosing the Right Number of Shards" = "sections/08-elasticsearch-operations/097-choosing-the-right-number-of-shards.md"},
+    {"98. Adding Indices as a Scaling Strategy" = "sections/08-elasticsearch-operations/098-adding-indices-as-a-scaling-strategy.md"},
+    {"99. Index Alias Rotation" = "sections/08-elasticsearch-operations/099-index-alias-rotation.md"},
+    {"100. Index Lifecycle Management" = "sections/08-elasticsearch-operations/100-index-lifecycle-management.md"},
+    {"101. Choosing your Cluster's Hardware" = "sections/08-elasticsearch-operations/101-choosing-your-cluster-s-hardware.md"},
+    {"102. Heap Sizing" = "sections/08-elasticsearch-operations/102-heap-sizing.md"},
+    {"103. Monitoring" = "sections/08-elasticsearch-operations/103-monitoring.md"},
+    {"104. Troubleshooting Common Issues" = "sections/08-elasticsearch-operations/104-troubleshooting-common-issues.md"},
+    {"105. Failover in Action, Part 1" = "sections/08-elasticsearch-operations/105-failover-in-action-part-1.md"},
+    {"106. Index Design Changes (Grouping, Splitting, and Shrinking Indices)" = "sections/08-elasticsearch-operations/106-index-design-changes-grouping-splitting-and-shrinking-indices.md"},
+    {"107. Snapshots" = "sections/08-elasticsearch-operations/107-snapshots.md"},
+    {"108. Snapshot Lifecycle Management" = "sections/08-elasticsearch-operations/108-snapshot-lifecycle-management.md"},
+    {"109. Rolling Restarts" = "sections/08-elasticsearch-operations/109-rolling-restarts.md"},
+    {"110. Uptime Monitoring with Heartbeat" = "sections/08-elasticsearch-operations/110-uptime-monitoring-with-heartbeat.md"},
+    {"111. Section 8 Wrapup" = "sections/08-elasticsearch-operations/111-section-8-wrapup.md"}
+  ]},
+  {"Section 9: Elasticsearch in the Cloud" = [
+    "sections/09-elasticsearch-in-the-cloud/index.md",
+    {"112. Section 9 Intro" = "sections/09-elasticsearch-in-the-cloud/112-section-9-intro.md"},
+    {"113. Amazon OpenSearch Service, Part 1" = "sections/09-elasticsearch-in-the-cloud/113-amazon-opensearch-service-part-1.md"},
+    {"114. Amazon OpenSearch Service, Part 2" = "sections/09-elasticsearch-in-the-cloud/114-amazon-opensearch-service-part-2.md"},
+    {"115. The Elastic Cloud" = "sections/09-elasticsearch-in-the-cloud/115-the-elastic-cloud.md"},
+    {"116. Section 9 Wrapup" = "sections/09-elasticsearch-in-the-cloud/116-section-9-wrapup.md"}
+  ]}
+]
+
+[project.theme]
+language = "en"
+logo = "assets/logo.svg"
+favicon = "assets/logo.svg"
+features = [
+  "navigation.tracking",
+  "navigation.path",
+  "navigation.indexes",
+  "navigation.top",
+  "search.suggest",
+  "search.highlight",
+  "content.code.copy"
+]
+
+[[project.theme.palette]]
+scheme = "default"
+primary = "indigo"
+accent = "deep purple"
+toggle.icon = "lucide/moon"
+toggle.name = "Switch to dark mode"
+
+[[project.theme.palette]]
+scheme = "slate"
+primary = "indigo"
+accent = "deep purple"
+toggle.icon = "lucide/sun"
+toggle.name = "Switch to light mode"
+
+[project.plugins.offline]
