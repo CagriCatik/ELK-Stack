@@ -8,29 +8,93 @@ hide:
 
 # 34. [Exercise] Querying in Different Ways
 
+Put what you have learned about URI search, `match`, `match_phrase`, `term`, and `bool` into practice against your `movies` index.
 
+## Your task
 
-## Learning notes
+Write and run Elasticsearch queries for each of the following scenarios:
 
-- Key concept:
-- Important terminology:
-- Configuration or command:
-- Common failure mode:
-- Follow-up question:
+1. **URI search (Query Lite):** Find movies with `"trek"` in the `title` released in `1982` using `?q=`.
+2. **Exact phrase search:** Using JSON Query DSL, find movies whose `title` contains the exact phrase `"star wars"`.
+3. **Phrase with `slop`:** Find movies matching `"star hope"` in `title` with enough `slop` to match `"Star Wars: A New Hope"`.
+4. **Compound `bool` query:** Find movies that:
+   - **must** match `"star"` in `title`,
+   - **must** have `Sci-Fi` in `genre.keyword`,
+   - **must not** be released before `1980` (hint: `range` inside `must_not` or `filter`),
+   - **should** boost movies with `"trek"` in `title`.
 
-## Practical work
+## Walkthrough
 
-```text
-Add commands, request payloads, mappings, queries, pipeline configuration,
-or troubleshooting output here.
+<details>
+<summary>Show solution</summary>
+
+1. **URI search (Query Lite):**
+
+```bash
+curl -s -X GET "http://127.0.0.1:9200/movies/_search?q=title:trek+AND+year:1982&pretty"
 ```
 
-## Review checklist
+2. **Exact phrase search:**
 
-- [ ] I can explain the chapter topic in my own words.
-- [ ] I recorded at least one concrete example.
-- [ ] I identified one operational or design implication.
-- [ ] I can reproduce the key workflow on my own.
+```bash
+curl -s -X POST "http://127.0.0.1:9200/movies/_search?pretty" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "query": {
+      "match_phrase": {
+        "title": "star wars"
+      }
+    }
+  }'
+```
+
+3. **Phrase with `slop`:**
+
+```bash
+curl -s -X POST "http://127.0.0.1:9200/movies/_search?pretty" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "query": {
+      "match_phrase": {
+        "title": {
+          "query": "star hope",
+          "slop": 3
+        }
+      }
+    }
+  }'
+```
+
+4. **Compound `bool` query:**
+
+```bash
+curl -s -X POST "http://127.0.0.1:9200/movies/_search?pretty" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "query": {
+      "bool": {
+        "must": [
+          { "match": { "title": "star" } }
+        ],
+        "filter": [
+          { "term": { "genre.keyword": "Sci-Fi" } }
+        ],
+        "must_not": [
+          { "range": { "year": { "lt": 1980 } } }
+        ],
+        "should": [
+          { "match": { "title": "trek" } }
+        ]
+      }
+    }
+  }'
+```
+
+</details>
+
+## Why this matters
+
+Expressing the same business question in multiple ways reveals how Elasticsearch separates **analyzed full-text matching** (`match`, `match_phrase`) from **exact structured constraints** (`term`, `range` in `filter`/`must_not`). Choosing the right clause keeps your queries both accurate and fast.
 
 <div class="chapter-nav">
 <a class="chapter-nav__item" href="033-phrase-matching.html"><span>Previous</span><strong>33. Phrase Matching</strong></a>

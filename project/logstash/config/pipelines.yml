@@ -1,0 +1,2 @@
+- pipeline.id: xml-insight
+  path.config: "/usr/share/logstash/pipeline/xml-insight.conf"

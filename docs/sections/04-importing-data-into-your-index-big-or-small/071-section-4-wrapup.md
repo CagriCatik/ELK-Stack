@@ -10,27 +10,30 @@ hide:
 
 
 
-## Learning notes
+Section 4 took you across the entire ingestion spectrum—from loading a handful of JSON documents with `curl` to running distributed, buffered, and vector-enriched pipelines.
 
-- Key concept:
-- Important terminology:
-- Configuration or command:
-- Common failure mode:
-- Follow-up question:
+## What this section covered
 
-## Practical work
+- **Direct & scriptable ingestion:** Indexing via `curl`, the `_bulk` API, and client libraries, while avoiding mapping surprises.
+- **Elastic Agent, Beats, and Logstash:** Shipping files and metrics with Filebeat/Elastic Agent, and transforming unstructured logs with Logstash `grok`, `date`, `mutate`, and `geoip` (plus debugging patterns in Kibana Dev Tools and `_ingest/pipeline/_simulate`).
+- **Specialized Logstash inputs & resilience:** Monitoring pipeline liveness with `heartbeat`, load-testing with `generator`, capturing rejected documents with the **Dead Letter Queue (DLQ)**, polling REST APIs with `http_poller`, and parsing RFC 3164/5424 syslog with `syslog_pri`.
+- **Big-data & buffered architectures:** Placing **Apache Kafka** in front of Logstash for spike buffering and multi-consumer replay, and using **Apache Spark** (`elasticsearch-spark`) for distributed batch and streaming ETL.
+- **AI & semantic search:** Storing embeddings in `dense_vector` fields with HNSW indexing and combining BM25 + `knn` using **Reciprocal Rank Fusion (RRF)**.
 
-```text
-Add commands, request payloads, mappings, queries, pipeline configuration,
-or troubleshooting output here.
-```
+### Choosing the Right Ingestion Tool
 
-## Review checklist
+| Use case | Best-fit tool |
+| :--- | :--- |
+| Ad-hoc JSON, small datasets, CI fixtures | `curl` / `_bulk` API / Python client |
+| Host logs, metrics, security telemetry | **Elastic Agent** or **Beats** |
+| Complex parsing, enrichment, multi-destination routing | **Logstash** (with DLQ enabled) |
+| High-volume spike buffering & replayability | **Apache Kafka** + Logstash `kafka` input |
+| Terabyte-scale joins, Parquet/lakehouse ETL, ML prep | **Apache Spark** (`elasticsearch-spark`) |
+| Semantic search & RAG pipelines | `dense_vector` + HNSW `knn` + RRF |
 
-- [ ] I can explain the chapter topic in my own words.
-- [ ] I recorded at least one concrete example.
-- [ ] I identified one operational or design implication.
-- [ ] I can reproduce the key workflow on my own.
+## Where to next
+
+Now that you know how to get data of any shape or scale into Elasticsearch, **Section 5: Aggregation** shifts focus to *analyzing* that data—using bucket and metric aggregations to power analytics, histograms, percentiles, and dashboards.
 
 <div class="chapter-nav">
 <a class="chapter-nav__item" href="070-using-elasticsearch-as-a-vector-database-with-embeddings-and-dense-vecto.html"><span>Previous</span><strong>70. Using Elasticsearch as a Vector Database with Embeddings and dense_vector</strong></a>

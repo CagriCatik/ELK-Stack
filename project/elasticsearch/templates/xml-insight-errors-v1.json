@@ -1,0 +1,43 @@
+{
+  "index_patterns": ["xml-insight-errors-v1*"],
+  "priority": 100,
+  "template": {
+    "settings": {
+      "number_of_shards": 1,
+      "number_of_replicas": 0
+    },
+    "mappings": {
+      "dynamic": "strict",
+      "properties": {
+        "@timestamp": { "type": "date" },
+        "doc_type": { "type": "keyword" },
+        "error_stage": { "type": "keyword" },
+        "error_code": { "type": "keyword" },
+        "error_message": {
+          "type": "text",
+          "fields": {
+            "keyword": {
+              "type": "keyword",
+              "ignore_above": 512
+            }
+          }
+        },
+        "campaign": {
+          "properties": {
+            "id": { "type": "keyword" }
+          }
+        },
+        "run": {
+          "properties": {
+            "id": { "type": "keyword" }
+          }
+        },
+        "execution_slot_id": { "type": "keyword" },
+        "source_file": { "type": "keyword" },
+        "file_sha256": { "type": "keyword" },
+        "synthetic": { "type": "boolean" },
+        "ingested_at": { "type": "date" }
+      }
+    }
+  }
+}

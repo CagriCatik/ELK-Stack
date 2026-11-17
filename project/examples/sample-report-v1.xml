@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<report bench="lab-01"
+        project="SampleProject"
+        startTime="2026-11-17T01:00:00"
+        endTime="2026-11-17T01:12:45"
+        result="FAILED">
+
+  <groups name="initialization">
+    <group name="SystemSetup">
+      <param name="SoftwareVersion" value="1.4.0"/>
+      <param name="TargetRegion" value="eu-demo"/>
+      <msg level="info">Synthetic bench lab-01 initialized.</msg>
+      <msg level="warning">Cache warm-up exceeded nominal threshold.</msg>
+      <msg>Initialization diagnostic line without explicit level.</msg>
+    </group>
+  </groups>
+
+  <groups name="Workspace">
+    <testCase name="TC_WORKSPACE_001" result="PASSED" duration="12.5">
+      <step name="Open_Workspace" result="PASSED">
+        <msg level="info">Workspace opened on Output_A.</msg>
+      </step>
+    </testCase>
+    <testCase name="TC_WORKSPACE_002" result="FAILED" duration="25.0">
+      <step name="Emit_Signal" result="PASSED">
+        <msg level="info">First Emit_Signal dispatched.</msg>
+      </step>
+      <step name="Emit_Signal" result="FAILED">
+        <msg level="error">UI_TIMEOUT waiting for Output_A acknowledgement.</msg>
+      </step>
+      <errors>
+        <msg>UI_TIMEOUT in InteractionService on Output_A.</msg>
+      </errors>
+    </testCase>
+  </groups>
+
+  <groups name="Content">
+    <testCase name="TC_CONTENT_001" result="FAILED" duration="18.2">
+      <step name="Capture_Frame" result="FAILED">
+        <msg level="error">IMG_CAPTURE_FAILED from CaptureService.</msg>
+      </step>
+      <errors>
+        <msg>IMG_CAPTURE_FAILED: synthetic frame buffer empty.</msg>
+        <msg>Secondary error detail for same testCase.</msg>
+      </errors>
+    </testCase>
+    <testCase name="TC_CONTENT_002" result="PASSED" duration="9.0">
+      <step name="Verify_Stream" result="PASSED">
+        <msg level="info">Stream verified on Output_B.</msg>
+      </step>
+    </testCase>
+  </groups>
+
+  <groups name="Settings">
+    <testCase name="TC_SETTINGS_001" result="FAILED">
+      <step name="Apply_Profile" result="FAILED">
+        <msg level="error">InteractionService rejected synthetic profile.</msg>
+      </step>
+    </testCase>
+  </groups>
+
+  <groups name="deInitialization">
+    <group name="Cleanup">
+      <msg level="info">Releasing synthetic bench resources.</msg>
+    </group>
+    <testCase name="TC_DEINIT_CLEANUP" result="PASSED" duration="4.0">
+      <step name="Release_Resources" result="PASSED">
+        <msg level="info">Connectivity and CaptureService handles closed.</msg>
+      </step>
+    </testCase>
+  </groups>
+
+</report>

@@ -8,29 +8,19 @@ hide:
 
 # 87. Section 6 Wrapup
 
+You now have the full visual and administrative toolkit for working with data in Kibana, sitting cleanly on top of the Elasticsearch search and aggregation primitives you learned in Sections 3–5.
 
+## What this section covered
 
-## Learning notes
+- **Installing & connecting Kibana (`81`)** — Configuring `kibana.yml` (port `5601`, `elasticsearch.hosts`) and authenticating securely to 8.x/9.x clusters using an **enrollment token** or an `elastic/kibana` **service account token**.
+- **Discover, Data Views & Dev Tools (`82`–`83`)** — Mapping indices into Kibana with **Data Views**, filtering documents interactively using **KQL**, inspecting field distributions, and prototyping Query DSL in **Dev Tools Console**.
+- **Kibana Lens (`84`)** — Building charts and dashboards with drag-and-drop bucket/metric aggregations and **Lens Formula** expressions (ratios, filtered counts, time shifts).
+- **Stack Management (`85`)** — Administering indices, ILM policies, snapshots, **Saved Objects** (`.ndjson` export/import), and **RBAC Roles & Spaces**.
+- **Elasticsearch SQL & ES|QL (`86`)** — Running `SELECT ... GROUP BY` queries via `/_sql?format=txt`, translating SQL to Query DSL with `/_sql/translate`, and understanding when to use **ES|QL** (`/_query`) for piped analytics.
 
-- Key concept:
-- Important terminology:
-- Configuration or command:
-- Common failure mode:
-- Follow-up question:
+## Where to next
 
-## Practical work
-
-```text
-Add commands, request payloads, mappings, queries, pipeline configuration,
-or troubleshooting output here.
-```
-
-## Review checklist
-
-- [ ] I can explain the chapter topic in my own words.
-- [ ] I recorded at least one concrete example.
-- [ ] I identified one operational or design implication.
-- [ ] I can reproduce the key workflow on my own.
+So far, we have worked with pre-loaded datasets (`movies`). In **Section 7: Analyzing Log Data with the Elastic Stack**, you will connect real-world log streams—starting with Apache/Nginx access logs—using **Beats** and **Logstash**, parse unstructured text into structured fields, and build live operational dashboards in Kibana.
 
 <div class="chapter-nav">
 <a class="chapter-nav__item" href="086-elasticsearch-sql.html"><span>Previous</span><strong>86. Elasticsearch SQL</strong></a>

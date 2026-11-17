@@ -1,0 +1,44 @@
+{
+  "index_patterns": ["xml-insight-suites-v1*"],
+  "priority": 100,
+  "template": {
+    "settings": { "number_of_shards": 1, "number_of_replicas": 0 },
+    "mappings": {
+      "dynamic": "strict",
+      "properties": {
+        "@timestamp": { "type": "date" },
+        "doc_type": { "type": "keyword" },
+        "synthetic": { "type": "boolean" },
+        "campaign": { "properties": { "id": { "type": "keyword" } } },
+        "run": { "properties": { "id": { "type": "keyword" }, "normalized_result": { "type": "keyword" } } },
+        "execution_slot_id": { "type": "keyword" },
+        "test_bench": { "properties": { "id": { "type": "keyword" } } },
+        "project": { "type": "keyword" },
+        "software": { "properties": { "version": { "type": "keyword" } } },
+        "suite": {
+          "properties": {
+            "id": { "type": "keyword" },
+            "name": { "type": "keyword" },
+            "version": { "type": "keyword" },
+            "sequence": { "type": "integer" },
+            "has_stable_id": { "type": "boolean" }
+          }
+        },
+        "source_result": { "type": "keyword" },
+        "normalized_result": { "type": "keyword" },
+        "duration_ms": { "type": "long" },
+        "tc_total": { "type": "integer" },
+        "tc_passed": { "type": "integer" },
+        "tc_failed": { "type": "integer" },
+        "tc_error": { "type": "integer" },
+        "tc_skipped": { "type": "integer" },
+        "tc_unknown": { "type": "integer" },
+        "extracted_error_codes": { "type": "keyword" },
+        "comparability_limited": { "type": "boolean" },
+        "source_file": { "type": "keyword" },
+        "file_sha256": { "type": "keyword" },
+        "ingested_at": { "type": "date" }
+      }
+    }
+  }
+}

@@ -1,0 +1,14 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+*.egg-info/
+
+# Generated demo data & plans
+data/
+*.log
+
+# OS & Editor
+.DS_Store
+.env

@@ -10,27 +10,19 @@ hide:
 
 
 
-## Learning notes
+## What this section covered
 
-- Key concept:
-- Important terminology:
-- Configuration or command:
-- Common failure mode:
-- Follow-up question:
+In this section, you moved from static datasets to an end-to-end, secured log-analytics pipeline on the Elastic Stack:
 
-## Practical work
+- **Data Frame Transforms (`_transform`)**: Using `pivot` and `latest` transforms (in batch or continuous mode) to convert high-volume, event-centric log indices into fast, entity-centric summaries.
+- **Filebeat & Elastic Stack architecture**: Choosing between `Filebeat → Elasticsearch (Ingest Pipelines)` for simplicity and `Filebeat → Logstash → Elasticsearch` for persistent buffering, complex enrichment, and multi-output routing, alongside where Elastic Agent + Fleet fits.
+- **X-Pack Security**: Securing transport (`9300`) and HTTP (`9200`) traffic with TLS, managing built-in users with `elasticsearch-reset-password`, and issuing least-privilege RBAC roles and scoped API keys.
+- **Installing & configuring Filebeat**: Setting up `filebeat.yml` with `filestream` inputs, enabling modules (`nginx`, `system`), validating with `filebeat test`, and loading templates, pipelines, and dashboards with `filebeat setup`.
+- **Kibana log analysis**: Investigating live and historical logs using Discover (KQL), Observability Logs Explorer, pre-built module dashboards, and custom Lens visualizations backed by both raw and transformed indices.
 
-```text
-Add commands, request payloads, mappings, queries, pipeline configuration,
-or troubleshooting output here.
-```
+## Where to next
 
-## Review checklist
-
-- [ ] I can explain the chapter topic in my own words.
-- [ ] I recorded at least one concrete example.
-- [ ] I identified one operational or design implication.
-- [ ] I can reproduce the key workflow on my own.
+Now that you can ship, secure, transform, and visualize log data, the next section—**Section 8: Elasticsearch Operations**—focuses on keeping clusters healthy in production: capacity planning, shard allocation, Index Lifecycle Management (ILM), snapshot/restore, and diagnosing cluster issues.
 
 <div class="chapter-nav">
 <a class="chapter-nav__item" href="094-exercise-log-analysis-with-kibana.html"><span>Previous</span><strong>94. [Exercise] Log analysis with Kibana</strong></a>

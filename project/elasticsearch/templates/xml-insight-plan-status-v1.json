@@ -1,0 +1,32 @@
+{
+  "index_patterns": ["xml-insight-plan-status-v1*"],
+  "priority": 100,
+  "template": {
+    "settings": { "number_of_shards": 1, "number_of_replicas": 0 },
+    "mappings": {
+      "dynamic": "strict",
+      "properties": {
+        "@timestamp": { "type": "date" },
+        "doc_type": { "type": "keyword" },
+        "synthetic": { "type": "boolean" },
+        "execution_slot_id": { "type": "keyword" },
+        "campaign": { "properties": { "id": { "type": "keyword" } } },
+        "test_bench": { "properties": { "id": { "type": "keyword" } } },
+        "project": { "type": "keyword" },
+        "expected_suites": { "type": "keyword" },
+        "received_suites": { "type": "keyword" },
+        "missing_suites": { "type": "keyword" },
+        "suite_completeness": { "type": "keyword" },
+        "expected_started_at": { "type": "date" },
+        "deadline_at": { "type": "date" },
+        "evaluated_at": { "type": "date" },
+        "receipt_status": { "type": "keyword" },
+        "is_late": { "type": "boolean" },
+        "report_validity": { "type": "keyword" },
+        "matched_run_id": { "type": "keyword" },
+        "run_result": { "type": "keyword" },
+        "received_at": { "type": "date" }
+      }
+    }
+  }
+}

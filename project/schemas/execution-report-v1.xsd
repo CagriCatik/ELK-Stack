@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:simpleType name="NonEmptyString">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+      <xs:whiteSpace value="collapse"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="ParamType">
+    <xs:attribute name="name" type="NonEmptyString" use="required"/>
+    <xs:attribute name="value" type="xs:string" use="required"/>
+  </xs:complexType>
+
+  <xs:complexType name="MsgType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute name="level" type="xs:string" use="optional"/>
+        <xs:attribute name="errorCode" type="xs:string" use="optional"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:complexType name="ErrorsType">
+    <xs:sequence>
+      <xs:element name="msg" type="MsgType" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="AssertionType">
+    <xs:attribute name="name" type="xs:string" use="optional"/>
+    <xs:attribute name="expected" type="xs:string" use="required"/>
+    <xs:attribute name="actual" type="xs:string" use="required"/>
+    <xs:attribute name="operator" type="xs:string" use="optional"/>
+    <xs:attribute name="dataType" type="xs:string" use="optional"/>
+    <xs:attribute name="unit" type="xs:string" use="optional"/>
+    <xs:attribute name="result" type="xs:string" use="optional"/>
+  </xs:complexType>
+
+  <xs:complexType name="ArtifactType">
+    <xs:attribute name="path" type="NonEmptyString" use="required"/>
+    <xs:attribute name="type" type="xs:string" use="optional"/>
+  </xs:complexType>
+
+  <xs:complexType name="StepType">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element name="msg" type="MsgType"/>
+      <xs:element name="assertion" type="AssertionType"/>
+      <xs:element name="artifact" type="ArtifactType"/>
+    </xs:choice>
+    <xs:attribute name="id" type="xs:string" use="optional"/>
+    <xs:attribute name="name" type="NonEmptyString" use="required"/>
+    <xs:attribute name="result" type="xs:string" use="optional"/>
+    <xs:attribute name="duration" type="xs:decimal" use="optional"/>
+    <xs:attribute name="startTime" type="xs:string" use="optional"/>
+    <xs:attribute name="endTime" type="xs:string" use="optional"/>
+  </xs:complexType>
+
+  <xs:complexType name="TestCaseType">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element name="step" type="StepType"/>
+      <xs:element name="errors" type="ErrorsType"/>
+      <xs:element name="msg" type="MsgType"/>
+      <xs:element name="param" type="ParamType"/>
+      <xs:element name="artifact" type="ArtifactType"/>
+    </xs:choice>
+    <xs:attribute name="id" type="xs:string" use="optional"/>
+    <xs:attribute name="executionId" type="xs:string" use="optional"/>
+    <xs:attribute name="attempt" type="xs:positiveInteger" use="optional"/>
+    <xs:attribute name="name" type="NonEmptyString" use="required"/>
+    <xs:attribute name="result" type="xs:string" use="optional"/>
+    <xs:attribute name="duration" type="xs:decimal" use="optional"/>
+    <xs:attribute name="startTime" type="xs:string" use="optional"/>
+    <xs:attribute name="endTime" type="xs:string" use="optional"/>
+  </xs:complexType>
+
+  <xs:complexType name="GroupType">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element name="param" type="ParamType"/>
+      <xs:element name="msg" type="MsgType"/>
+    </xs:choice>
+    <xs:attribute name="name" type="NonEmptyString" use="required"/>
+    <xs:attribute name="result" type="xs:string" use="optional"/>
+  </xs:complexType>
+
+  <xs:complexType name="GroupsType">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element name="group" type="GroupType"/>
+      <xs:element name="testCase" type="TestCaseType"/>
+      <xs:element name="param" type="ParamType"/>
+      <xs:element name="msg" type="MsgType"/>
+      <xs:element name="errors" type="ErrorsType"/>
+    </xs:choice>
+    <xs:attribute name="id" type="xs:string" use="optional"/>
+    <xs:attribute name="version" type="xs:string" use="optional"/>
+    <xs:attribute name="name" type="NonEmptyString" use="required"/>
+    <xs:attribute name="result" type="xs:string" use="optional"/>
+    <xs:attribute name="duration" type="xs:decimal" use="optional"/>
+  </xs:complexType>
+
+  <xs:element name="report">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="groups" type="GroupsType" minOccurs="1" maxOccurs="unbounded"/>
+      </xs:sequence>
+      <xs:attribute name="schemaVersion" type="xs:string" use="optional"/>
+      <xs:attribute name="synthetic" type="xs:boolean" use="optional"/>
+      <xs:attribute name="id" type="xs:string" use="optional"/>
+      <xs:attribute name="campaignId" type="xs:string" use="optional"/>
+      <xs:attribute name="executionSlotId" type="xs:string" use="optional"/>
+      <xs:attribute name="bench" type="NonEmptyString" use="required"/>
+      <xs:attribute name="project" type="NonEmptyString" use="required"/>
+      <xs:attribute name="startTime" type="xs:string" use="required"/>
+      <xs:attribute name="endTime" type="xs:string" use="required"/>
+      <xs:attribute name="result" type="xs:string" use="optional"/>
+    </xs:complexType>
+  </xs:element>
+
+</xs:schema>

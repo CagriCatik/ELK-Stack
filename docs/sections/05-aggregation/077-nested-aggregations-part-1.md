@@ -10,27 +10,95 @@ hide:
 
 
 
-## Learning notes
+So far, every aggregation has sat at the top level of `aggs`. The real analytical power of Elasticsearch comes from **sub-aggregations**—nesting `aggs` inside a bucket aggregation so that metrics or further buckets are computed *independently for each parent bucket*.
 
-- Key concept:
-- Important terminology:
-- Configuration or command:
-- Common failure mode:
-- Follow-up question:
+## Metrics inside buckets
 
-## Practical work
+Suppose you want to know not just how many movies exist per genre, but also the **earliest, latest, and average release year** for each genre. Nest a `stats` metric inside a `terms` bucket:
 
-```text
-Add commands, request payloads, mappings, queries, pipeline configuration,
-or troubleshooting output here.
+```bash
+curl -s -X GET "http://127.0.0.1:9200/movies/_search" \
+  -H "Content-Type: application/json" -d '
+{
+  "size": 0,
+  "aggs": {
+    "by_genre": {
+      "terms": {
+        "field": "genre.keyword",
+        "size": 5,
+        "order": { "year_stats.avg": "desc" }
+      },
+      "aggs": {
+        "year_stats": {
+          "stats": { "field": "year" }
+        }
+      }
+    }
+  }
+}'
 ```
 
-## Review checklist
+Notice `"order": { "year_stats.avg": "desc" }`: you can sort parent `terms` buckets by any single-value sub-aggregation metric (or a specific property of a multi-value metric like `year_stats.avg`).
 
-- [ ] I can explain the chapter topic in my own words.
-- [ ] I recorded at least one concrete example.
-- [ ] I identified one operational or design implication.
-- [ ] I can reproduce the key workflow on my own.
+## Buckets inside buckets
+
+You can also nest bucket aggregations inside other bucket aggregations to build multi-dimensional breakdowns—for example, top genres broken down by decade:
+
+```bash
+curl -s -X GET "http://127.0.0.1:9200/movies/_search" \
+  -H "Content-Type: application/json" -d '
+{
+  "size": 0,
+  "aggs": {
+    "by_genre": {
+      "terms": {
+        "field": "genre.keyword",
+        "size": 3
+      },
+      "aggs": {
+        "by_decade": {
+          "histogram": {
+            "field": "year",
+            "interval": 10
+          }
+        }
+      }
+    }
+  }
+}'
+```
+
+In a time-series context, the classic pattern is `date_histogram` (outer bucket) -> `terms` on `service.name` or `http.response.status_code` (inner bucket) -> `avg` on `latency_ms` (metric).
+
+> **Beware of bucket explosion.** Every level of nested buckets multiplies the total bucket count (`outer_size × inner_size × ...`). Keep `size` small on inner `terms` aggregations so you do not hit `search.max_buckets` (default `65536`) or overwhelm coordinator memory.
+
+## Targeted buckets with `filter`
+
+A `filter` (or `filters`) bucket lets you compute a sub-aggregation on a specific subset of documents without filtering the entire request:
+
+```bash
+curl -s -X GET "http://127.0.0.1:9200/movies/_search" \
+  -H "Content-Type: application/json" -d '
+{
+  "size": 0,
+  "aggs": {
+    "post_2010": {
+      "filter": { "range": { "year": { "gte": 2010 } } },
+      "aggs": {
+        "top_modern_genres": {
+          "terms": { "field": "genre.keyword", "size": 5 }
+        }
+      }
+    }
+  }
+}'
+```
+
+## Key takeaways
+
+- Nesting `aggs` inside a bucket aggregation runs those sub-aggregations on the documents inside each bucket.
+- You can sort `terms` buckets by a sub-aggregation metric using `order` (e.g., `"order": { "year_stats.avg": "desc" }`).
+- Watch out for multiplicative bucket counts when nesting multiple `terms` or `histogram` buckets.
 
 <div class="chapter-nav">
 <a class="chapter-nav__item" href="076-exercise-generating-histogram-data.html"><span>Previous</span><strong>76. [Exercise] Generating Histogram Data</strong></a>

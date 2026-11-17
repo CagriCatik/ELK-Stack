@@ -1,0 +1,65 @@
+{
+  "index_patterns": ["xml-insight-steps-v1*"],
+  "priority": 100,
+  "template": {
+    "settings": { "number_of_shards": 1, "number_of_replicas": 0 },
+    "mappings": {
+      "dynamic": "strict",
+      "properties": {
+        "@timestamp": { "type": "date" },
+        "doc_type": { "type": "keyword" },
+        "synthetic": { "type": "boolean" },
+        "campaign": { "properties": { "id": { "type": "keyword" } } },
+        "run": { "properties": { "id": { "type": "keyword" }, "normalized_result": { "type": "keyword" } } },
+        "test_bench": { "properties": { "id": { "type": "keyword" } } },
+        "project": { "type": "keyword" },
+        "software": { "properties": { "version": { "type": "keyword" } } },
+        "suite": {
+          "properties": {
+            "id": { "type": "keyword" },
+            "name": { "type": "keyword" },
+            "version": { "type": "keyword" }
+          }
+        },
+        "phase": { "type": "keyword" },
+        "test_case": {
+          "properties": {
+            "id": { "type": "keyword" },
+            "execution_id": { "type": "keyword" },
+            "attempt": { "type": "integer" },
+            "name": { "type": "keyword" }
+          }
+        },
+        "step": {
+          "properties": {
+            "id": { "type": "keyword" },
+            "name": { "type": "keyword" },
+            "sequence": { "type": "integer" }
+          }
+        },
+        "source_result": { "type": "keyword" },
+        "normalized_result": { "type": "keyword" },
+        "duration_ms": { "type": "long" },
+        "started_at": { "type": "date" },
+        "ended_at": { "type": "date" },
+        "extracted_error_codes": { "type": "keyword" },
+        "assertions": {
+          "type": "nested",
+          "properties": {
+            "name": { "type": "keyword" },
+            "expected": { "type": "keyword" },
+            "actual": { "type": "keyword" },
+            "operator": { "type": "keyword" },
+            "data_type": { "type": "keyword" },
+            "unit": { "type": "keyword" },
+            "result": { "type": "keyword" }
+          }
+        },
+        "artifact_paths": { "type": "keyword" },
+        "source_file": { "type": "keyword" },
+        "file_sha256": { "type": "keyword" },
+        "ingested_at": { "type": "date" }
+      }
+    }
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "index_patterns": ["xml-insight-runs-v1*"],
+  "priority": 100,
+  "template": {
+    "settings": { "number_of_shards": 1, "number_of_replicas": 0 },
+    "mappings": {
+      "dynamic": "strict",
+      "properties": {
+        "@timestamp": { "type": "date" },
+        "doc_type": { "type": "keyword" },
+        "schema_version": { "type": "keyword" },
+        "synthetic": { "type": "boolean" },
+        "campaign": { "properties": { "id": { "type": "keyword" } } },
+        "run": {
+          "properties": {
+            "id": { "type": "keyword" },
+            "has_stable_id": { "type": "boolean" }
+          }
+        },
+        "execution_slot_id": { "type": "keyword" },
+        "test_bench": { "properties": { "id": { "type": "keyword" } } },
+        "project": { "type": "keyword" },
+        "software": { "properties": { "version": { "type": "keyword" } } },
+        "source_start_time": { "type": "keyword" },
+        "source_end_time": { "type": "keyword" },
+        "started_at": { "type": "date" },
+        "ended_at": { "type": "date" },
+        "duration_ms": { "type": "long" },
+        "timezone_assumed": { "type": "keyword" },
+        "timezone_status": { "type": "keyword" },
+        "source_result": { "type": "keyword" },
+        "normalized_result": { "type": "keyword" },
+        "init_source_result": { "type": "keyword" },
+        "init_normalized_result": { "type": "keyword" },
+        "deinit_source_result": { "type": "keyword" },
+        "deinit_normalized_result": { "type": "keyword" },
+        "suite_count": { "type": "integer" },
+        "suite_names": { "type": "keyword" },
+        "regular_tc_total": { "type": "integer" },
+        "regular_tc_passed": { "type": "integer" },
+        "regular_tc_failed": { "type": "integer" },
+        "regular_tc_error": { "type": "integer" },
+        "regular_tc_skipped": { "type": "integer" },
+        "regular_tc_unknown": { "type": "integer" },
+        "deinit_tc_total": { "type": "integer" },
+        "deinit_tc_passed": { "type": "integer" },
+        "deinit_tc_failed": { "type": "integer" },
+        "extra_group_names": { "type": "keyword" },
+        "init_params": {
+          "type": "nested",
+          "properties": { "name": { "type": "keyword" }, "value": { "type": "keyword" } }
+        },
+        "comparability_limited": { "type": "boolean" },
+        "data_quality_issues": { "type": "keyword" },
+        "source_file": { "type": "keyword" },
+        "file_sha256": { "type": "keyword" },
+        "ingested_at": { "type": "date" }
+      }
+    }
+  }
+}

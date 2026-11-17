@@ -1,0 +1,49 @@
+{
+  "index_patterns": ["xml-insight-messages-v1*"],
+  "priority": 100,
+  "template": {
+    "settings": { "number_of_shards": 1, "number_of_replicas": 0 },
+    "mappings": {
+      "dynamic": "strict",
+      "properties": {
+        "@timestamp": { "type": "date" },
+        "doc_type": { "type": "keyword" },
+        "synthetic": { "type": "boolean" },
+        "campaign": { "properties": { "id": { "type": "keyword" } } },
+        "run": { "properties": { "id": { "type": "keyword" } } },
+        "test_bench": { "properties": { "id": { "type": "keyword" } } },
+        "project": { "type": "keyword" },
+        "software": { "properties": { "version": { "type": "keyword" } } },
+        "suite": { "properties": { "id": { "type": "keyword" }, "name": { "type": "keyword" } } },
+        "phase": { "type": "keyword" },
+        "group_name": { "type": "keyword" },
+        "test_case": {
+          "properties": {
+            "id": { "type": "keyword" },
+            "execution_id": { "type": "keyword" },
+            "attempt": { "type": "integer" },
+            "name": { "type": "keyword" }
+          }
+        },
+        "step": {
+          "properties": {
+            "id": { "type": "keyword" },
+            "name": { "type": "keyword" },
+            "sequence": { "type": "integer" }
+          }
+        },
+        "origin_context": { "type": "keyword" },
+        "position": { "type": "integer" },
+        "level": { "type": "keyword" },
+        "original_text": {
+          "type": "text",
+          "fields": { "keyword": { "type": "keyword", "ignore_above": 512 } }
+        },
+        "extracted_error_codes": { "type": "keyword" },
+        "source_file": { "type": "keyword" },
+        "file_sha256": { "type": "keyword" },
+        "ingested_at": { "type": "date" }
+      }
+    }
+  }
+}
