@@ -152,7 +152,8 @@ nav = [
     {"114. Amazon OpenSearch Service, Part 2" = "sections/09-elasticsearch-in-the-cloud/114-amazon-opensearch-service-part-2.md"},
     {"115. The Elastic Cloud" = "sections/09-elasticsearch-in-the-cloud/115-the-elastic-cloud.md"},
     {"116. Section 9 Wrapup" = "sections/09-elasticsearch-in-the-cloud/116-section-9-wrapup.md"}
-  ]}
+  ]},
+  {"XML Insight Lab (Project Showcase)" = "xml-insight-lab-showcase.md"}
 ]
 
 [project.theme]
