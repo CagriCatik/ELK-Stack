@@ -29,6 +29,32 @@ From `/Users/cc/Desktop/ELK-Stack/project`:
 | `./scripts/stop.sh` | Stop containers while preserving `esdata` volume |
 | `./scripts/reset.sh` | **Destructive:** remove containers, `esdata` volume, and `./data/` |
 
+## Dashboard Screenshots
+
+### Nightly Overview
+![Nightly Overview](docs/assets/screenshots/01-nightly-overview.png)
+
+### Suite Overview
+![Suite Overview](docs/assets/screenshots/02-suite-overview.png)
+
+### Bench Comparison & Heatmaps
+![Bench Comparison & Heatmaps](docs/assets/screenshots/03-bench-comparison-heatmaps.png)
+
+### Error & Retry Analytics
+![Error & Retry Analytics](docs/assets/screenshots/04-error-retry-analytics.png)
+
+### Software Version & Regression Lab
+![Software Version & Regression Lab](docs/assets/screenshots/05-version-regression-lab.png)
+
+### Bench & Suite Failure Matrix (Aggregated Lens Data Tables)
+![Bench & Suite Failure Matrix](docs/assets/screenshots/06-bench-suite-failure-matrix.png)
+
+### TestCase & Error Matrix (Aggregated Lens Data Tables)
+![TestCase & Error Matrix](docs/assets/screenshots/07-testcase-error-matrix.png)
+
+### Run Details
+![Run Details](docs/assets/screenshots/08-run-details.png)
+
 ## Documentation
 
 - [`docs/architecture-and-data-modeling.md`](docs/architecture-and-data-modeling.md) — System architecture, data flow, and Elasticsearch data modeling
