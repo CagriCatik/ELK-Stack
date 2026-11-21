@@ -30,7 +30,7 @@ From `/Users/cc/Desktop/ELK-Stack/project`:
 | `./scripts/stop.sh` | Stop containers while preserving `esdata` volume |
 | `./scripts/reset.sh` | **Destructive:** remove containers, `esdata` volume, and `./data/` |
 
-## Dashboard Screenshots (All 13 Dashboards & 23 Visualization Paradigms)
+## Dashboard Screenshots (All 14 Dashboards & 28 Visualization/Interactivity Capabilities)
 
 ### Featured I: 12. Kibana Visualization Capabilities Showcase
 Demonstrates 12 distinct Kibana visualization types side by side: KPI Metric (`lnsMetric`), Arc Gauge (`lnsGauge`), Horizontal Bullet Gauge (`lnsGauge`), Hierarchical Treemap (`lnsPie`), Waffle Grid (`lnsPie`), Multi-Ring Sunburst (`lnsPie`), 100% Percentage Stacked Bar (`lnsXY`), Dual-Axis Bar+Line Combo Chart (`lnsXY`), Tag Cloud (`tagcloud`), 2D Color Heatmap (`heatmap`), Vega-Lite Custom Bubble Matrix (`vega`), and Aggregated Lens Data Table (`lnsDatatable`).
@@ -39,6 +39,10 @@ Demonstrates 12 distinct Kibana visualization types side by side: KPI Metric (`l
 ### Featured II: 13. Advanced Kibana Analytics (Vega, TSVB, Mosaic, Multi-Gauges & Parallel Flow)
 Demonstrates 10 additional advanced Kibana paradigms: Interactive Markdown Navigation Hub (`markdown`), 100% Percentage Stacked Area Trend (`area_percentage_stacked`), Full 360° Circle Ring Gauge (`lnsGauge`), TSVB KPI (`metrics`), Multi-Bench 4-in-1 Circular Gauges (`gauge`), TSVB Top-N Color Progress Bars (`top_n`), Mosaic / Marimekko 2D Proportional Chart (`mosaic`), Vega-Lite Dual-Axis Pareto Curve (`vega`), Vega-Lite Campaign × Bench Health Swimlane Matrix (`vega`), and Vega-Lite 5-Dimension Parallel Coordinates Flow (`vega`).
 ![13. Advanced Kibana Analytics](docs/assets/screenshots/13-advanced-kibana-analytics.png)
+
+### Featured III: 14. Interactive Controls, Sliders, Buttons, Drilldowns & Vega Inputs
+Demonstrates Chained Hierarchical Dropdowns (`1. Campaign → 2. Bench → 3. Suite → 4. Disposition`), Numeric Range Sliders (`Fault Count`, `Retry Attempt`), One-Click KQL Filter Preset Buttons, Vega Built-In HTML Radio Buttons / Select Dropdown / Range Slider (`bind`), Dashboard-to-Dashboard Context Drilldowns (`DASHBOARD_TO_DASHBOARD_DRILLDOWN`), and Data View Color Badges & Clickable `🔗 run.id` Hyperlink Buttons (`fieldFormatMap`).
+![14. Interactive Controls, Sliders, Buttons, Drilldowns & Vega Inputs](docs/assets/screenshots/14-interactive-controls-drilldowns-showcase.png)
 
 ### 01. Nightly Overview
 ![01. Nightly Overview](docs/assets/screenshots/01-nightly-overview.png)

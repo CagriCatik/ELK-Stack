@@ -10,19 +10,19 @@ title: "XML Insight Lab — Project Showcase"
 
 ---
 
-## Kibana Visualization Capabilities Matrix (23 Distinct Visualization Paradigms)
+## Kibana Visualization & Interactivity Capabilities Matrix (28 Distinct Capabilities)
 
-To demonstrate the full visual analytics power of Kibana `8.17.4`, our 13 provisioned dashboards combine **23 distinct visualization & dashboard paradigms** across **Kibana Lens**, **TSVB (Time Series Visual Builder)**, **Classic Aggregation Visualizations**, **Markdown Navigation Hubs**, and **Vega-Lite Custom Grammar**:
+To demonstrate the full visual analytics and interactive UI power of Kibana `8.17.4`, our 14 provisioned dashboards combine **28 distinct visualization & interactive control paradigms** across **Kibana Lens**, **Interactive Controls (`controlGroupInput`)**, **Dynamic Drilldowns (`dynamicActions`)**, **Data View Field Formatters (`fieldFormatMap`)**, **TSVB (Time Series Visual Builder)**, **Classic Aggregation Visualizations**, **Markdown Navigation Hubs**, and **Vega-Lite Custom Grammar with HTML Inputs**:
 
-| # | Kibana Visualization Type | Technical Type (`visualizationType` / `visState.type`) | Where It Is Used in Our Dashboards |
+| # | Kibana Visualization / Interactive Control Type | Technical Type (`visualizationType` / `visState.type`) | Where It Is Used in Our Dashboards |
 | :--- | :--- | :--- | :--- |
 | **1** | **KPI Metric Card** | `lens` → `lnsMetric` | Top KPI summary rows across Dashboards `01`, `02`, `05`, `09`, `10`, `11`, `12` |
 | **2** | **Arc Gauge (Semicircular Dial)** | `lens` → `lnsGauge` (`shape: "arc"`) | `Complete Plan Slots (38 / 40)` on Dashboard `12` |
 | **3** | **Horizontal Bullet Gauge** | `lens` → `lnsGauge` (`shape: "horizontalBullet"`) | `Received Plan Reports (39 / 40)` on Dashboard `12` |
 | **4** | **Full 360° Circle Ring Gauge** | `lens` → `lnsGauge` (`shape: "circle"`) | `Relevant Faults (62)` on Dashboard `13` |
 | **5** | **Multi-Bucket Circular Gauges (4-in-1 Panel)** | `visualization` → `gauge` (`group` split by `test_bench.id`) | `Failures per Test Bench (lab-01..lab-04)` on Dashboards `08`, `13` |
-| **6** | **Hierarchical Treemap** | `lens` → `lnsPie` (`shape: "treemap"`) | `Error Category × Rule ID` (Dashboards `04`, `12`) & `Owner × Root Cause` (Dashboard `09`) |
-| **7** | **Mosaic / Marimekko 2D Proportional Chart** | `lens` → `lnsPie` (`shape: "mosaic"`) | `Error Category × Bench Proportion` on Dashboard `13` |
+| **6** | **Hierarchical Treemap** | `lens` → `lnsPie` (`shape: "treemap"`) | `Error Category × Rule ID` (Dashboards `04`, `12`, `14`) & `Owner × Root Cause` (Dashboard `09`) |
+| **7** | **Mosaic / Marimekko 2D Proportional Chart** | `lens` → `lnsPie` (`shape: "mosaic"`) | `Error Category × Bench Proportion` on Dashboards `13`, `14` |
 | **8** | **Waffle Grid Chart (10×10 Tile Grid)** | `lens` → `lnsPie` (`shape: "waffle"`) | `Diagnostic Message Disposition` (Dashboards `09`, `12`) & `Failure Share by Software Version` (Dashboard `05`) |
 | **9** | **Multi-Ring Sunburst (2-Level Concentric Donut)** | `lens` → `lnsPie` (`shape: "donut"`, 2 rings) | `Bench → Suite Failure Sunburst` (Dashboards `06`, `12`) |
 | **10** | **1-Ring Donut Chart** | `lens` → `lnsPie` (`shape: "donut"`) | `Disposition Share`, `Owner Share`, `Plan Completeness Share` |
@@ -38,11 +38,16 @@ To demonstrate the full visual analytics power of Kibana `8.17.4`, our 13 provis
 | **20** | **2D Color Heatmap Matrix** | `visualization` → `heatmap` | `Bench × Suite Failures` (`03`, `12`), `Bench × Error Category` (`03`), `Software Version × TestCase` (`05`) |
 | **21** | **Vega-Lite Custom Proportional Bubble Matrix** | `visualization` → `vega` (`circle` + `text` layers) | `Bench × Error Category Proportional Bubble Matrix` (`03`, `12`) |
 | **22** | **Vega-Lite Pareto Curve, Swimlane Matrix & 5-D Parallel Coordinates** | `visualization` → `vega` (dual-axis Pareto, health swimlane & multi-stage fold flow) | `Top Error Rules Pareto Curve`, `Campaign × Bench Health Swimlane` (`08`, `13`) & `5-D Parallel Coordinates Flow` (`13`) |
-| **23** | **Interactive Markdown Navigation Hub & Aggregated Lens Data Tables** | `visualization` → `markdown` & `lens` → `lnsDatatable` | Clickable drilldown navigation hub (`13`) & 28 clean `lnsDatatable` panels across all dashboards |
+| **23** | **Aggregated Lens Data Tables (`lnsDatatable`)** | `lens` → `lnsDatatable` (`customLabel: true`) | 29 clean aggregated data tables across all dashboards |
+| **24** | **Chained Hierarchical Dropdown Controls** | `controlGroupInput` → `optionsListControl` (`chainingSystem: "HIERARCHICAL"`) | Cascading filter bar (`1. Campaign → 2. Bench → 3. Suite → 4. Disposition`) across all dashboards |
+| **25** | **Numeric Two-Handle Range Slider Controls** | `controlGroupInput` → `rangeSliderControl` | Interactive numeric sliders for `Fault Count (0..2)` and `Retry Attempt (1..2)` on Dashboards `12`, `13`, `14` |
+| **26** | **One-Click KQL Filter Preset & Navigation Buttons** | `visualization` → `markdown` with KQL query URL parameters | One-click triage preset buttons (`🔴 RELEVANT Only`, `🟠 CRITICAL & HIGH`, `🟣 Retries > 1`, `🔵 lab-04 Hotspot`) on Dashboard `14` |
+| **27** | **Dashboard-to-Dashboard Click Drilldowns & Data View Color/URL Formatters** | `enhancements.dynamicActions` (`DASHBOARD_TO_DASHBOARD_DRILLDOWN`) & `fieldFormatMap` (`color`, `url`) | Context drilldown buttons to Dashboards `09`/`10`/`11`, clickable `🔗 run.id` links, and Red/Green/Amber status pill badges in all tables |
+| **28** | **Vega Built-In HTML Radio Buttons, Select Dropdown & Range Slider (`bind`)** | `visualization` → `vega` (`params[].bind`: `radio`, `select`, `range`) | In-chart HTML Radio Buttons (`Owner`), Select Dropdown (`Severity`), and Range Slider (`Min Faults`) on Dashboard `14` |
 
 ---
 
-## Complete Dashboard Gallery (All 13 Dashboards)
+## Complete Dashboard Gallery (All 14 Dashboards)
 
 ### Featured I: 12. Kibana Visualization Capabilities Showcase (`xml-insight-viz-showcase`)
 Our first flagship capability showcase displaying **12 distinct Kibana visualization types side by side**: KPI Metric (`lnsMetric`), Arc Gauge (`lnsGauge`), Horizontal Bullet Gauge (`lnsGauge`), Hierarchical Treemap (`lnsPie`), Waffle Grid (`lnsPie`), Multi-Ring Sunburst (`lnsPie`), 100% Percentage Stacked Bar (`lnsXY`), Dual-Axis Bar+Line Combo Chart (`lnsXY`), Tag Cloud (`tagcloud`), 2D Color Heatmap (`heatmap`), Vega-Lite Custom Bubble Matrix (`vega`), and an aggregated Lens Data Table (`lnsDatatable`).
@@ -65,6 +70,18 @@ Our second flagship showcase demonstrating **10 additional advanced Kibana parad
 10. **Vega-Lite 5-Dimension Parallel Coordinates Flow (`vega`)** tracing failure paths across `1_Bench → 2_Version → 3_Suite → 4_Category → 5_Owner`
 
 ![13. Advanced Kibana Analytics](assets/screenshots/13-advanced-kibana-analytics.png)
+
+---
+
+### Featured III: 14. Interactive Controls, Sliders, Buttons, Drilldowns & Vega Inputs (`xml-insight-interactive-showcase`)
+Our third flagship showcase dedicated to **interactive UI controls, buttons, formatters, and drilldowns**:
+1. **Chained Hierarchical Dropdowns (`optionsListControl`, `chainingSystem: "HIERARCHICAL"`)**: Selecting `1. Campaign` filters `2. Bench`, which filters `3. Suite`, which filters `4. Disposition`.
+2. **Numeric Two-Handle Range Sliders (`rangeSliderControl`)**: Filter by `Fault Count (0 → 2)` and `Retry Attempt (1 → 2)`.
+3. **One-Click KQL Filter Preset Buttons (`markdown`)**: Instant buttons applying pre-configured KQL filters (`🔴 Actionable RELEVANT Failures Only`, `🟠 CRITICAL & HIGH Severity Faults`, `🟣 All Retry Executions (attempt > 1)`, `🔵 Bench lab-04 Connectivity Hotspot`).
+4. **Vega Explorer with Built-In HTML Radio Buttons, Select Dropdown & Range Slider (`bind`)**: Live in-chart HTML controls (`🔘 Owner (Radio)`, `▾ Severity (Dropdown)`, `⊶ Min Faults (Slider)`).
+5. **Dashboard-to-Dashboard Context Drilldowns (`DASHBOARD_TO_DASHBOARD_DRILLDOWN`)** and **Data View Color Badges & Clickable `🔗 run.id` Hyperlink Buttons (`fieldFormatMap`)**.
+
+![14. Interactive Controls, Sliders, Buttons, Drilldowns & Vega Inputs](assets/screenshots/14-interactive-controls-drilldowns-showcase.png)
 
 ---
 
