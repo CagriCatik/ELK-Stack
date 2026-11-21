@@ -22,6 +22,7 @@ XML Insight Lab provisions **14 Kibana dashboards** showcasing **28 distinct vis
 | 14 | **Interactive Controls, Sliders, Buttons, Drilldowns & Vega Inputs** | `/app/dashboards#/view/xml-insight-interactive-showcase` | Flagship showcase III: Chained Hierarchical Dropdowns, Numeric Range Sliders, One-Click KQL Preset Buttons, Vega Built-In HTML Radio/Select/Range Inputs, Context Drilldowns & Data View Color/URL Formatters |
 | 15 | **Custom Dark-Theme, Neon Gradients & CSS Styling Showcase** | `/app/dashboards#/view/xml-insight-custom-css-showcase` | Flagship showcase IV: Dark-Slate (`#0f172a`) & Dark-Emerald (`#022c22`) Vega themes, multi-stop linear gradient bar fills, neon pass-rate scorecards & lollipop charts |
 | 16 | **Kibana Canvas — 100% Custom CSS Executive Workpad** | `/app/canvas#/workpad/workpad-xml-insight-executive/page/1` | Flagship showcase V: Pixel-accurate presentation slide styled with per-element CSS (`render css=".canvasRenderEl { ... }"`) and live Canvas ESSQL (`SELECT ... FROM "xml-insight-*"`) |
+| 17 | **Complete UI Controls, Dropdowns, Buttons, Sliders & Widgets Gallery** | `/app/dashboards#/view/xml-insight-ui-controls-gallery` | Flagship showcase VI: 6 Chained Multi/Single-Select Dropdowns, 2 Numeric Range Sliders, 5-Row Action & Filter Preset Button Matrix, 2 HTML Form Control Panels (Radio Switchers, Dropdowns, Checkboxes, Threshold Sliders), Clickable `🔗 run.id` Links & Color Badges |
 
 ## Recommended Analysis Path
 

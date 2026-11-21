@@ -52,6 +52,10 @@ Demonstrates custom Dark-Slate (`#0f172a`) and Dark-Emerald (`#022c22`) Vega the
 Pixel-accurate 16:9 presentation workpad (`workpad-xml-insight-executive`) where every element is styled with custom CSS (`render css=".canvasRenderEl { background: linear-gradient(...); border-radius: 14px; box-shadow: ... }"`) and populated via live **Canvas ESSQL (`SELECT ... FROM "xml-insight-*"`)** queries.
 ![16. Kibana Canvas Custom CSS Executive Workpad](docs/assets/screenshots/16-kibana-canvas-custom-css-workpad.png)
 
+### Featured VI: 17. Complete UI Controls, Dropdowns, Buttons, Sliders & Widgets Gallery
+Dedicated interactive UI controls showcase (`/app/dashboards#/view/xml-insight-ui-controls-gallery`) featuring 6 Chained Multi/Single-Select Dropdowns, 2 Numeric Two-Handle Range Sliders, a 5-Row Clickable Action & Filter Preset Button Matrix, 2 Vega HTML Form Control Explorers (Radio Button Groups, Dynamic Dimension Axis Switcher, Select Dropdowns, Checkbox Toggles, and Live Threshold Sliders), Clickable `🔗 run.id` Hyperlink Buttons, Color Badges, and Context Drilldown Menus.
+![17. Complete UI Controls, Dropdowns, Buttons, Sliders & Widgets Gallery](docs/assets/screenshots/17-ui-controls-dropdowns-buttons-gallery.png)
+
 ### 01. Nightly Overview
 ![01. Nightly Overview](docs/assets/screenshots/01-nightly-overview.png)
 

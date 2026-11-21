@@ -101,6 +101,26 @@ Beyond standard grid dashboards, Kibana's **Canvas App (`/app/canvas#/workpad/wo
 
 ---
 
+### Featured VI: 17. Complete UI Controls, Dropdowns, Buttons, Sliders & Widgets Gallery (`xml-insight-ui-controls-gallery`)
+A dedicated **Interactive UI Controls & Form Widgets Showcase Dashboard** combining every interactive control pattern in Kibana on a single view:
+- **8 Native Top-Bar Controls (`controlGroupInput`, 2 rows):**
+  - `1. Campaign (Multi-Select Dropdown)` · `2. Bench (Single-Select Chained Dropdown)` · `3. Suite (Chained Dropdown)` · `4. Software Version` · `5. Disposition` · `6. Error Category`
+  - `7. Fault Count (Numeric Two-Handle Range Slider: 0 → 2)` · `8. Retry Attempt (Numeric Two-Handle Range Slider: 1 → 2)`
+- **5-Category Clickable Action & Filter Preset Button Matrix (`markdown`):**
+  - **Disposition Filter Buttons:** `🔴 RELEVANT Only` · `🟠 KNOWN_ISSUE` · `🟢 Reset All Filters`
+  - **Severity Filter Buttons:** `🚨 CRITICAL Only` · `🔥 HIGH Severity` · `⚠️ MEDIUM Severity`
+  - **Test Bench Buttons:** `🖥️ Bench lab-01` · `🖥️ Bench lab-02` · `🖥️ Bench lab-03` · `⚡ Bench lab-04`
+  - **Version & Retry Buttons:** `📦 v1.3.0` · `📦 v1.4.0` · `🚀 v1.5.0-rc1` · `🔁 Retries (attempt > 1)`
+  - **Cross-View Navigation Buttons:** `📊 01. Nightly` · `🌡️ 03. Heatmaps` · `🧠 09. Root Cause` · `🏆 12. Viz Showcase` · `🎨 15. Dark Theme` · `🖼️ 16. Canvas`
+- **2 Interactive HTML Form Control Panels (`vega` with `params[].bind`):**
+  - **Panel 1:** `🔘 Owner (Radio Buttons)` + `▾ Category (Dropdown)` + `▾ Severity (Dropdown)` + `☑️ Multi-Faults Only (Checkbox)` + `⊶ Min Faults (Range Slider)`
+  - **Panel 2:** `🔀 Group Axis By (Dynamic Dimension Radio Switcher: By Suite / By Test Bench / By Software Version / By Error Category)` + `▾ Test Bench (Dropdown)` + `☑️ Red Alert Line (Checkbox Toggle)` + `⊶ Alert Threshold (Slider moving the dashed red cutoff line live)`
+- **Interactive Table with Clickable `🔗 run.id` Hyperlink Buttons, Color Pill Badges (`FAILED`/`PASSED`/`UNKNOWN`), and Context Drilldown Menus (`DASHBOARD_TO_DASHBOARD_DRILLDOWN`)**
+
+![17. Complete UI Controls, Dropdowns, Buttons, Sliders & Widgets Gallery](assets/screenshots/17-ui-controls-dropdowns-buttons-gallery.png)
+
+---
+
 ### 1. Nightly Overview (`xml-insight-nightly-overview`)
 Tracks planned vs. received vs. missing vs. partial vs. invalid reports, bench-level result distribution, `init`/`deinit` anomalies, daily failure categories, stacked area trends, and three aggregated **Lens Data Tables (`lnsDatatable`)** for Plan Status, Dynamic Failures & Errors, and Malformed/Rejected XML Import Errors.
 
