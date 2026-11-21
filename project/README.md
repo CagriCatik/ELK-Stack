@@ -23,14 +23,18 @@ From `/Users/cc/Desktop/ELK-Stack/project`:
 
 | Command | Purpose |
 | --- | --- |
-| `./scripts/demo.sh` | Build tools, start ELK, install templates, generate 5 nights × 4 benches × 5 suites, ingest, reconcile, provision 11 Kibana dashboards, verify |
+| `./scripts/demo.sh` | Build tools, start ELK, install templates, generate 5 nights × 4 benches × 5 suites, ingest, reconcile, provision 12 Kibana dashboards, verify |
 | `./scripts/reprocess.sh` | Reload `config/error_mapping.yaml` in Logstash, reset indices, and re-classify all XML reports without duplicates |
 | `./scripts/status.sh` | Container status, ES health, and document counts across all 7 index families |
 | `./scripts/verify.sh` | Run Logstash Ruby unit tests (`test_error_mapping.rb`), verify ES document counts, and run the full `pytest` suite |
 | `./scripts/stop.sh` | Stop containers while preserving `esdata` volume |
 | `./scripts/reset.sh` | **Destructive:** remove containers, `esdata` volume, and `./data/` |
 
-## Dashboard Screenshots (All 11 Dashboards)
+## Dashboard Screenshots (All 12 Dashboards & 15 Visualization Types)
+
+### Featured: 12. Kibana Visualization Capabilities Showcase
+Demonstrates 12 distinct Kibana visualization types side by side: KPI Metric (`lnsMetric`), Arc Gauge (`lnsGauge`), Horizontal Bullet Gauge (`lnsGauge`), Hierarchical Treemap (`lnsPie`), Waffle Grid (`lnsPie`), Multi-Ring Sunburst (`lnsPie`), 100% Percentage Stacked Bar (`lnsXY`), Dual-Axis Bar+Line Combo Chart (`lnsXY`), Tag Cloud (`tagcloud`), 2D Color Heatmap (`heatmap`), Vega-Lite Custom Bubble Matrix (`vega`), and Aggregated Lens Data Table (`lnsDatatable`).
+![12. Kibana Visualization Capabilities Showcase](docs/assets/screenshots/12-kibana-viz-capabilities-showcase.png)
 
 ### 01. Nightly Overview
 ![01. Nightly Overview](docs/assets/screenshots/01-nightly-overview.png)
@@ -38,8 +42,8 @@ From `/Users/cc/Desktop/ELK-Stack/project`:
 ### 02. Suite Overview
 ![02. Suite Overview](docs/assets/screenshots/02-suite-overview.png)
 
-### 03. Bench Comparison
-![03. Bench Comparison](docs/assets/screenshots/03-bench-comparison.png)
+### 03. Bench Comparison & Heatmaps
+![03. Bench Comparison & Heatmaps](docs/assets/screenshots/03-bench-comparison.png)
 
 ### 04. Error & Retry Analytics
 ![04. Error & Retry Analytics](docs/assets/screenshots/04-error-retry-analytics.png)
