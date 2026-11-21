@@ -42,7 +42,7 @@ curl -XGET '127.0.0.1:9200/movies/_doc/109487?pretty'
 The response includes `"_seq_no" : 7` and `"_primary_term" : 1`. Now update *that specific revision* by passing both values as query parameters (double quotes this time — the URL contains characters the shell would otherwise mangle):
 
 ```bash
-curl -XPUT "127.0.0.1:9200/movies/_doc/109487?if_seq_no=7&if_primary_term=1" -d '
+curl -H "Content-Type: application/json" -XPUT "127.0.0.1:9200/movies/_doc/109487?if_seq_no=7&if_primary_term=1" -d '
 {
   "genres": ["IMAX", "Sci-Fi"],
   "title": "Interstellar Foo",
@@ -63,7 +63,7 @@ Exactly the behavior we want: had those two updates raced, only one would have w
 Managing sequence numbers by hand is instructive, but partial updates can delegate the retry loop to Elasticsearch:
 
 ```bash
-curl -XPOST '127.0.0.1:9200/movies/_update/109487?retry_on_conflict=5' -d '
+curl -H "Content-Type: application/json" -XPOST '127.0.0.1:9200/movies/_update/109487?retry_on_conflict=5' -d '
 {
   "doc": { "title": "Interstellar" }
 }'

@@ -1,12 +1,12 @@
 ---
-title: "35. Pagination"
+title: "6. Pagination"
 hide:
   - toc
 ---
 
 <div class="chapter-kicker">SECTION 03</div>
 
-# 35. Pagination
+# 6. Pagination
 
 By default, Elasticsearch returns only the top **10** hits (`size: 10`, `from: 0`). Moving through pages of search results seems simple until you hit deep pagination—where naive `from`/`size` offsets can overload a distributed cluster.
 
@@ -84,8 +84,8 @@ Older tutorials often recommend the **`scroll`** API (`?scroll=1m`) for deep pag
 - Avoid `scroll` for user-facing pagination; reserve it only for legacy bulk-export tooling.
 
 <div class="chapter-nav">
-<a class="chapter-nav__item" href="034-exercise-querying-in-different-ways.html"><span>Previous</span><strong>34. [Exercise] Querying in Different Ways</strong></a>
-<a class="chapter-nav__item chapter-nav__item--next" href="036-sorting.html"><span>Next</span><strong>36. Sorting</strong></a>
+<a class="chapter-nav__item" href="005-exercise-querying-in-different-ways.html"><span>Previous</span><strong>5. [Exercise] Querying in Different Ways</strong></a>
+<a class="chapter-nav__item chapter-nav__item--next" href="007-sorting.html"><span>Next</span><strong>7. Sorting</strong></a>
 </div>
 
 <p class="back-to-section"><a href="index.html">← Back to Section 3</a></p>

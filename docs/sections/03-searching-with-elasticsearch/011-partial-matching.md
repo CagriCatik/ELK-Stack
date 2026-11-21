@@ -1,12 +1,12 @@
 ---
-title: "40. Partial Matching"
+title: "11. Partial Matching"
 hide:
   - toc
 ---
 
 <div class="chapter-kicker">SECTION 03</div>
 
-# 40. Partial Matching
+# 11. Partial Matching
 
 Sometimes you need to match part of a word—either the beginning (`"star"` matching `"stargate"` and `"starship"`), a glob pattern, or a regular expression. Elasticsearch provides term-level partial-matching queries for this, though they come with important performance caveats.
 
@@ -90,8 +90,8 @@ This matches `"Star Wars"`, `"Star Wreck"`, and `"Star Watcher"`, while capping 
 - Use `match_phrase_prefix` when you need multi-word prefix matching at query time without changing index mappings.
 
 <div class="chapter-nav">
-<a class="chapter-nav__item" href="039-fuzzy-queries.html"><span>Previous</span><strong>39. Fuzzy Queries</strong></a>
-<a class="chapter-nav__item chapter-nav__item--next" href="041-query-time-search-as-you-type.html"><span>Next</span><strong>41. Query-time Search As You Type</strong></a>
+<a class="chapter-nav__item" href="010-fuzzy-queries.html"><span>Previous</span><strong>10. Fuzzy Queries</strong></a>
+<a class="chapter-nav__item chapter-nav__item--next" href="012-query-time-search-as-you-type.html"><span>Next</span><strong>12. Query-time Search As You Type</strong></a>
 </div>
 
 <p class="back-to-section"><a href="index.html">← Back to Section 3</a></p>

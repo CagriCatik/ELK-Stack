@@ -1,6 +1,6 @@
 # XML Insight Lab
 
-A locally runnable **Elasticsearch, Logstash, and Kibana** (`8.17.4`) analysis platform for synthetic `<report>` XML execution reports across multiple test benches, suites, and campaigns.
+A locally runnable **Elasticsearch, Logstash, and Kibana** (`8.17.4`) analysis platform for synthetic `<report>` XML execution reports across multiple test benches, suites, software versions, and nightly campaigns.
 
 > **Public & Synthetic Context Notice:** All projects (`SampleProject`), benches (`lab-01`–`lab-04`), suites (`Workspace`, `Content`, `Settings`, `Connectivity`, `StorageSync`), components (`Output_A`, `Output_B`, `CaptureService`, `InteractionService`, `StorageService`, `Connectivity`), and messages are 100% synthetic.
 
@@ -23,41 +23,53 @@ From `/Users/cc/Desktop/ELK-Stack/project`:
 
 | Command | Purpose |
 | --- | --- |
-| `./scripts/demo.sh` | Build tools, start ELK, install templates, generate 5 nights × 4 benches × 5 suites, ingest, reconcile, provision 10 Kibana dashboards, verify |
+| `./scripts/demo.sh` | Build tools, start ELK, install templates, generate 5 nights × 4 benches × 5 suites, ingest, reconcile, provision 11 Kibana dashboards, verify |
+| `./scripts/reprocess.sh` | Reload `config/error_mapping.yaml` in Logstash, reset indices, and re-classify all XML reports without duplicates |
 | `./scripts/status.sh` | Container status, ES health, and document counts across all 7 index families |
-| `./scripts/verify.sh` | Verify ES document counts and run the full `pytest` suite |
+| `./scripts/verify.sh` | Run Logstash Ruby unit tests (`test_error_mapping.rb`), verify ES document counts, and run the full `pytest` suite |
 | `./scripts/stop.sh` | Stop containers while preserving `esdata` volume |
 | `./scripts/reset.sh` | **Destructive:** remove containers, `esdata` volume, and `./data/` |
 
-## Dashboard Screenshots
+## Dashboard Screenshots (All 11 Dashboards)
 
-### Nightly Overview
-![Nightly Overview](docs/assets/screenshots/01-nightly-overview.png)
+### 01. Nightly Overview
+![01. Nightly Overview](docs/assets/screenshots/01-nightly-overview.png)
 
-### Suite Overview
-![Suite Overview](docs/assets/screenshots/02-suite-overview.png)
+### 02. Suite Overview
+![02. Suite Overview](docs/assets/screenshots/02-suite-overview.png)
 
-### Bench Comparison & Heatmaps
-![Bench Comparison & Heatmaps](docs/assets/screenshots/03-bench-comparison-heatmaps.png)
+### 03. Bench Comparison
+![03. Bench Comparison](docs/assets/screenshots/03-bench-comparison.png)
 
-### Error & Retry Analytics
-![Error & Retry Analytics](docs/assets/screenshots/04-error-retry-analytics.png)
+### 04. Error & Retry Analytics
+![04. Error & Retry Analytics](docs/assets/screenshots/04-error-retry-analytics.png)
 
-### Software Version & Regression Lab
-![Software Version & Regression Lab](docs/assets/screenshots/05-version-regression-lab.png)
+### 05. Software Version & Regression Lab
+![05. Software Version & Regression Lab](docs/assets/screenshots/05-version-regression-lab.png)
 
-### Bench & Suite Failure Matrix (Aggregated Lens Data Tables)
-![Bench & Suite Failure Matrix](docs/assets/screenshots/06-bench-suite-failure-matrix.png)
+### 06. Bench & Suite Failure Matrix (Aggregated Lens Data Tables)
+![06. Bench & Suite Failure Matrix](docs/assets/screenshots/06-bench-suite-failure-matrix.png)
 
-### TestCase & Error Matrix (Aggregated Lens Data Tables)
-![TestCase & Error Matrix](docs/assets/screenshots/07-testcase-error-matrix.png)
+### 07. TestCase & Error Matrix (Aggregated Lens Data Tables)
+![07. TestCase & Error Matrix](docs/assets/screenshots/07-testcase-error-matrix.png)
 
-### Run Details
-![Run Details](docs/assets/screenshots/08-run-details.png)
+### 08. Campaign & Bench Health Matrix (Aggregated Lens Data Tables)
+![08. Campaign & Bench Health Matrix](docs/assets/screenshots/08-campaign-bench-health-matrix.png)
+
+### 09. Error Classification & Root Cause Analysis
+![09. Error Classification & Root Cause Analysis](docs/assets/screenshots/09-error-classification-root-cause.png)
+
+### 10. Run Details
+![10. Run Details](docs/assets/screenshots/10-run-details.png)
+
+### 11. Test Details
+![11. Test Details](docs/assets/screenshots/11-test-details.png)
 
 ## Documentation
 
 - [`docs/architecture-and-data-modeling.md`](docs/architecture-and-data-modeling.md) — System architecture, data flow, and Elasticsearch data modeling
+- [`docs/error-mapping.md`](docs/error-mapping.md) — Configurable error-mapping engine, rule priorities, and dispositions
+- [`docs/kibana-dashboards-and-customization.md`](docs/kibana-dashboards-and-customization.md) — Official Kibana terminology (`lnsDatatable` vs. `Saved Search`), field cheat sheet, and UI/NDJSON customization guide
 - [`docs/xml-format-v1.md`](docs/xml-format-v1.md) · [`schemas/execution-report-v1.xsd`](schemas/execution-report-v1.xsd) · [`examples/sample-report-v1.xml`](examples/sample-report-v1.xml)
 - [`docs/elasticsearch-model.md`](docs/elasticsearch-model.md)
 - [`docs/kibana-discover-guide.md`](docs/kibana-discover-guide.md)

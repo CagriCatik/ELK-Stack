@@ -30,7 +30,6 @@ This section lays the conceptual and practical foundation for everything else in
 These concepts are the underpinning for all the hands-on sections that follow — importing data, searching, aggregating, and operating clusters — so it is worth making sure they are solid before moving on.
 
 <div class="chapter-nav">
-<span></span>
 <a class="chapter-nav__item chapter-nav__item--next" href="002-installing-elasticsearch-step-by-step.html"><span>Next</span><strong>2. Installing Elasticsearch [Step by Step]</strong></a>
 </div>
 

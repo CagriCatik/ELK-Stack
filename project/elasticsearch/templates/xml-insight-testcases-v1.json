@@ -40,6 +40,20 @@
         "normalized_result": { "type": "keyword" },
         "error_category": { "type": "keyword" },
         "analysis_classification": { "type": "keyword" },
+        "fault_count": { "type": "integer" },
+        "error_mapping": {
+          "properties": {
+            "matched": { "type": "boolean" },
+            "rule_id": { "type": "keyword" },
+            "matched_rule_ids": { "type": "keyword" },
+            "category": { "type": "keyword" },
+            "severity": { "type": "keyword" },
+            "disposition": { "type": "keyword" },
+            "root_cause": { "type": "keyword" },
+            "owner": { "type": "keyword" },
+            "mapping_version": { "type": "keyword" }
+          }
+        },
         "extracted_error_codes": { "type": "keyword" },
         "duration_ms": { "type": "long" },
         "started_at": { "type": "date" },

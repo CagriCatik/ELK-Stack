@@ -20,7 +20,7 @@ A mapping is both a **process** (defining how JSON documents are stored) and a *
 The running example is a simple log-collection microservice index:
 
 ```bash
-curl -XPUT '127.0.0.1:9200/microservice-logs' -d '
+curl -H "Content-Type: application/json" -XPUT '127.0.0.1:9200/microservice-logs' -d '
 {
   "mappings": {
     "properties": {
@@ -56,12 +56,12 @@ HTTP 400 — mapper_parsing_exception: failed to parse field [port] of type [int
 There is no one-size-fits-all solution, but `ignore_malformed` helps in this case. It is a **non-dynamic** setting — set it at index creation, or close/reopen the index around the change:
 
 ```bash
-curl -XPOST '127.0.0.1:9200/microservice-logs/_close'
+curl -H "Content-Type: application/json" -XPOST '127.0.0.1:9200/microservice-logs/_close'
 
-curl -XPUT '127.0.0.1:9200/microservice-logs/_settings' -d '
+curl -H "Content-Type: application/json" -XPUT '127.0.0.1:9200/microservice-logs/_settings' -d '
 { "index.mapping.ignore_malformed": true }'
 
-curl -XPOST '127.0.0.1:9200/microservice-logs/_open'
+curl -H "Content-Type: application/json" -XPOST '127.0.0.1:9200/microservice-logs/_open'
 ```
 
 Re-index the `"port": "none"` document and it now succeeds — with a twist: fetching it by ID shows the port value was **omitted from indexing** and the document carries an `_ignored: ["port"]` marker.
@@ -92,7 +92,7 @@ Straight to an `illegal_argument_exception`: *Limit of total fields [1000] has b
 The limit is a **dynamic setting**, so it can be raised without closing the index:
 
 ```bash
-curl -XPUT '127.0.0.1:9200/big-objects/_settings' -d '
+curl -H "Content-Type: application/json" -XPUT '127.0.0.1:9200/big-objects/_settings' -d '
 { "index.mapping.total_fields.limit": 1001 }'
 ```
 

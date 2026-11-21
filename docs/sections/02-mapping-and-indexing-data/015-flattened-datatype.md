@@ -37,9 +37,9 @@ Every inner field of `host` — OS name, version, architecture, and so on — ha
 The `flattened` type maps a whole object **as a single field**; its inner fields don't appear in the mapping at all. Create a second index that flattens `host` up front:
 
 ```bash
-curl -XPUT '127.0.0.1:9200/demo-flattened'
+curl -H "Content-Type: application/json" -XPUT '127.0.0.1:9200/demo-flattened'
 
-curl -XPUT '127.0.0.1:9200/demo-flattened/_mapping' -d '
+curl -H "Content-Type: application/json" -XPUT '127.0.0.1:9200/demo-flattened/_mapping' -d '
 {
   "properties": {
     "host": { "type": "flattened" }

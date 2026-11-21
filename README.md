@@ -8,15 +8,16 @@ The guide is built with [Zensical](https://zensical.org/) and published as a fas
 
 | Section | Topics |
 | --- | --- |
-| 1. Installing and understanding Elasticsearch | Local installation, Elastic Stack architecture, REST APIs, inverted indices, TF/IDF, shards, and replicas |
-| 2. Mapping and indexing data | Documents, mappings, analyzers, CRUD operations, bulk indexing, concurrency, and data modeling |
-| 3. Searching with Elasticsearch | Query DSL, phrase and fuzzy matching, filters, pagination, sorting, partial matching, and search-as-you-type |
-| 4. Importing data | Client scripts, Logstash, JDBC, CSV, JSON, S3, Kafka, and Apache Spark |
-| 5. Aggregation | Buckets, metrics, histograms, and nested aggregations |
-| 6. Using Kibana | Installation, Discover, Lens, dashboards, management, and Elasticsearch SQL |
-| 7. Analyzing log data | Beats, Elastic Stack ingestion architecture, and Kibana log dashboards |
-| 8. Elasticsearch operations | Shard strategy, index lifecycle management, hardware and heap sizing, monitoring, failover, snapshots, and rolling restarts |
-| 9. Elasticsearch in the cloud | Amazon OpenSearch Service, Elastic Cloud, and managed deployment trade-offs |
+| 1. Installing and Understanding Elasticsearch | Local installation, Elastic Stack architecture, REST APIs, inverted indices, TF/IDF & BM25, shards, and replicas |
+| 2. Mapping and Indexing Data | Documents, explicit & dynamic mappings (`dynamic: strict`), analyzers, CRUD operations, bulk indexing, concurrency, and data modeling |
+| 3. Searching with Elasticsearch | Query DSL, phrase and fuzzy matching, filter context, pagination (`from`/`size`, `search_after`, PIT), sorting, partial matching, and search-as-you-type |
+| 4. Importing Data into your Index - Big or Small | Client scripts, Logstash fundamentals, JDBC, CSV, JSON, S3, Grok, input plugins, Dead Letter Queues, Kafka, Apache Spark, and `dense_vector` kNN search |
+| 5. Logstash Deep Dive, XML Pipelines & Error Mapping | HTTP JSON envelopes, DTD/XXE security guards, `xml` filter, Ruby filter 1-to-N event fan-out (`normalize_report.rb`), config-driven error mapping (`error_mapping.yaml`), deterministic SHA-256 routing, and historical reprocessing |
+| 6. Aggregation | Buckets, metrics, histograms, time series, and nested/composite aggregations |
+| 7. Using Kibana | Installation, Discover, Data Views, Kibana Lens & Data Tables (`lnsDatatable`), dashboards, Stack Management, and Elasticsearch SQL / ES\|QL |
+| 8. Analyzing Log Data with the Elastic Stack | Data Frame Transforms, Filebeat & Beats ingestion architecture, X-Pack Security, and Kibana log dashboards |
+| 9. Elasticsearch Operations | Shard sizing strategy, index alias rotation, ILM, hardware and JVM heap sizing, monitoring, troubleshooting, failover, snapshots/SLM, rolling restarts, and Heartbeat |
+| 10. Elasticsearch in the Cloud | Cloud operational model, Amazon OpenSearch Service, Elastic Cloud Hosted & Serverless |
 
 The material is organized into more than 100 focused lesson pages, with chapter navigation, exercises, quizzes, and section wrap-ups.
 

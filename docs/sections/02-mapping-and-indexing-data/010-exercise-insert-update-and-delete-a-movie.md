@@ -6,7 +6,7 @@ hide:
 
 <div class="chapter-kicker">SECTION 02 · EXERCISE</div>
 
-# 10.  Insert, Update and Delete a Movie
+# 10. Insert, Update and Delete a Movie
 
 Time for the first hands-on challenge of your own. You now know how to insert, update, and delete documents — so prove it before looking at the walkthrough.
 
@@ -26,7 +26,7 @@ Try it on your own first — that's how this material sticks. The walkthrough be
 **Insert** a fictitious movie with a made-up ID (any unused number works — here, 200000):
 
 ```bash
-curl -XPUT '127.0.0.1:9200/movies/_doc/200000?pretty' -d '
+curl -H "Content-Type: application/json" -XPUT '127.0.0.1:9200/movies/_doc/200000?pretty' -d '
 {
   "title": "Franks Adventures in Elasticsearch",
   "genre": ["Documentary"],
@@ -43,7 +43,7 @@ curl -XGET '127.0.0.1:9200/movies/_doc/200000?pretty'
 **Update** it with a partial update — add a second genre using the `_update` endpoint and a `doc` block:
 
 ```bash
-curl -XPOST '127.0.0.1:9200/movies/_update/200000?pretty' -d '
+curl -H "Content-Type: application/json" -XPOST '127.0.0.1:9200/movies/_update/200000?pretty' -d '
 {
   "doc": {
     "genre": ["Documentary", "Comedy"]

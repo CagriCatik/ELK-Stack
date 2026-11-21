@@ -43,6 +43,19 @@
         "started_at": { "type": "date" },
         "ended_at": { "type": "date" },
         "extracted_error_codes": { "type": "keyword" },
+        "error_mapping": {
+          "properties": {
+            "matched": { "type": "boolean" },
+            "rule_id": { "type": "keyword" },
+            "matched_rule_ids": { "type": "keyword" },
+            "category": { "type": "keyword" },
+            "severity": { "type": "keyword" },
+            "disposition": { "type": "keyword" },
+            "root_cause": { "type": "keyword" },
+            "owner": { "type": "keyword" },
+            "mapping_version": { "type": "keyword" }
+          }
+        },
         "assertions": {
           "type": "nested",
           "properties": {

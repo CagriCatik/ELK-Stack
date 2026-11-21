@@ -113,7 +113,7 @@ docker run -d --name elasticsearch -p 9200:9200 \
 
 <div class="chapter-nav">
 <a class="chapter-nav__item" href="001-intro.html"><span>Previous</span><strong>1. Introduction</strong></a>
-<a class="chapter-nav__item chapter-nav__item--next" href="002-windows-installation.html"><span>Next</span><strong>Windows companion: Installing the Elastic Stack</strong></a>
+<a class="chapter-nav__item chapter-nav__item--next" href="003-elasticsearch-overview.html"><span>Next</span><strong>3. Elasticsearch Overview</strong></a>
 </div>
 
 <p class="back-to-section"><a href="index.html">← Back to Section 1</a></p>

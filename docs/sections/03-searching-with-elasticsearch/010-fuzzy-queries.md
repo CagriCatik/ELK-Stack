@@ -1,12 +1,12 @@
 ---
-title: "39. Fuzzy Queries"
+title: "10. Fuzzy Queries"
 hide:
   - toc
 ---
 
 <div class="chapter-kicker">SECTION 03</div>
 
-# 39. Fuzzy Queries
+# 10. Fuzzy Queries
 
 Users make typos. Searching for `"interstelar"` or `"matrx"` with a standard `match` query returns zero hits because those exact tokens do not exist in the inverted index. **Fuzzy queries** solve this by matching terms within a small **Damerau–Levenshtein edit distance** (single-character insertions, deletions, substitutions, or adjacent transpositions).
 
@@ -75,8 +75,8 @@ curl -s -X POST "http://127.0.0.1:9200/movies/_search?pretty" \
 - Prefer `match` with `fuzziness` over raw `fuzzy` queries for analyzed `text` fields.
 
 <div class="chapter-nav">
-<a class="chapter-nav__item" href="038-exercise-using-filters.html"><span>Previous</span><strong>38. [Exercise] Using Filters</strong></a>
-<a class="chapter-nav__item chapter-nav__item--next" href="040-partial-matching.html"><span>Next</span><strong>40. Partial Matching</strong></a>
+<a class="chapter-nav__item" href="009-exercise-using-filters.html"><span>Previous</span><strong>9. [Exercise] Using Filters</strong></a>
+<a class="chapter-nav__item chapter-nav__item--next" href="011-partial-matching.html"><span>Next</span><strong>11. Partial Matching</strong></a>
 </div>
 
 <p class="back-to-section"><a href="index.html">← Back to Section 3</a></p>

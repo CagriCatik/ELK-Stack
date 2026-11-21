@@ -20,7 +20,7 @@ Every text field forces a decision: should searches on it be **exact matches**, 
 Search the movie titles for "Star Trek":
 
 ```bash
-curl -XGET '127.0.0.1:9200/movies/_search?pretty' -d '
+curl -H "Content-Type: application/json" -XGET '127.0.0.1:9200/movies/_search?pretty' -d '
 {
   "query": {
     "match": { "title": "Star Trek" }
@@ -33,7 +33,7 @@ The results include *Star Trek Beyond* — but also *Star Wars*. Both titles mat
 Now try the genre field, with what sounds like a very precise query:
 
 ```bash
-curl -XGET '127.0.0.1:9200/movies/_search?pretty' -d '
+curl -H "Content-Type: application/json" -XGET '127.0.0.1:9200/movies/_search?pretty' -d '
 {
   "query": {
     "match_phrase": { "genre": "sci" }
@@ -54,7 +54,7 @@ curl -XDELETE 127.0.0.1:9200/movies
 Recreate it with genre as an exact-match `keyword` and title as analyzed `text` with the English analyzer:
 
 ```bash
-curl -XPUT 127.0.0.1:9200/movies -d '
+curl -H "Content-Type: application/json" -XPUT 127.0.0.1:9200/movies -d '
 {
   "mappings": {
     "properties": {

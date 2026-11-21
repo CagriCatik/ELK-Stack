@@ -1,0 +1,172 @@
+version: "1.0"
+
+defaults:
+  category: UNKNOWN
+  severity: MEDIUM
+  disposition: UNCLASSIFIED
+  root_cause: UNCLASSIFIED
+  owner: UNASSIGNED
+
+rules:
+  - id: ERR_INIT_FAILURE
+    enabled: true
+    priority: 110
+    description: Synthetic test bench initialization lock failure
+    match:
+      type: regex
+      field: message
+      patterns:
+        - "(?i).*SYN_INIT_5001.*"
+        - "(?i).*workspace lock failed.*"
+    classification:
+      category: INFRASTRUCTURE
+      severity: CRITICAL
+      disposition: KNOWN_ISSUE
+      root_cause: ENVIRONMENT_SETUP
+      owner: TEST_INFRASTRUCTURE
+
+  - id: ERR_DEINIT_FAILURE
+    enabled: true
+    priority: 105
+    description: Synthetic test bench deinitialization cleanup failure
+    match:
+      type: regex
+      field: message
+      patterns:
+        - "(?i).*SYN_DEINIT_6001.*"
+        - "(?i).*cleanup lock error.*"
+    classification:
+      category: INFRASTRUCTURE
+      severity: HIGH
+      disposition: KNOWN_ISSUE
+      root_cause: ENVIRONMENT_CLEANUP
+      owner: TEST_INFRASTRUCTURE
+
+  - id: ERR_UI_TIMEOUT
+    enabled: true
+    priority: 100
+    description: Explicit UI_TIMEOUT error code
+    match:
+      type: error_code
+      values:
+        - UI_TIMEOUT
+    classification:
+      category: TIMEOUT
+      severity: HIGH
+      disposition: RELEVANT
+      root_cause: UI_COMMUNICATION
+      owner: APPLICATION
+
+  - id: ERR_UI_TIMEOUT_TEXT
+    enabled: true
+    priority: 95
+    description: UI timeout detected via message text without errorCode
+    match:
+      type: regex
+      field: message
+      patterns:
+        - "(?i).*UI_TIMEOUT.*"
+        - "(?i).*waiting for.*acknowledgement.*"
+        - "(?i).*did not respond before deadline.*"
+    classification:
+      category: TIMEOUT
+      severity: HIGH
+      disposition: RELEVANT
+      root_cause: UI_COMMUNICATION
+      owner: APPLICATION
+
+  - id: ERR_CAPTURE_FAILURE
+    enabled: true
+    priority: 90
+    description: CaptureService frame capture failure
+    match:
+      type: error_code
+      values:
+        - IMG_CAPTURE_FAILED
+    classification:
+      category: CAPTURE_ERROR
+      severity: HIGH
+      disposition: RELEVANT
+      root_cause: CAPTURE_SERVICE
+      owner: APPLICATION
+
+  - id: ERR_CONN_DROPPED
+    enabled: true
+    priority: 85
+    description: Connectivity transport drop
+    match:
+      type: error_code
+      values:
+        - SYN_CONN_DROPPED
+    classification:
+      category: COMMUNICATION
+      severity: HIGH
+      disposition: RELEVANT
+      root_cause: NETWORK_TRANSPORT
+      owner: PLATFORM
+
+  - id: ERR_SYNC_CHECKSUM
+    enabled: true
+    priority: 82
+    description: StorageSync checksum verification failure
+    match:
+      type: error_code
+      values:
+        - SYN_SYNC_CHECKSUM
+    classification:
+      category: DATA_INTEGRITY
+      severity: CRITICAL
+      disposition: RELEVANT
+      root_cause: STORAGE_PERSISTENCE
+      owner: APPLICATION
+
+  - id: ERR_ASSERTION_MISMATCH
+    enabled: true
+    priority: 70
+    description: Expected vs actual assertion mismatch
+    match:
+      type: regex
+      field: message
+      patterns:
+        - "(?i).*ASSERT_MISMATCH.*"
+        - "(?i).*expected .+ got .+"
+        - "(?i).*assertion failed.*"
+    classification:
+      category: ASSERTION_FAILURE
+      severity: MEDIUM
+      disposition: RELEVANT
+      root_cause: FUNCTIONAL_REGRESSION
+      owner: APPLICATION
+
+  - id: ERR_PROFILE_REJECTED
+    enabled: true
+    priority: 65
+    description: Exact profile rejection message
+    match:
+      type: exact
+      field: message
+      values:
+        - "InteractionService rejected synthetic profile."
+    classification:
+      category: CONFIGURATION_ERROR
+      severity: MEDIUM
+      disposition: RELEVANT
+      root_cause: PROFILE_VALIDATION
+      owner: APPLICATION
+
+  - id: ERR_EXPECTED_WARNING
+    enabled: true
+    priority: 50
+    description: Known benign environment warm-up warning
+    match:
+      type: contains
+      field: message
+      values:
+        - "Cache warm-up exceeded"
+        - "SYN_WARN_CACHE"
+    classification:
+      category: ENVIRONMENT_WARNING
+      severity: LOW
+      disposition: IGNORED
+      root_cause: EXPECTED_BEHAVIOR
+      owner: ENVIRONMENT

@@ -7,7 +7,7 @@ hide:
   <div>
     <div class="course-eyebrow">SECTION 01</div>
     <h1>Installing and Understanding Elasticsearch</h1>
-    <p>10 chapters · 1 Windows companion</p>
+    <p>11 chapters</p>
   </div>
 </div>
 
@@ -24,7 +24,7 @@ hide:
 </li>
 <li class="lesson-row">
   <a class="lesson-main" href="002-windows-installation.html">
-    <span class="lesson-title"><span class="lesson-index">2W.</span> Windows companion: Installing the Elastic Stack</span>
+    <span class="lesson-title">Windows companion: Installing the Elastic Stack</span>
   </a>
 </li>
 <li class="lesson-row">
@@ -68,6 +68,13 @@ hide:
   </a>
 </li>
 </ol>
+
+## Official References & Further Reading
+
+- [Elasticsearch Guide — What is Elasticsearch?](https://www.elastic.co/guide/en/elasticsearch/reference/current/elasticsearch-intro.html)
+- [Elasticsearch Guide — Set up Elasticsearch](https://www.elastic.co/guide/en/elasticsearch/reference/current/setup.html)
+- [Elasticsearch Guide — Similarity module & Okapi BM25](https://www.elastic.co/guide/en/elasticsearch/reference/current/index-modules-similarity.html)
+- [Elasticsearch Guide — Scalability and resilience (Clusters, Nodes, and Shards)](https://www.elastic.co/guide/en/elasticsearch/reference/current/scalability.html)
 
 <div class="section-footer-nav">
   <a href="../../index.html">← Course overview</a>

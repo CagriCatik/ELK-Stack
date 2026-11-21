@@ -124,7 +124,7 @@ Elasticsearch can still power search on a website like Wikipedia — but togethe
 - For interactive queries over indexed data, expect answers in milliseconds where batch frameworks would take hours — but pick it for the right use cases.
 
 <div class="chapter-nav">
-<a class="chapter-nav__item" href="002-windows-installation.html"><span>Previous</span><strong>Windows companion: Installing the Elastic Stack</strong></a>
+<a class="chapter-nav__item" href="002-installing-elasticsearch-step-by-step.html"><span>Previous</span><strong>2. Installing Elasticsearch [Step by Step]</strong></a>
 <a class="chapter-nav__item chapter-nav__item--next" href="004-intro-to-http-and-restful-api-s.html"><span>Next</span><strong>4. Intro to HTTP and RESTful API's</strong></a>
 </div>
 

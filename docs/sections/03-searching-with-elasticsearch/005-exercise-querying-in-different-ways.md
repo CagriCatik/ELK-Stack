@@ -1,12 +1,12 @@
 ---
-title: "34. [Exercise] Querying in Different Ways"
+title: "5. [Exercise] Querying in Different Ways"
 hide:
   - toc
 ---
 
 <div class="chapter-kicker">SECTION 03 · EXERCISE</div>
 
-# 34. [Exercise] Querying in Different Ways
+# 5. [Exercise] Querying in Different Ways
 
 Put what you have learned about URI search, `match`, `match_phrase`, `term`, and `bool` into practice against your `movies` index.
 
@@ -97,8 +97,8 @@ curl -s -X POST "http://127.0.0.1:9200/movies/_search?pretty" \
 Expressing the same business question in multiple ways reveals how Elasticsearch separates **analyzed full-text matching** (`match`, `match_phrase`) from **exact structured constraints** (`term`, `range` in `filter`/`must_not`). Choosing the right clause keeps your queries both accurate and fast.
 
 <div class="chapter-nav">
-<a class="chapter-nav__item" href="033-phrase-matching.html"><span>Previous</span><strong>33. Phrase Matching</strong></a>
-<a class="chapter-nav__item chapter-nav__item--next" href="035-pagination.html"><span>Next</span><strong>35. Pagination</strong></a>
+<a class="chapter-nav__item" href="004-phrase-matching.html"><span>Previous</span><strong>4. Phrase Matching</strong></a>
+<a class="chapter-nav__item chapter-nav__item--next" href="006-pagination.html"><span>Next</span><strong>6. Pagination</strong></a>
 </div>
 
 <p class="back-to-section"><a href="index.html">← Back to Section 3</a></p>

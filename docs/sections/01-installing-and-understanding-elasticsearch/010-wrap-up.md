@@ -23,9 +23,17 @@ A lot was accomplished in a short period of time. This section took you from not
 
 This only scratches the surface of what Elasticsearch can do. The remaining sections are hands-on: importing, searching, and analyzing data with Elasticsearch in many different ways — starting with mapping and indexing data in Section 2.
 
+
+## Official References & Further Reading
+
+- [Elasticsearch Guide — What is Elasticsearch?](https://www.elastic.co/guide/en/elasticsearch/reference/current/elasticsearch-intro.html)
+- [Elasticsearch Guide — Set up Elasticsearch](https://www.elastic.co/guide/en/elasticsearch/reference/current/setup.html)
+- [Elasticsearch Guide — Similarity module & Okapi BM25](https://www.elastic.co/guide/en/elasticsearch/reference/current/index-modules-similarity.html)
+- [Elasticsearch Guide — Scalability and resilience (Clusters, Nodes, and Shards)](https://www.elastic.co/guide/en/elasticsearch/reference/current/scalability.html)
+
 <div class="chapter-nav">
 <a class="chapter-nav__item" href="009-quiz-elasticsearch-concepts-and-architecture.html"><span>Previous</span><strong>9. Quiz: Elasticsearch Concepts and Architecture</strong></a>
-<a class="chapter-nav__item chapter-nav__item--next" href="../02-mapping-and-indexing-data/001-intro.html"><span>Next</span><strong>Section 2: Mapping and Indexing Data</strong></a>
+<a class="chapter-nav__item chapter-nav__item--next" href="../02-mapping-and-indexing-data/001-intro.html"><span>Next</span><strong>1. Introduction</strong></a>
 </div>
 
 <p class="back-to-section"><a href="index.html">← Back to Section 1</a></p>

@@ -40,6 +40,19 @@
           "fields": { "keyword": { "type": "keyword", "ignore_above": 512 } }
         },
         "extracted_error_codes": { "type": "keyword" },
+        "error_mapping": {
+          "properties": {
+            "matched": { "type": "boolean" },
+            "rule_id": { "type": "keyword" },
+            "matched_rule_ids": { "type": "keyword" },
+            "category": { "type": "keyword" },
+            "severity": { "type": "keyword" },
+            "disposition": { "type": "keyword" },
+            "root_cause": { "type": "keyword" },
+            "owner": { "type": "keyword" },
+            "mapping_version": { "type": "keyword" }
+          }
+        },
         "source_file": { "type": "keyword" },
         "file_sha256": { "type": "keyword" },
         "ingested_at": { "type": "date" }

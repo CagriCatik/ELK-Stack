@@ -38,4 +38,10 @@ def import_kibana_saved_objects(kibana_url: str, ndjson_path: Path) -> dict[str,
     result = resp.json()
     if not result.get("success"):
         raise RuntimeError(f"Kibana saved objects import failed: {result}")
+
+    # Warm/refresh Data View field caches from Elasticsearch after import
+    for obj in result.get("successResults", []):
+        if obj.get("type") == "index-pattern" and obj.get("id"):
+            requests.get(f"{base}/api/data_views/data_view/{obj['id']}", timeout=10.0)
+
     return result

@@ -15,7 +15,7 @@ Time to set up a real parent/child mapping: a new `series` index that relates fi
 The relationship is declared in the mapping as a **`join` type field**, naming the parent and its children:
 
 ```bash
-curl -XPUT '127.0.0.1:9200/series' -d '
+curl -H "Content-Type: application/json" -XPUT '127.0.0.1:9200/series' -d '
 {
   "mappings": {
     "properties": {
@@ -67,7 +67,7 @@ The `"parent": "1"` field is what ties each film back to the Star Wars franchise
 **All films belonging to a franchise** — a `has_parent` query wrapping a subquery on the parent:
 
 ```bash
-curl -XGET '127.0.0.1:9200/series/_search?pretty' -d '
+curl -H "Content-Type: application/json" -XGET '127.0.0.1:9200/series/_search?pretty' -d '
 {
   "query": {
     "has_parent": {
@@ -83,7 +83,7 @@ Back come all the episodes — IV, V, VI, VII (and yes, the prequels too).
 **The franchise a given film belongs to** — flip it with `has_child`:
 
 ```bash
-curl -XGET '127.0.0.1:9200/series/_search?pretty' -d '
+curl -H "Content-Type: application/json" -XGET '127.0.0.1:9200/series/_search?pretty' -d '
 {
   "query": {
     "has_child": {

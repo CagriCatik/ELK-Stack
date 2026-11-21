@@ -201,5 +201,69 @@ def test_kibana_dashboards_provisioned() -> None:
         "xml-insight-suite-overview",
         "xml-insight-run-details",
         "xml-insight-test-details",
+        "xml-insight-error-classification",
     ):
         assert requests.get(f"{KIBANA_URL}/api/saved_objects/dashboard/{did}", timeout=5.0).status_code == 200
+
+
+def test_config_driven_error_mapping_and_deduplication() -> None:
+    refresh_indices(ES_URL, (TESTCASES_INDEX, MESSAGES_INDEX, STEPS_INDEX))
+
+    # 1. Verify all 4 dispositions exist and original results are preserved
+    agg_resp = requests.post(
+        f"{ES_URL}/{TESTCASES_INDEX}/_search",
+        json={
+            "size": 0,
+            "aggs": {
+                "dispositions": {"terms": {"field": "error_mapping.disposition"}},
+                "categories": {"terms": {"field": "error_mapping.category"}},
+            },
+        },
+        timeout=5.0,
+    ).json()["aggregations"]
+    dispositions = {b["key"]: b["doc_count"] for b in agg_resp["dispositions"]["buckets"]}
+    categories = {b["key"]: b["doc_count"] for b in agg_resp["categories"]["buckets"]}
+
+    assert dispositions.get("RELEVANT", 0) >= 1
+    assert dispositions.get("UNCLASSIFIED", 0) >= 1
+    assert categories.get("TIMEOUT", 0) >= 1
+    assert categories.get("CAPTURE_ERROR", 0) >= 1
+    assert categories.get("COMMUNICATION", 0) >= 1
+    assert categories.get("DATA_INTEGRITY", 0) >= 1
+    assert categories.get("ASSERTION_FAILURE", 0) >= 1
+    assert categories.get("UNKNOWN", 0) >= 1
+
+    # 2. Verify KNOWN_ISSUE / IGNORED on messages do not overwrite original test results
+    msg_agg = requests.post(
+        f"{ES_URL}/{MESSAGES_INDEX}/_search",
+        json={"size": 0, "aggs": {"dispositions": {"terms": {"field": "error_mapping.disposition"}}}},
+        timeout=5.0,
+    ).json()["aggregations"]
+    msg_disp = {b["key"]: b["doc_count"] for b in msg_agg["dispositions"]["buckets"]}
+    assert msg_disp.get("KNOWN_ISSUE", 0) >= 1
+    assert msg_disp.get("IGNORED", 0) >= 1
+
+    # 3. Multi-error TestCase on anchor run: deduplicated fault_count == 2 (UI_TIMEOUT + SYN_CONN_DROPPED)
+    multi = requests.post(
+        f"{ES_URL}/{TESTCASES_INDEX}/_search",
+        json={
+            "query": {
+                "bool": {
+                    "must": [
+                        {"term": {"test_bench.id": "lab-01"}},
+                        {"term": {"test_case.name": "TC_WORKSPACE_Signal"}},
+                        {"term": {"normalized_result": "FAILED"}},
+                        {"term": {"error_mapping.matched_rule_ids": "ERR_CONN_DROPPED"}},
+                    ]
+                }
+            }
+        },
+        timeout=5.0,
+    ).json()["hits"]["hits"]
+    assert len(multi) >= 1
+    src = multi[0]["_source"]
+    assert src["source_result"] == "FAILED"
+    assert src["normalized_result"] == "FAILED"
+    assert src["error_mapping"]["rule_id"] == "ERR_UI_TIMEOUT"
+    assert set(src["error_mapping"]["matched_rule_ids"]) == {"ERR_UI_TIMEOUT", "ERR_UI_TIMEOUT_TEXT", "ERR_CONN_DROPPED"}
+    assert src["fault_count"] == 2

@@ -26,10 +26,10 @@
         <msg level="info">First Emit_Signal dispatched.</msg>
       </step>
       <step name="Emit_Signal" result="FAILED">
-        <msg level="error">UI_TIMEOUT waiting for Output_A acknowledgement.</msg>
+        <msg level="error" errorCode="UI_TIMEOUT">Waiting for Output_A acknowledgement.</msg>
       </step>
       <errors>
-        <msg>UI_TIMEOUT in InteractionService on Output_A.</msg>
+        <msg errorCode="UI_TIMEOUT">InteractionService response timeout on Output_A.</msg>
       </errors>
     </testCase>
   </groups>
@@ -37,11 +37,11 @@
   <groups name="Content">
     <testCase name="TC_CONTENT_001" result="FAILED" duration="18.2">
       <step name="Capture_Frame" result="FAILED">
-        <msg level="error">IMG_CAPTURE_FAILED from CaptureService.</msg>
+        <msg level="error" errorCode="IMG_CAPTURE_FAILED">CaptureService frame buffer empty.</msg>
       </step>
       <errors>
-        <msg>IMG_CAPTURE_FAILED: synthetic frame buffer empty.</msg>
-        <msg>Secondary error detail for same testCase.</msg>
+        <msg errorCode="IMG_CAPTURE_FAILED">IMG_CAPTURE_FAILED: CaptureService timed out reading frame.</msg>
+        <msg>Secondary diagnostic detail for same testCase.</msg>
       </errors>
     </testCase>
     <testCase name="TC_CONTENT_002" result="PASSED" duration="9.0">

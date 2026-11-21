@@ -43,7 +43,7 @@ Your `~/.profile` puts `~/bin` at the front of `PATH`, so this wrapper now takes
 Tell Elasticsearch that `year` is a date, not just a number:
 
 ```bash
-curl -XPUT 127.0.0.1:9200/movies -d '
+curl -H "Content-Type: application/json" -XPUT 127.0.0.1:9200/movies -d '
 {
   "mappings": {
     "properties": {
@@ -62,7 +62,7 @@ curl -XGET 127.0.0.1:9200/movies/_mapping
 ## Step 2 — Index the document
 
 ```bash
-curl -XPUT '127.0.0.1:9200/movies/_doc/109487?pretty' -d '
+curl -H "Content-Type: application/json" -XPUT '127.0.0.1:9200/movies/_doc/109487?pretty' -d '
 {
   "genre": ["IMAX", "Sci-Fi"],
   "title": "Interstellar",

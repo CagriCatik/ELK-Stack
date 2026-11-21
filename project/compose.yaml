@@ -26,11 +26,13 @@ services:
     environment:
       - LS_JAVA_OPTS=${LS_JAVA_OPTS:--Xms512m -Xmx512m}
       - SOURCE_TIMEZONE=${SOURCE_TIMEZONE:-Europe/Berlin}
+      - ERROR_MAPPING_PATH=/usr/share/logstash/config/error_mapping.yaml
     ports:
       - "127.0.0.1:${LOGSTASH_HTTP_PORT:-8080}:8080"
     volumes:
       - ./logstash/config/logstash.yml:/usr/share/logstash/config/logstash.yml:ro
       - ./logstash/config/pipelines.yml:/usr/share/logstash/config/pipelines.yml:ro
+      - ./config/error_mapping.yaml:/usr/share/logstash/config/error_mapping.yaml:ro
       - ./logstash/pipeline:/usr/share/logstash/pipeline:ro
       - ./logstash/ruby:/usr/share/logstash/ruby:ro
     healthcheck:
@@ -73,6 +75,7 @@ services:
       - WORKSPACE_DIR=/workspace
     volumes:
       - ./data:/data
+      - ./config:/workspace/config:ro
       - ./schemas:/workspace/schemas:ro
       - ./examples:/workspace/examples:ro
       - ./elasticsearch:/workspace/elasticsearch:ro

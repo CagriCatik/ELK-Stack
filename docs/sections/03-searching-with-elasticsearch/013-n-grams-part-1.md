@@ -1,12 +1,12 @@
 ---
-title: "42. N-Grams, Part 1"
+title: "13. N-Grams, Part 1"
 hide:
   - toc
 ---
 
 <div class="chapter-kicker">SECTION 03</div>
 
-# 42. N-Grams, Part 1
+# 13. N-Grams, Part 1
 
 Instead of scanning the term dictionary for prefixes on every keystroke, you can precompute word prefixes **when a document is indexed** using **n-grams** and **edge n-grams**. At query time, autocomplete becomes a single, blazing-fast inverted-index lookup.
 
@@ -81,8 +81,8 @@ How you fix that by separating `analyzer` (index time) from `search_analyzer` (q
 - Never use an `edge_ngram` analyzer at query time—otherwise short n-grams from the user's input will match unrelated words.
 
 <div class="chapter-nav">
-<a class="chapter-nav__item" href="041-query-time-search-as-you-type.html"><span>Previous</span><strong>41. Query-time Search As You Type</strong></a>
-<a class="chapter-nav__item chapter-nav__item--next" href="043-n-grams-part-2.html"><span>Next</span><strong>43. N-Grams, Part 2</strong></a>
+<a class="chapter-nav__item" href="012-query-time-search-as-you-type.html"><span>Previous</span><strong>12. Query-time Search As You Type</strong></a>
+<a class="chapter-nav__item chapter-nav__item--next" href="014-n-grams-part-2.html"><span>Next</span><strong>14. N-Grams, Part 2</strong></a>
 </div>
 
 <p class="back-to-section"><a href="index.html">← Back to Section 3</a></p>

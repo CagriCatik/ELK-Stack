@@ -1,12 +1,12 @@
 ---
-title: "37. More with Filters"
+title: "8. More with Filters"
 hide:
   - toc
 ---
 
 <div class="chapter-kicker">SECTION 03</div>
 
-# 37. More with Filters
+# 8. More with Filters
 
 In Elasticsearch, a query clause behaves differently depending on **context**: **query context** ("How well does this document match?") versus **filter context** ("Does this document match, yes or no?"). Understanding this distinction is one of the easiest ways to make your searches dramatically faster.
 
@@ -87,8 +87,8 @@ Another option is `constant_score`, which wraps a `filter` and assigns every mat
 - Reserve `must` and `should` for full-text queries where relevance ranking actually matters.
 
 <div class="chapter-nav">
-<a class="chapter-nav__item" href="036-sorting.html"><span>Previous</span><strong>36. Sorting</strong></a>
-<a class="chapter-nav__item chapter-nav__item--next" href="038-exercise-using-filters.html"><span>Next</span><strong>38. [Exercise] Using Filters</strong></a>
+<a class="chapter-nav__item" href="007-sorting.html"><span>Previous</span><strong>7. Sorting</strong></a>
+<a class="chapter-nav__item chapter-nav__item--next" href="009-exercise-using-filters.html"><span>Next</span><strong>9. [Exercise] Using Filters</strong></a>
 </div>
 
 <p class="back-to-section"><a href="index.html">← Back to Section 3</a></p>

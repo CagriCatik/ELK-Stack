@@ -4,15 +4,28 @@ require "time"
 require "digest"
 require "tzinfo"
 
+require_relative "error_mapping/config_loader"
+require_relative "error_mapping/matcher"
+require_relative "error_mapping/classifier"
+
 MAX_XML_BYTES = 5_242_880
 KNOWN_RESULTS = %w[PASSED FAILED ERROR SKIPPED].freeze
 KNOWN_MSG_LEVELS = %w[info warning error debug].freeze
-ERROR_CODE_REGEX = /\b(UI_TIMEOUT|IMG_CAPTURE_FAILED|SYN_[A-Z0-9_]+)\b/.freeze
+BASE_CODE_TOKEN_REGEX = /\b([A-Z][A-Z0-9_]{2,})\b/.freeze
 UTC_EXPLICIT_REGEX = /(?:Z|[+-]\d{2}:\d{2})\z/.freeze
 NAIVE_ISO_REGEX = /\A\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?\z/.freeze
 
-def register(_params)
-  # Stateless filter: safe across multiple Logstash pipeline workers.
+def register(params)
+  path = params["error_mapping_path"] || ENV["ERROR_MAPPING_PATH"] || File.expand_path("../../config/error_mapping.yaml", __dir__)
+  @mapping_config = ErrorMapping::ConfigLoader.load_file(path)
+
+  # Pre-compute known error_code tokens from config so new error_code rules work without Ruby edits
+  codes = @mapping_config.rules
+                         .select { |r| r.enabled && r.match_type == "error_code" }
+                         .flat_map(&:values)
+                         .map(&:upcase)
+                         .uniq
+  @configured_code_set = codes.each_with_object({}) { |c, h| h[c] = true }.freeze
 end
 
 def clean_string(val)
@@ -78,7 +91,6 @@ def parse_timestamp_with_tz(raw_str, tz_name)
       utc_t = tz.local_to_utc(naive)
       [utc_t.utc, "assumed_local", tz_name]
     rescue TZInfo::AmbiguousTime
-      # Pick first occurrence deterministically and flag ambiguous_dst
       utc_t = tz.local_to_utc(naive, true)
       [utc_t.utc, "ambiguous_dst", tz_name]
     rescue TZInfo::PeriodNotFound
@@ -93,25 +105,14 @@ def extract_error_codes(text, explicit_code = nil)
   codes = []
   codes << explicit_code if explicit_code && !explicit_code.empty?
   if text && !text.empty?
-    text.scan(ERROR_CODE_REGEX) { |m| codes << m[0] }
+    text.scan(BASE_CODE_TOKEN_REGEX) do |m|
+      tok = m[0]
+      if @configured_code_set.key?(tok.upcase) || tok.start_with?("SYN_") || tok == "ASSERT_MISMATCH"
+        codes << tok
+      end
+    end
   end
   codes.uniq
-end
-
-def classify_error(norm_result, codes)
-  return ["NONE", "NONE"] unless %w[FAILED ERROR].include?(norm_result)
-
-  if codes.any? { |c| c.include?("TIMEOUT") }
-    ["TIMEOUT", "KNOWN_ERROR_CODE"]
-  elsif codes.any? { |c| c.include?("CAPTURE") }
-    ["CAPTURE_ERROR", "KNOWN_ERROR_CODE"]
-  elsif !codes.empty?
-    ["KNOWN_FAILURE", "KNOWN_ERROR_CODE"]
-  elsif norm_result == "ERROR"
-    ["TECHNICAL_ERROR", "INFRASTRUCTURE_ISSUE"]
-  else
-    ["ASSERTION_OR_STEP_FAILURE", "REGRESSION_CANDIDATE"]
-  end
 end
 
 def build_error_event(stage:, code:, message:, source_file:, file_sha256:, ingested_at:, synthetic:, run_id: "unknown", campaign_id: "unknown", execution_slot_id: nil)
@@ -137,9 +138,10 @@ def build_error_event(stage:, code:, message:, source_file:, file_sha256:, inges
   ev
 end
 
-def collect_messages(raw_msgs, origin_context:, base_ctx:, phase:, group_name:, suite_ctx:, tc_ctx:, step_ctx:, msg_counter_start:, ts_iso:)
+def collect_messages(raw_msgs, origin_context:, base_ctx:, phase:, group_name:, suite_ctx:, tc_ctx:, step_ctx:, msg_counter_start:, ts_iso:, parent_failed: false)
   events = []
   codes_collected = []
+  rules_collected = []
   pos = msg_counter_start
 
   normalize_array(raw_msgs).each do |m|
@@ -152,6 +154,22 @@ def collect_messages(raw_msgs, origin_context:, base_ctx:, phase:, group_name:, 
     explicit_code = m.is_a?(Hash) ? clean_string(m["errorCode"]) : nil
     codes = extract_error_codes(text, explicit_code)
     codes_collected.concat(codes)
+
+    match_ctx = {
+      "message" => text,
+      "error_codes" => codes,
+      "phase" => phase,
+      "suite" => suite_ctx ? suite_ctx["name"] : nil,
+      "test_case" => tc_ctx ? tc_ctx["name"] : nil
+    }
+    matched_rules = ErrorMapping::Matcher.match_all(@mapping_config, match_ctx)
+    rules_collected.concat(matched_rules)
+
+    is_error_like = parent_failed ||
+                    origin_context == "errors_block" ||
+                    %w[error warning].include?(level) ||
+                    !codes.empty? ||
+                    !matched_rules.empty?
 
     payload = {
       "@timestamp" => ts_iso,
@@ -174,8 +192,11 @@ def collect_messages(raw_msgs, origin_context:, base_ctx:, phase:, group_name:, 
     payload["suite"] = suite_ctx unless suite_ctx.nil?
     payload["test_case"] = tc_ctx unless tc_ctx.nil?
     payload["step"] = step_ctx unless step_ctx.nil?
-    payload["level"] = level unless level.nil? # Do NOT invent missing level
+    payload["level"] = level unless level.nil?
     payload["extracted_error_codes"] = codes unless codes.empty?
+    if is_error_like
+      payload["error_mapping"] = ErrorMapping::Classifier.build_result(@mapping_config, matched_rules)
+    end
 
     doc_id = "#{base_ctx[:run_id]}::#{phase}::#{origin_context}::#{suite_ctx ? suite_ctx['name'] : 'run'}::#{tc_ctx ? "#{tc_ctx['execution_id']}_#{tc_ctx['attempt']}" : 'none'}::#{step_ctx ? step_ctx['sequence'] : '0'}::#{pos}"
     ev = LogStash::Event.new(payload)
@@ -184,7 +205,7 @@ def collect_messages(raw_msgs, origin_context:, base_ctx:, phase:, group_name:, 
     events << ev
   end
 
-  [events, codes_collected.uniq, pos]
+  [events, codes_collected.uniq, rules_collected, pos]
 end
 
 def filter(event)
@@ -258,7 +279,6 @@ def filter(event)
     return [build_error_event(stage: "validation", code: "MISSING_GROUPS", message: "Report must contain at least one <groups> element.", source_file: source_file, file_sha256: file_sha256, ingested_at: ingested_at, synthetic: synthetic, run_id: run_id, campaign_id: campaign_id, execution_slot_id: slot_id)]
   end
 
-  # First pass: extract initialization params (including SoftwareVersion) before building child docs
   init_params = []
   software_version = nil
   init_source_result = nil
@@ -349,8 +369,7 @@ def filter(event)
       extra_group_names << g_name
     end
 
-    # Collect group-level messages (init, deinit, extra_group, or suite-level)
-    m_evs, _, msg_seq = collect_messages(
+    m_evs, _, _, msg_seq = collect_messages(
       g["msg"], origin_context: "group_msg", base_ctx: base_ctx, phase: phase,
       group_name: g_name, suite_ctx: nil, tc_ctx: nil, step_ctx: nil,
       msg_counter_start: msg_seq, ts_iso: run_ts_iso
@@ -360,7 +379,7 @@ def filter(event)
     normalize_array(g["group"]).each do |sub|
       next unless sub.is_a?(Hash)
       sub_name = clean_string(sub["name"]) || g_name
-      m_evs, _, msg_seq = collect_messages(
+      m_evs, _, _, msg_seq = collect_messages(
         sub["msg"], origin_context: "group_msg", base_ctx: base_ctx, phase: phase,
         group_name: sub_name, suite_ctx: nil, tc_ctx: nil, step_ctx: nil,
         msg_counter_start: msg_seq, ts_iso: run_ts_iso
@@ -378,14 +397,12 @@ def filter(event)
       suite_seq += 1
       suite_names << g_name
       explicit_suite_id = clean_string(g["id"])
-      has_stable_suite_id = !explicit_suite_id.nil?
       suite_id = explicit_suite_id || g_name
       suite_ver = clean_string(g["version"])
       suite_ctx = { "id" => suite_id, "name" => g_name }
       suite_ctx["version"] = suite_ver unless suite_ver.nil?
     end
 
-    # Pre-compute max attempt per testCase name/id within this group
     max_attempt_by_tc = {}
     parsed_tcs = []
     tcs.each_with_index do |tc, idx|
@@ -412,6 +429,7 @@ def filter(event)
       tc = ptc[:node]
       tc_src_res = clean_string(tc["result"])
       tc_norm_res = normalize_result(tc_src_res)
+      tc_failed = %w[FAILED ERROR].include?(tc_norm_res)
       tc_dur_ms, dur_err = parse_duration_seconds_to_ms(tc["duration"])
       if dur_err
         return [build_error_event(stage: "validation", code: "INVALID_DURATION", message: "Invalid duration '#{tc['duration']}' on testCase '#{ptc[:name]}'.", source_file: source_file, file_sha256: file_sha256, ingested_at: ingested_at, synthetic: synthetic, run_id: run_id, campaign_id: campaign_id, execution_slot_id: slot_id)]
@@ -429,9 +447,9 @@ def filter(event)
         "name" => ptc[:name]
       }
 
-      # Steps inside testCase (preserve order & repeated same-named steps!)
       raw_steps = normalize_array(tc["step"])
       tc_codes = []
+      tc_matched_rules = []
       tc_artifacts = []
       failed_steps = 0
 
@@ -445,18 +463,20 @@ def filter(event)
         st_id = clean_string(st["id"]) || "step-#{st_seq}"
         st_src_res = clean_string(st["result"])
         st_norm_res = normalize_result(st_src_res)
-        failed_steps += 1 if %w[FAILED ERROR].include?(st_norm_res)
+        st_failed = %w[FAILED ERROR].include?(st_norm_res)
+        failed_steps += 1 if st_failed
         st_dur_ms, st_dur_err = parse_duration_seconds_to_ms(st["duration"])
         return [build_error_event(stage: "validation", code: "INVALID_STEP_DURATION", message: "Invalid step duration on '#{st_name}'.", source_file: source_file, file_sha256: file_sha256, ingested_at: ingested_at, synthetic: synthetic, run_id: run_id, campaign_id: campaign_id, execution_slot_id: slot_id)] if st_dur_err
 
         step_ctx = { "id" => st_id, "name" => st_name, "sequence" => st_seq }
-        st_m_evs, st_codes, msg_seq = collect_messages(
+        st_m_evs, st_codes, st_rules, msg_seq = collect_messages(
           st["msg"], origin_context: "step_msg", base_ctx: base_ctx, phase: phase,
           group_name: g_name, suite_ctx: suite_ctx, tc_ctx: tc_ctx, step_ctx: step_ctx,
-          msg_counter_start: msg_seq, ts_iso: run_ts_iso
+          msg_counter_start: msg_seq, ts_iso: run_ts_iso, parent_failed: st_failed
         )
         msg_events.concat(st_m_evs)
         tc_codes.concat(st_codes)
+        tc_matched_rules.concat(st_rules)
 
         st_arts = normalize_array(st["artifact"]).filter_map { |a| a.is_a?(Hash) ? clean_string(a["path"]) : nil }
         tc_artifacts.concat(st_arts)
@@ -497,6 +517,9 @@ def filter(event)
         st_payload["extracted_error_codes"] = st_codes unless st_codes.empty?
         st_payload["assertions"] = st_assertions unless st_assertions.empty?
         st_payload["artifact_paths"] = st_arts unless st_arts.empty?
+        if st_failed || !st_rules.empty?
+          st_payload["error_mapping"] = ErrorMapping::Classifier.aggregate_rules(@mapping_config, st_rules)
+        end
 
         st_ev = LogStash::Event.new(st_payload)
         st_ev.set("[@metadata][target_index]", "xml-insight-steps-v1")
@@ -504,31 +527,56 @@ def filter(event)
         step_events << st_ev
       end
 
-      # Direct testCase messages & <errors><msg>
-      tc_m_evs, tc_direct_codes, msg_seq = collect_messages(
+      tc_m_evs, tc_direct_codes, tc_direct_rules, msg_seq = collect_messages(
         tc["msg"], origin_context: "testcase_msg", base_ctx: base_ctx, phase: phase,
         group_name: g_name, suite_ctx: suite_ctx, tc_ctx: tc_ctx, step_ctx: nil,
-        msg_counter_start: msg_seq, ts_iso: run_ts_iso
+        msg_counter_start: msg_seq, ts_iso: run_ts_iso, parent_failed: tc_failed
       )
       msg_events.concat(tc_m_evs)
       tc_codes.concat(tc_direct_codes)
+      tc_matched_rules.concat(tc_direct_rules)
 
       err_msg_count = 0
       normalize_array(tc["errors"]).each do |eb|
         next unless eb.is_a?(Hash)
-        eb_evs, eb_codes, msg_seq = collect_messages(
+        eb_evs, eb_codes, eb_rules, msg_seq = collect_messages(
           eb["msg"], origin_context: "errors_block", base_ctx: base_ctx, phase: phase,
           group_name: g_name, suite_ctx: suite_ctx, tc_ctx: tc_ctx, step_ctx: nil,
-          msg_counter_start: msg_seq, ts_iso: run_ts_iso
+          msg_counter_start: msg_seq, ts_iso: run_ts_iso, parent_failed: true
         )
         err_msg_count += eb_evs.length
         msg_events.concat(eb_evs)
         tc_codes.concat(eb_codes)
+        tc_matched_rules.concat(eb_rules)
       end
 
       tc_codes.uniq!
       suite_codes.concat(tc_codes)
-      err_cat, analysis_cls = classify_error(tc_norm_res, tc_codes)
+
+      # Deduplicate by winning primary fault per message/step event so one UI_TIMEOUT
+      # matching both ERR_UI_TIMEOUT and ERR_UI_TIMEOUT_TEXT across <step> and <errors>
+      # counts as 1 unique fault, while matched_rule_ids keeps all diagnostic rule hits.
+      unique_rules = tc_matched_rules.uniq(&:id)
+      primary_fault_keys = []
+      (raw_steps.each_with_index.map { |_, i| step_events[-raw_steps.length + i]&.get("error_mapping") } +
+        tc_m_evs.map { |ev| ev.get("error_mapping") } +
+        msg_events.last(err_msg_count).map { |ev| ev.get("error_mapping") }).compact.each do |em|
+        next unless em.is_a?(Hash)
+        primary_fault_keys << (em["rule_id"] || "UNCLASSIFIED::#{em['category']}")
+      end
+      unique_faults = primary_fault_keys.uniq
+
+      if tc_failed || !unique_rules.empty?
+        tc_error_mapping = ErrorMapping::Classifier.aggregate_rules(@mapping_config, unique_rules)
+        err_cat = tc_error_mapping["category"]
+        analysis_cls = tc_error_mapping["disposition"]
+        fault_count = unique_faults.empty? ? (tc_failed ? 1 : 0) : unique_faults.length
+      else
+        tc_error_mapping = nil
+        err_cat = "NONE"
+        analysis_cls = "NONE"
+        fault_count = 0
+      end
 
       tc_payload = {
         "@timestamp" => run_ts_iso,
@@ -550,6 +598,7 @@ def filter(event)
         "normalized_result" => tc_norm_res,
         "error_category" => err_cat,
         "analysis_classification" => analysis_cls,
+        "fault_count" => fault_count,
         "step_count" => raw_steps.length,
         "failed_step_count" => failed_steps,
         "msg_count" => tc_m_evs.length + err_msg_count,
@@ -559,6 +608,7 @@ def filter(event)
         "file_sha256" => file_sha256,
         "ingested_at" => ingested_at
       }
+      tc_payload["error_mapping"] = tc_error_mapping unless tc_error_mapping.nil?
       tc_payload["execution_slot_id"] = slot_id unless slot_id.nil?
       tc_payload["software"] = { "version" => software_version } unless software_version.nil?
       tc_payload["source_result"] = tc_src_res unless tc_src_res.nil?

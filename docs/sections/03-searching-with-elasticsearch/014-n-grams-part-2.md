@@ -1,12 +1,12 @@
 ---
-title: "43. N-Grams, Part 2"
+title: "14. N-Grams, Part 2"
 hide:
   - toc
 ---
 
 <div class="chapter-kicker">SECTION 03</div>
 
-# 43. N-Grams, Part 2
+# 14. N-Grams, Part 2
 
 In Part 1, you saw that applying `edge_ngram` at query time breaks relevance by breaking the user's search input into tiny fragments. The solution is to configure **two different analyzers** on the same field:
 
@@ -105,8 +105,8 @@ curl -s -X POST "http://127.0.0.1:9200/movies_autocomplete/_search?pretty" \
 - Apply `edge_ngram` only to short, high-value fields (like `title`) to control index size.
 
 <div class="chapter-nav">
-<a class="chapter-nav__item" href="042-n-grams-part-1.html"><span>Previous</span><strong>42. N-Grams, Part 1</strong></a>
-<a class="chapter-nav__item chapter-nav__item--next" href="044-search-as-you-type-field-type.html"><span>Next</span><strong>44. "Search as you Type" Field Type</strong></a>
+<a class="chapter-nav__item" href="013-n-grams-part-1.html"><span>Previous</span><strong>13. N-Grams, Part 1</strong></a>
+<a class="chapter-nav__item chapter-nav__item--next" href="015-search-as-you-type-field-type.html"><span>Next</span><strong>15. "Search as you Type" Field Type</strong></a>
 </div>
 
 <p class="back-to-section"><a href="index.html">← Back to Section 3</a></p>

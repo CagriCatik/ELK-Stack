@@ -1,12 +1,12 @@
 ---
-title: "44. \"Search as you Type\" Field Type"
+title: "15. \"Search as you Type\" Field Type"
 hide:
   - toc
 ---
 
 <div class="chapter-kicker">SECTION 03</div>
 
-# 44. "Search as you Type" Field Type
+# 15. "Search as you Type" Field Type
 
 Hand-rolling `edge_ngram` analyzers works well, but it requires boilerplate settings and still misses phrase-order signals unless you add extra sub-fields. Elasticsearch provides a dedicated **`search_as_you_type`** field type that sets up the right sub-fields automatically.
 
@@ -97,8 +97,8 @@ curl -s -X POST "http://127.0.0.1:9200/movies_sayt/_search?pretty" \
 - For most production search boxes, `search_as_you_type` gives you better relevance than raw `edge_ngram` with far less configuration.
 
 <div class="chapter-nav">
-<a class="chapter-nav__item" href="043-n-grams-part-2.html"><span>Previous</span><strong>43. N-Grams, Part 2</strong></a>
-<a class="chapter-nav__item chapter-nav__item--next" href="045-section-3-wrapup.html"><span>Next</span><strong>45. Section 3 Wrapup</strong></a>
+<a class="chapter-nav__item" href="014-n-grams-part-2.html"><span>Previous</span><strong>14. N-Grams, Part 2</strong></a>
+<a class="chapter-nav__item chapter-nav__item--next" href="016-section-3-wrapup.html"><span>Next</span><strong>16. Section 3 Wrapup</strong></a>
 </div>
 
 <p class="back-to-section"><a href="index.html">← Back to Section 3</a></p>

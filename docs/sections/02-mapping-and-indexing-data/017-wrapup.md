@@ -24,9 +24,18 @@ Congratulations — this section covered the full working basics of getting data
 
 There's still more essential ground to cover before Elasticsearch can go to work for you or your organization. Next up: **searching** — query DSL, filters, fuzzy matching, and more.
 
+
+## Official References & Further Reading
+
+- [Elasticsearch Guide — Mapping & Field data types](https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping.html)
+- [Elasticsearch Guide — Dynamic field mapping (dynamic: strict)](https://www.elastic.co/guide/en/elasticsearch/reference/current/dynamic-field-mapping.html)
+- [Elasticsearch Guide — Document APIs (_doc, _bulk, _update, seq_no)](https://www.elastic.co/guide/en/elasticsearch/reference/current/docs.html)
+- [Elasticsearch Guide — Text analysis, analyzers, and tokenizers](https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis.html)
+- [Elasticsearch Guide — Flattened field type & Join field type](https://www.elastic.co/guide/en/elasticsearch/reference/current/flattened.html)
+
 <div class="chapter-nav">
 <a class="chapter-nav__item" href="016-dealing-with-mapping-exceptions.html"><span>Previous</span><strong>16. Dealing with Mapping Exceptions</strong></a>
-<a class="chapter-nav__item chapter-nav__item--next" href="../03-searching-with-elasticsearch/001-intro.html"><span>Next</span><strong>Section 3: Searching with Elasticsearch</strong></a>
+<a class="chapter-nav__item chapter-nav__item--next" href="../03-searching-with-elasticsearch/001-intro.html"><span>Next</span><strong>1. Section 3 Intro</strong></a>
 </div>
 
 <p class="back-to-section"><a href="index.html">← Back to Section 2</a></p>

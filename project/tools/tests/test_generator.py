@@ -88,3 +88,28 @@ def test_fixtures_separation(tmp_path: Path) -> None:
     assert len(fx["invalid"]) == 4
     for vf in fx["valid"]:
         schema.assertValid(etree.parse(str(vf)))
+
+
+def test_all_error_scenarios_deterministically_generated(tmp_path: Path) -> None:
+    anchor = datetime(2026, 11, 17, 0, 0, 0, tzinfo=timezone.utc)
+    res = generate_campaign_dataset(5, 42, tmp_path / "xml", tmp_path / "plan.yaml", anchor)
+    all_text = "\n".join(p.read_text(encoding="utf-8") for p in res["files"])
+
+    # Guaranteed scenarios from section 5
+    for marker in (
+        "UI_TIMEOUT",
+        "IMG_CAPTURE_FAILED",
+        "SYN_INIT_5001",
+        "SYN_DEINIT_6001",
+        "SYN_CONN_DROPPED",
+        "SYN_SYNC_CHECKSUM",
+        "expected 200 got 503",
+        "Cache warm-up exceeded",
+        "Unexpected synthetic anomaly XYZ-999",
+        "InteractionService did not respond before deadline.",
+    ):
+        assert marker in all_text, f"Missing guaranteed scenario marker: {marker}"
+
+    # XML files must never contain pre-classified engine outputs
+    for forbidden in ("error_mapping", "UNCLASSIFIED", "KNOWN_ISSUE", "RELEVANT"):
+        assert forbidden not in all_text, f"XML must not contain pre-classified field '{forbidden}'"

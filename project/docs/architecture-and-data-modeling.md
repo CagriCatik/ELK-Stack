@@ -200,11 +200,10 @@ stateDiagram-v2
 
 ```mermaid
 flowchart LR
-  D1["01. Nightly Overview<br/>08. Bench & Suite Matrix<br/>10. Campaign Matrix"] -->|"Spot failing bench, suite, or missing report"| D2["02. Suite Overview<br/>05. Bench Heatmaps<br/>06. Error & Retry Analytics<br/>07. Version Regression Lab<br/>09. TestCase Matrix"]
+  D1["01. Nightly Overview<br/>08. Bench & Suite Matrix<br/>10. Campaign Matrix"] -->|"Spot failing bench, suite, or missing report"| D2["02. Suite Overview<br/>05. Bench Comparison<br/>06. Error & Retry Analytics<br/>07. Version Regression Lab<br/>09. TestCase Matrix<br/>11. Error Classification"]
   D2 -->|"Filter by run.id (Last 7 days)"| D3["03. Run Details<br/>(Metadata, Suites, Deinit)"]
-  D3 -->|"Inspect ordered steps & messages"| D4["04. Test Details<br/>(Steps + <errors> messages)"]
+  D3 -->|"Inspect steps & messages"| D4["04. Test Details<br/>(Steps + <errors> messages)"]
 ```
 
-- **Lens Data Tables (`lnsDatatable`):** Used in Dashboards `08`, `09`, and `10` to aggregate failures, error codes, retries, and P95 durations by `test_bench.id` × `suite.name` × `test_case.name` without scrolling raw document rows.
-- **Heatmaps (`lnsHeatmap`), Donuts (`lnsPie`) & Trends (`lnsXY`):** Surface cross-bench hotspots, software version regressions (`1.5.0-rc1` + `TC_CONTENT_Capture`), and multi-night duration creep (`Settings`).
-- **Focused Saved Searches:** Used in `Run Details` and `Test Details` with slim 4–7 column layouts for ordered step-by-step and message-level root-cause inspection.
+- **Lens Data Tables (`lnsDatatable`):** Used across all 11 dashboards to aggregate failures, error categories, rule IDs, root causes, dispositions, error codes, retries, steps, and messages by `test_bench.id` × `suite.name` × `test_case.name` with custom column headers (`customLabel: true`) and zero raw Discover `@timestamp` clutter.
+- **Stacked Bars (`lnsXY`), Donuts (`lnsPie`) & KPI Cards (`lnsMetric`):** Surface cross-bench failure hotspots (`lab-04` Connectivity failures, `lab-02` Init errors) and software version regressions (`1.3.0` → `1.4.0` → `1.5.0-rc1`) without runtime/latency metrics.

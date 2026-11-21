@@ -6,5 +6,6 @@ PROJECT_DIR="$(cd "${SCRIPT_DIR}/.." && pwd)"
 cd "${PROJECT_DIR}"
 
 echo "=== Verifying Elasticsearch Indexing & Running Test Suite ==="
+docker compose exec -T logstash ruby /usr/share/logstash/ruby/test_error_mapping.rb
 docker compose run --rm tools verify --min-runs 1 --min-testcases 1 --min-steps 1 --min-errors 0 --min-plan-slots 0 --timeout 60
 docker compose run --rm --entrypoint pytest tools -v

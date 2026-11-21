@@ -1,12 +1,12 @@
 ---
-title: "30. Section 3 Intro"
+title: "1. Section 3 Intro"
 hide:
   - toc
 ---
 
 <div class="chapter-kicker">SECTION 03</div>
 
-# 30. Section 3 Intro
+# 1. Section 3 Intro
 
 Now that your `movies` index is mapped and populated, it is time to put Elasticsearch to work for what it does best: **fast, relevant, flexible search**.
 
@@ -24,8 +24,8 @@ In this section, you move from simple URI-based lookups to full JSON Query DSL, 
 Two hands-on exercises let you practice writing multi-clause queries and filter-context searches against the `movies` dataset before wrapping up.
 
 <div class="chapter-nav">
-<a class="chapter-nav__item" href="../02-mapping-and-indexing-data/029-section-2-wrapup.html"><span>Previous</span><strong>29. Section 2 Wrapup</strong></a>
-<a class="chapter-nav__item chapter-nav__item--next" href="031-query-lite-interface.html"><span>Next</span><strong>31. "Query Lite" interface</strong></a>
+<a class="chapter-nav__item" href="../02-mapping-and-indexing-data/017-wrapup.html"><span>Previous</span><strong>17. Wrap-up</strong></a>
+<a class="chapter-nav__item chapter-nav__item--next" href="002-query-lite-interface.html"><span>Next</span><strong>2. "Query Lite" interface</strong></a>
 </div>
 
 <p class="back-to-section"><a href="index.html">← Back to Section 3</a></p>

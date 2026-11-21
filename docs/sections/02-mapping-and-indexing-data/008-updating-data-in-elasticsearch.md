@@ -25,7 +25,7 @@ What matters is that document ID + version together are unique; Elasticsearch al
 Re-indexing a document at an existing ID, specifying every field, is treated as an update:
 
 ```bash
-curl -XPUT '127.0.0.1:9200/movies/_doc/109487?pretty' -d '
+curl -H "Content-Type: application/json" -XPUT '127.0.0.1:9200/movies/_doc/109487?pretty' -d '
 {
   "genres": ["IMAX", "Sci-Fi"],
   "title": "Interstellar Foo",
@@ -44,7 +44,7 @@ curl -XGET '127.0.0.1:9200/movies/_doc/109487?pretty'
 To change only some fields and carry everything else over from the current version, use the `_update` endpoint with a `doc` block:
 
 ```bash
-curl -XPOST '127.0.0.1:9200/movies/_update/109487?pretty' -d '
+curl -H "Content-Type: application/json" -XPOST '127.0.0.1:9200/movies/_update/109487?pretty' -d '
 {
   "doc": {
     "title": "Interstellar"

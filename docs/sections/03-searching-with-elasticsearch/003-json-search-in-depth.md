@@ -1,12 +1,12 @@
 ---
-title: "32. JSON Search In-Depth"
+title: "3. JSON Search In-Depth"
 hide:
   - toc
 ---
 
 <div class="chapter-kicker">SECTION 03</div>
 
-# 32. JSON Search In-Depth
+# 3. JSON Search In-Depth
 
 The **JSON Query DSL** is Elasticsearch's primary search API. Instead of cramming logic into a URL, you send a structured JSON body to `/_search` (either `GET` or `POST` works; `POST` is often preferred by HTTP clients that disallow `GET` bodies).
 
@@ -115,8 +115,8 @@ In this query, every hit must contain `"star"` in `title`, must not have `Docume
 - Combine criteria with `bool` using `must`, `should`, `must_not`, and `filter` to control both matching logic and relevance scoring.
 
 <div class="chapter-nav">
-<a class="chapter-nav__item" href="031-query-lite-interface.html"><span>Previous</span><strong>31. "Query Lite" interface</strong></a>
-<a class="chapter-nav__item chapter-nav__item--next" href="033-phrase-matching.html"><span>Next</span><strong>33. Phrase Matching</strong></a>
+<a class="chapter-nav__item" href="002-query-lite-interface.html"><span>Previous</span><strong>2. "Query Lite" interface</strong></a>
+<a class="chapter-nav__item chapter-nav__item--next" href="004-phrase-matching.html"><span>Next</span><strong>4. Phrase Matching</strong></a>
 </div>
 
 <p class="back-to-section"><a href="index.html">← Back to Section 3</a></p>

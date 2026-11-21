@@ -1,12 +1,12 @@
 ---
-title: "41. Query-time Search As You Type"
+title: "12. Query-time Search As You Type"
 hide:
   - toc
 ---
 
 <div class="chapter-kicker">SECTION 03</div>
 
-# 41. Query-time Search As You Type
+# 12. Query-time Search As You Type
 
 Every modern search bar shows suggestions as the user types each keystroke: `"s"` → `"st"` → `"sta"` → `"star"` → `"star w"` → `"star wa"`. You can implement this **purely at query time** (without reindexing) using `match_phrase_prefix`, or you can precompute prefixes at **index time** (covered in the next three chapters).
 
@@ -53,8 +53,8 @@ While `match_phrase_prefix` requires zero mapping changes, it has three notable 
 - Query-time prefix expansion trades index simplicity for higher query CPU and latency under heavy autocomplete traffic.
 
 <div class="chapter-nav">
-<a class="chapter-nav__item" href="040-partial-matching.html"><span>Previous</span><strong>40. Partial Matching</strong></a>
-<a class="chapter-nav__item chapter-nav__item--next" href="042-n-grams-part-1.html"><span>Next</span><strong>42. N-Grams, Part 1</strong></a>
+<a class="chapter-nav__item" href="011-partial-matching.html"><span>Previous</span><strong>11. Partial Matching</strong></a>
+<a class="chapter-nav__item chapter-nav__item--next" href="013-n-grams-part-1.html"><span>Next</span><strong>13. N-Grams, Part 1</strong></a>
 </div>
 
 <p class="back-to-section"><a href="index.html">← Back to Section 3</a></p>

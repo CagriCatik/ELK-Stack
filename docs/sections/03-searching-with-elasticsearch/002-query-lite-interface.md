@@ -1,12 +1,12 @@
 ---
-title: "31. \"Query Lite\" interface"
+title: "2. \"Query Lite\" interface"
 hide:
   - toc
 ---
 
 <div class="chapter-kicker">SECTION 03</div>
 
-# 31. "Query Lite" interface
+# 2. "Query Lite" interface
 
 Elasticsearch offers two ways to express a search: a compact **URI search** (often called "Query Lite") that passes query parameters in the URL, and the full **JSON Query DSL** sent in the request body. URI search is great for quick ad-hoc debugging from `curl` or a browser, while Query DSL is what you use in real applications.
 
@@ -65,8 +65,8 @@ URI search is convenient at the terminal, but it has sharp edges in production:
 - Avoid exposing raw `?q=` syntax to end users; prefer JSON Query DSL for safety, readability, and full feature support.
 
 <div class="chapter-nav">
-<a class="chapter-nav__item" href="030-section-3-intro.html"><span>Previous</span><strong>30. Section 3 Intro</strong></a>
-<a class="chapter-nav__item chapter-nav__item--next" href="032-json-search-in-depth.html"><span>Next</span><strong>32. JSON Search In-Depth</strong></a>
+<a class="chapter-nav__item" href="001-intro.html"><span>Previous</span><strong>1. Section 3 Intro</strong></a>
+<a class="chapter-nav__item chapter-nav__item--next" href="003-json-search-in-depth.html"><span>Next</span><strong>3. JSON Search In-Depth</strong></a>
 </div>
 
 <p class="back-to-section"><a href="index.html">← Back to Section 3</a></p>

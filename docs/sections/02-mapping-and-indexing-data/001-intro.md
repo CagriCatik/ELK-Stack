@@ -24,7 +24,7 @@ This section is about **mapping and indexing your data**. To make things interes
 There's a lot to cover, so let's get started.
 
 <div class="chapter-nav">
-<a class="chapter-nav__item" href="../01-installing-and-understanding-elasticsearch/010-wrap-up.html"><span>Previous</span><strong>Section 1: Wrap-up</strong></a>
+<a class="chapter-nav__item" href="../01-installing-and-understanding-elasticsearch/010-wrap-up.html"><span>Previous</span><strong>10. Wrap-up</strong></a>
 <a class="chapter-nav__item chapter-nav__item--next" href="002-connecting-to-your-cluster.html"><span>Next</span><strong>2. Connecting to your Cluster</strong></a>
 </div>
 

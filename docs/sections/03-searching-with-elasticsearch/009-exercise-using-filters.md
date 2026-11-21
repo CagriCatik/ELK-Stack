@@ -1,12 +1,12 @@
 ---
-title: "38. [Exercise] Using Filters"
+title: "9. [Exercise] Using Filters"
 hide:
   - toc
 ---
 
 <div class="chapter-kicker">SECTION 03 · EXERCISE</div>
 
-# 38. [Exercise] Using Filters
+# 9. [Exercise] Using Filters
 
 Now that you know how filter context avoids scoring and leverages segment bitset caching, practice rewriting and combining filters on the `movies` index.
 
@@ -77,8 +77,8 @@ curl -s -X POST "http://127.0.0.1:9200/movies/_search?pretty" \
 Moving exact constraints (`term`, `terms`, `range`) out of `must` and into `filter` or `must_not` is one of the highest-impact optimizations in Elasticsearch—it eliminates unnecessary BM25 math and lets the cluster reuse cached bitsets across thousands of queries.
 
 <div class="chapter-nav">
-<a class="chapter-nav__item" href="037-more-with-filters.html"><span>Previous</span><strong>37. More with Filters</strong></a>
-<a class="chapter-nav__item chapter-nav__item--next" href="039-fuzzy-queries.html"><span>Next</span><strong>39. Fuzzy Queries</strong></a>
+<a class="chapter-nav__item" href="008-more-with-filters.html"><span>Previous</span><strong>8. More with Filters</strong></a>
+<a class="chapter-nav__item chapter-nav__item--next" href="010-fuzzy-queries.html"><span>Next</span><strong>10. Fuzzy Queries</strong></a>
 </div>
 
 <p class="back-to-section"><a href="index.html">← Back to Section 3</a></p>

@@ -1,12 +1,12 @@
 ---
-title: "36. Sorting"
+title: "7. Sorting"
 hide:
   - toc
 ---
 
 <div class="chapter-kicker">SECTION 03</div>
 
-# 36. Sorting
+# 7. Sorting
 
 By default, Elasticsearch sorts search results in descending order of **`_score`**—a floating-point relevance score computed by BM25. When users want to sort by release year, title, or rating instead, you specify a `sort` array in the request body.
 
@@ -92,8 +92,8 @@ curl -s -X POST "http://127.0.0.1:9200/movies/_search?pretty" \
 - Use `mode` for multi-value array fields and `missing` (`_first` / `_last`) to handle documents without a value.
 
 <div class="chapter-nav">
-<a class="chapter-nav__item" href="035-pagination.html"><span>Previous</span><strong>35. Pagination</strong></a>
-<a class="chapter-nav__item chapter-nav__item--next" href="037-more-with-filters.html"><span>Next</span><strong>37. More with Filters</strong></a>
+<a class="chapter-nav__item" href="006-pagination.html"><span>Previous</span><strong>6. Pagination</strong></a>
+<a class="chapter-nav__item chapter-nav__item--next" href="008-more-with-filters.html"><span>Next</span><strong>8. More with Filters</strong></a>
 </div>
 
 <p class="back-to-section"><a href="index.html">← Back to Section 3</a></p>

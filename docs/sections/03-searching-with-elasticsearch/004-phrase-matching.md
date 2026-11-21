@@ -1,12 +1,12 @@
 ---
-title: "33. Phrase Matching"
+title: "4. Phrase Matching"
 hide:
   - toc
 ---
 
 <div class="chapter-kicker">SECTION 03</div>
 
-# 33. Phrase Matching
+# 4. Phrase Matching
 
 A standard `match` query with `operator: "and"` checks that all words appear somewhere in the field, regardless of order or distance. Searching for `"star wars"` would match `"Wars of the Star"` just as easily as `"Star Wars"`. When word order and adjacency matter, use **`match_phrase`**.
 
@@ -95,8 +95,8 @@ Documents containing `"star"` or `"wars"` are still returned, but documents cont
 - Pairing `match` in `must` with `match_phrase` in `should` gives you both high recall and strong phrase-level ranking.
 
 <div class="chapter-nav">
-<a class="chapter-nav__item" href="032-json-search-in-depth.html"><span>Previous</span><strong>32. JSON Search In-Depth</strong></a>
-<a class="chapter-nav__item chapter-nav__item--next" href="034-exercise-querying-in-different-ways.html"><span>Next</span><strong>34. [Exercise] Querying in Different Ways</strong></a>
+<a class="chapter-nav__item" href="003-json-search-in-depth.html"><span>Previous</span><strong>3. JSON Search In-Depth</strong></a>
+<a class="chapter-nav__item chapter-nav__item--next" href="005-exercise-querying-in-different-ways.html"><span>Next</span><strong>5. [Exercise] Querying in Different Ways</strong></a>
 </div>
 
 <p class="back-to-section"><a href="index.html">← Back to Section 3</a></p>

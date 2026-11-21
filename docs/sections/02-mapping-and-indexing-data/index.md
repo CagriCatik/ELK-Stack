@@ -99,6 +99,14 @@ hide:
 </li>
 </ol>
 
+## Official References & Further Reading
+
+- [Elasticsearch Guide — Mapping & Field data types](https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping.html)
+- [Elasticsearch Guide — Dynamic field mapping (dynamic: strict)](https://www.elastic.co/guide/en/elasticsearch/reference/current/dynamic-field-mapping.html)
+- [Elasticsearch Guide — Document APIs (_doc, _bulk, _update, seq_no)](https://www.elastic.co/guide/en/elasticsearch/reference/current/docs.html)
+- [Elasticsearch Guide — Text analysis, analyzers, and tokenizers](https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis.html)
+- [Elasticsearch Guide — Flattened field type & Join field type](https://www.elastic.co/guide/en/elasticsearch/reference/current/flattened.html)
+
 <div class="section-footer-nav">
   <a href="../../index.html">← Course overview</a>
 </div>

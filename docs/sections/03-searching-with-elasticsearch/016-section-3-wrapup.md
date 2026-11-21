@@ -1,12 +1,12 @@
 ---
-title: "45. Section 3 Wrapup"
+title: "16. Section 3 Wrapup"
 hide:
   - toc
 ---
 
 <div class="chapter-kicker">SECTION 03</div>
 
-# 45. Section 3 Wrapup
+# 16. Section 3 Wrapup
 
 You now have the complete Elasticsearch search toolkit—from quick terminal checks to production-grade relevance tuning, deep pagination, and instant autocomplete.
 
@@ -23,9 +23,17 @@ You now have the complete Elasticsearch search toolkit—from quick terminal che
 
 In **Section 4: Importing Data Into Your Index, Big or Small**, you will move beyond individual `curl` requests and learn how to ingest data at scale—from Python client scripts and the Bulk API to Logstash pipelines and Beat shippers.
 
+
+## Official References & Further Reading
+
+- [Elasticsearch Guide — Query and filter context](https://www.elastic.co/guide/en/elasticsearch/reference/current/query-filter-context.html)
+- [Elasticsearch Guide — Full-text queries (match, match_phrase, multi_match)](https://www.elastic.co/guide/en/elasticsearch/reference/current/full-text-queries.html)
+- [Elasticsearch Guide — Paginate search results (from/size, search_after, PIT)](https://www.elastic.co/guide/en/elasticsearch/reference/current/paginate-search-results.html)
+- [Elasticsearch Guide — Search-as-you-type field type & N-gram tokenizers](https://www.elastic.co/guide/en/elasticsearch/reference/current/search-as-you-type.html)
+
 <div class="chapter-nav">
-<a class="chapter-nav__item" href="044-search-as-you-type-field-type.html"><span>Previous</span><strong>44. "Search as you Type" Field Type</strong></a>
-<a class="chapter-nav__item chapter-nav__item--next" href="../04-importing-data-into-your-index-big-or-small/046-section-4-intro.html"><span>Next</span><strong>46. Section 4 Intro</strong></a>
+<a class="chapter-nav__item" href="015-search-as-you-type-field-type.html"><span>Previous</span><strong>15. "Search as you Type" Field Type</strong></a>
+<a class="chapter-nav__item chapter-nav__item--next" href="../04-importing-data-into-your-index-big-or-small/001-section-4-intro.html"><span>Next</span><strong>1. Section 4 Intro</strong></a>
 </div>
 
 <p class="back-to-section"><a href="index.html">← Back to Section 3</a></p>

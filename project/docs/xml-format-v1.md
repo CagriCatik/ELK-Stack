@@ -30,6 +30,7 @@ This document defines the binding `<report>` XML structure and its backwards-com
 - **Duration unit assumption:** `duration` attributes are explicitly interpreted as **seconds** and normalized to integer `duration_ms`. Missing `duration` stays `null` (never invented).
 - **Timezone assumption:** Timestamps without UTC offset are interpreted using `SOURCE_TIMEZONE` (default `Europe/Berlin`), normalized to UTC (`started_at`, `ended_at`), and tagged with `timezone_assumed` and `timezone_status`. Original strings are preserved in `source_start_time` / `source_end_time`.
 - **Results:** `source_result` is preserved verbatim; `normalized_result` maps missing results to `UNKNOWN` (never invented). Warnings do not force `FAILED`.
+- **No pre-classified results in XML:** XML reports contain only raw test results, optional `errorCode` attributes, and original messages. Rule-based classification (`error_mapping`) is applied downstream by Logstash using [`config/error_mapping.yaml`](../config/error_mapping.yaml) (see [`docs/error-mapping.md`](error-mapping.md)).
 
 ## Backwards-Compatible Optional Extensions
 
