@@ -1,6 +1,6 @@
 # XML Insight Lab
 
-A locally runnable **Elasticsearch, Logstash, and Kibana** (`8.17.4`) analysis platform for synthetic `<report>` XML execution reports across multiple test benches, suites, software versions, and nightly campaigns.
+A locally runnable **Elasticsearch, Logstash, and Kibana** (`8.17.4`) analysis platform for synthetic `<report>`XML execution reports across multiple test benches, suites, software versions, and nightly campaigns.
 
 > **Public & Synthetic Context Notice:** All projects (`SampleProject`), benches (`lab-01`–`lab-04`), suites (`Workspace`, `Content`, `Settings`, `Connectivity`, `StorageSync`), components (`Output_A`, `Output_B`, `CaptureService`, `InteractionService`, `StorageService`, `Connectivity`), and messages are 100% synthetic.
 
@@ -18,23 +18,23 @@ From `/Users/cc/Desktop/ELK-Stack/project`:
 - **Kibana Central Home Portal (Start Here):** `http://127.0.0.1:5601/app/dashboards#/view/xml-insight-home`
 - **All Kibana Dashboards List:** `http://127.0.0.1:5601/app/dashboards#/list?_g=(filters:!(),refreshInterval:(pause:!t,value:1000),time:(from:now-7d,to:now))`
 
-> **Local Development Security Note:** Host ports bind exclusively to `127.0.0.1` and `xpack.security.enabled=false` is configured solely for local single-node development.
+> **Local Development Security Note:** Host ports bind exclusively to `127.0.0.1`and `xpack.security.enabled=false`is configured solely for local single-node development.
 
 ## Operational Commands
 
 | Command | Purpose |
 | --- | --- |
-| `./scripts/demo.sh` | Build tools, start ELK, install templates, generate 5 nights × 4 benches × 5 suites, ingest, reconcile, provision 12 Kibana dashboards, verify |
-| `./scripts/reprocess.sh` | Reload `config/error_mapping.yaml` in Logstash, reset indices, and re-classify all XML reports without duplicates |
-| `./scripts/status.sh` | Container status, ES health, and document counts across all 7 index families |
-| `./scripts/verify.sh` | Run Logstash Ruby unit tests (`test_error_mapping.rb`), verify ES document counts, and run the full `pytest` suite |
-| `./scripts/stop.sh` | Stop containers while preserving `esdata` volume |
-| `./scripts/reset.sh` | **Destructive:** remove containers, `esdata` volume, and `./data/` |
+| `./scripts/demo.sh`| Build tools, start ELK, install templates, generate 5 nights × 4 benches × 5 suites, ingest, reconcile, provision 12 Kibana dashboards, verify |
+| `./scripts/reprocess.sh`| Reload `config/error_mapping.yaml`in Logstash, reset indices, and re-classify all XML reports without duplicates |
+| `./scripts/status.sh`| Container status, ES health, and document counts across all 7 index families |
+| `./scripts/verify.sh`| Run Logstash Ruby unit tests (`test_error_mapping.rb`), verify ES document counts, and run the full `pytest`suite |
+| `./scripts/stop.sh`| Stop containers while preserving `esdata`volume |
+| `./scripts/reset.sh`| **Destructive:** remove containers, `esdata`volume, and `./data/`|
 
 ## Dashboard Screenshots (Home Portal + 15 Dashboards + 1 Custom CSS Canvas Workpad)
 
-### 🏠 00. Central Home Portal & Interactive Dashboard Directory (`xml-insight-home`)
-Central landing page (`/app/dashboards#/view/xml-insight-home`) linking to all 17 dashboards and Canvas workpads by category, with live KPIs and Dark-Theme Vega preview charts. Every dashboard (`01`–`17`) includes a persistent top **`🏠 00. HOME PORTAL (All Dashboards)`** navigation bar to return here with one click.
+### 00. Central Home Portal & Interactive Dashboard Directory (`xml-insight-home`)
+Central landing page (`/app/dashboards#/view/xml-insight-home`) linking to all 17 dashboards and Canvas workpads by category, with live KPIs and Dark-Theme Vega preview charts. Every dashboard (`01`–`17`) includes a persistent top **`00. HOME PORTAL (All Dashboards)`** navigation bar to return here with one click.
 ![00. Central Home Portal & Interactive Dashboard Directory](docs/assets/screenshots/00-home-portal-dashboard-directory.png)
 
 ### Featured I: 12. Kibana Visualization Capabilities Showcase
@@ -46,7 +46,7 @@ Demonstrates 10 additional advanced Kibana paradigms: Interactive Markdown Navig
 ![13. Advanced Kibana Analytics](docs/assets/screenshots/13-advanced-kibana-analytics.png)
 
 ### Featured III: 14. Interactive Controls, Sliders, Buttons, Drilldowns & Vega Inputs
-Demonstrates Chained Hierarchical Dropdowns (`1. Campaign → 2. Bench → 3. Suite → 4. Disposition`), Numeric Range Sliders (`Fault Count`, `Retry Attempt`), One-Click KQL Filter Preset Buttons, Vega Built-In HTML Radio Buttons / Select Dropdown / Range Slider (`bind`), Dashboard-to-Dashboard Context Drilldowns (`DASHBOARD_TO_DASHBOARD_DRILLDOWN`), and Data View Color Badges & Clickable `🔗 run.id` Hyperlink Buttons (`fieldFormatMap`).
+Demonstrates Chained Hierarchical Dropdowns (`1. Campaign → 2. Bench → 3. Suite → 4. Disposition`), Numeric Range Sliders (`Fault Count`, `Retry Attempt`), One-Click KQL Filter Preset Buttons, Vega Built-In HTML Radio Buttons / Select Dropdown / Range Slider (`bind`), Dashboard-to-Dashboard Context Drilldowns (`DASHBOARD_TO_DASHBOARD_DRILLDOWN`), and Data View Color Badges & Clickable `run.id`Hyperlink Buttons (`fieldFormatMap`).
 ![14. Interactive Controls, Sliders, Buttons, Drilldowns & Vega Inputs](docs/assets/screenshots/14-interactive-controls-drilldowns-showcase.png)
 
 ### Featured IV: 15. Custom Dark-Theme, Neon Gradients & CSS Styling Showcase
@@ -58,7 +58,7 @@ Pixel-accurate 16:9 presentation workpad (`workpad-xml-insight-executive`) where
 ![16. Kibana Canvas Custom CSS Executive Workpad](docs/assets/screenshots/16-kibana-canvas-custom-css-workpad.png)
 
 ### Featured VI: 17. Complete UI Controls, Dropdowns, Buttons, Sliders & Widgets Gallery
-Dedicated interactive UI controls showcase (`/app/dashboards#/view/xml-insight-ui-controls-gallery`) featuring 6 Chained Multi/Single-Select Dropdowns, 2 Numeric Two-Handle Range Sliders, a 5-Row Clickable Action & Filter Preset Button Matrix, 2 Vega HTML Form Control Explorers (Radio Button Groups, Dynamic Dimension Axis Switcher, Select Dropdowns, Checkbox Toggles, and Live Threshold Sliders), Clickable `🔗 run.id` Hyperlink Buttons, Color Badges, and Context Drilldown Menus.
+Dedicated interactive UI controls showcase (`/app/dashboards#/view/xml-insight-ui-controls-gallery`) featuring 6 Chained Multi/Single-Select Dropdowns, 2 Numeric Two-Handle Range Sliders, a 5-Row Clickable Action & Filter Preset Button Matrix, 2 Vega HTML Form Control Explorers (Radio Button Groups, Dynamic Dimension Axis Switcher, Select Dropdowns, Checkbox Toggles, and Live Threshold Sliders), Clickable `run.id`Hyperlink Buttons, Color Badges, and Context Drilldown Menus.
 ![17. Complete UI Controls, Dropdowns, Buttons, Sliders & Widgets Gallery](docs/assets/screenshots/17-ui-controls-dropdowns-buttons-gallery.png)
 
 ### 01. Nightly Overview
@@ -98,7 +98,7 @@ Dedicated interactive UI controls showcase (`/app/dashboards#/view/xml-insight-u
 
 - [`docs/architecture-and-data-modeling.md`](docs/architecture-and-data-modeling.md) — System architecture, data flow, and Elasticsearch data modeling
 - [`docs/error-mapping.md`](docs/error-mapping.md) — Configurable error-mapping engine, rule priorities, and dispositions
-- [`docs/kibana-dashboards-and-customization.md`](docs/kibana-dashboards-and-customization.md) — Official Kibana terminology (`lnsDatatable` vs. `Saved Search`), field cheat sheet, and UI/NDJSON customization guide
+- [`docs/kibana-dashboards-and-customization.md`](docs/kibana-dashboards-and-customization.md) — Official Kibana terminology (`lnsDatatable`vs. `Saved Search`), field cheat sheet, and UI/NDJSON customization guide
 - [`docs/xml-format-v1.md`](docs/xml-format-v1.md) · [`schemas/execution-report-v1.xsd`](schemas/execution-report-v1.xsd) · [`examples/sample-report-v1.xml`](examples/sample-report-v1.xml)
 - [`docs/elasticsearch-model.md`](docs/elasticsearch-model.md)
 - [`docs/kibana-discover-guide.md`](docs/kibana-discover-guide.md)
