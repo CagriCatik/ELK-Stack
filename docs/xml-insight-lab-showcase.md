@@ -44,10 +44,12 @@ To demonstrate the full visual analytics and interactive UI power of Kibana `8.1
 | **26** | **One-Click KQL Filter Preset & Navigation Buttons** | `visualization` → `markdown` with KQL query URL parameters | One-click triage preset buttons (`🔴 RELEVANT Only`, `🟠 CRITICAL & HIGH`, `🟣 Retries > 1`, `🔵 lab-04 Hotspot`) on Dashboard `14` |
 | **27** | **Dashboard-to-Dashboard Click Drilldowns & Data View Color/URL Formatters** | `enhancements.dynamicActions` (`DASHBOARD_TO_DASHBOARD_DRILLDOWN`) & `fieldFormatMap` (`color`, `url`) | Context drilldown buttons to Dashboards `09`/`10`/`11`, clickable `🔗 run.id` links, and Red/Green/Amber status pill badges in all tables |
 | **28** | **Vega Built-In HTML Radio Buttons, Select Dropdown & Range Slider (`bind`)** | `visualization` → `vega` (`params[].bind`: `radio`, `select`, `range`) | In-chart HTML Radio Buttons (`Owner`), Select Dropdown (`Severity`), and Range Slider (`Min Faults`) on Dashboard `14` |
+| **29** | **Custom Dark-Theme & Linear-Gradient Vega Charts (Dark Slate `#0f172a` & Emerald `#022c22`)** | `visualization` → `vega` (`background`, `config`, `gradient: "linear"`, Lollipop & Neon Pass-Rate Cards) | 4 dark-themed neon gradient visualizations on Dashboard `15` |
+| **30** | **Kibana Canvas 16:9 Presentation Workpad with 100% Custom CSS (`render css="..."`) & Live ESSQL** | `canvas-workpad` (`/app/canvas#/workpad/workpad-xml-insight-executive`) | Full-HD dark-gradient executive slide with per-element CSS (`linear-gradient`, `box-shadow`, `border-radius`), 4 ESSQL KPI cards, styled SQL table & plot (`16`) |
 
 ---
 
-## Complete Dashboard Gallery (All 14 Dashboards)
+## Complete Dashboard & Canvas Gallery (15 Dashboards + 1 Custom CSS Canvas Workpad)
 
 ### Featured I: 12. Kibana Visualization Capabilities Showcase (`xml-insight-viz-showcase`)
 Our first flagship capability showcase displaying **12 distinct Kibana visualization types side by side**: KPI Metric (`lnsMetric`), Arc Gauge (`lnsGauge`), Horizontal Bullet Gauge (`lnsGauge`), Hierarchical Treemap (`lnsPie`), Waffle Grid (`lnsPie`), Multi-Ring Sunburst (`lnsPie`), 100% Percentage Stacked Bar (`lnsXY`), Dual-Axis Bar+Line Combo Chart (`lnsXY`), Tag Cloud (`tagcloud`), 2D Color Heatmap (`heatmap`), Vega-Lite Custom Bubble Matrix (`vega`), and an aggregated Lens Data Table (`lnsDatatable`).
@@ -82,6 +84,20 @@ Our third flagship showcase dedicated to **interactive UI controls, buttons, for
 5. **Dashboard-to-Dashboard Context Drilldowns (`DASHBOARD_TO_DASHBOARD_DRILLDOWN`)** and **Data View Color Badges & Clickable `🔗 run.id` Hyperlink Buttons (`fieldFormatMap`)**.
 
 ![14. Interactive Controls, Sliders, Buttons, Drilldowns & Vega Inputs](assets/screenshots/14-interactive-controls-drilldowns-showcase.png)
+
+---
+
+### Featured IV: 15. Custom Dark-Theme, Neon Gradients & CSS Styling Showcase (`xml-insight-custom-css-showcase`)
+Demonstrates custom visual design inside standard Kibana Dashboards using **Vega Custom Theme Configurations (`"background": "#0f172a"` Dark Slate and `"#022c22"` Dark Emerald)**, multi-stop **SVG Linear Gradients (`#4f46e5 → #8b5cf6 → #ec4899` and `#059669 → #2dd4bf`)**, glowing **Neon Pass-Rate Scorecards (`Bench × Suite Pass %`)**, and **Multi-Layer Lollipop Charts (`bar` + `circle` + `text`)**:
+
+![15. Custom Dark-Theme, Neon Gradients & CSS Styling Showcase](assets/screenshots/15-custom-dark-theme-vega-showcase.png)
+
+---
+
+### Featured V: 16. Kibana Canvas — 100% Custom CSS Executive Presentation Workpad (`workpad-xml-insight-executive`)
+Beyond standard grid dashboards, Kibana's **Canvas App (`/app/canvas#/workpad/workpad-xml-insight-executive/page/1`)** enables pixel-accurate 16:9 presentation slides where **every single element is styled with real CSS (`| render css=".canvasRenderEl { background: linear-gradient(...); border-radius: 14px; box-shadow: ... }"`)** and powered by live **Canvas ESSQL (`SELECT ... FROM "xml-insight-*"`)** queries:
+
+![16. Kibana Canvas Custom CSS Executive Workpad](assets/screenshots/16-kibana-canvas-custom-css-workpad.png)
 
 ---
 

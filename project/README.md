@@ -44,6 +44,14 @@ Demonstrates 10 additional advanced Kibana paradigms: Interactive Markdown Navig
 Demonstrates Chained Hierarchical Dropdowns (`1. Campaign → 2. Bench → 3. Suite → 4. Disposition`), Numeric Range Sliders (`Fault Count`, `Retry Attempt`), One-Click KQL Filter Preset Buttons, Vega Built-In HTML Radio Buttons / Select Dropdown / Range Slider (`bind`), Dashboard-to-Dashboard Context Drilldowns (`DASHBOARD_TO_DASHBOARD_DRILLDOWN`), and Data View Color Badges & Clickable `🔗 run.id` Hyperlink Buttons (`fieldFormatMap`).
 ![14. Interactive Controls, Sliders, Buttons, Drilldowns & Vega Inputs](docs/assets/screenshots/14-interactive-controls-drilldowns-showcase.png)
 
+### Featured IV: 15. Custom Dark-Theme, Neon Gradients & CSS Styling Showcase
+Demonstrates custom Dark-Slate (`#0f172a`) and Dark-Emerald (`#022c22`) Vega themes, multi-stop linear gradient bar fills (`#4f46e5 → #8b5cf6 → #ec4899`), glowing pass-rate scorecards (`Bench × Suite Pass %`), and neon lollipop markers.
+![15. Custom Dark-Theme, Neon Gradients & CSS Styling Showcase](docs/assets/screenshots/15-custom-dark-theme-vega-showcase.png)
+
+### Featured V: 16. Kibana Canvas — 100% Custom CSS Executive Presentation Workpad (`/app/canvas`)
+Pixel-accurate 16:9 presentation workpad (`workpad-xml-insight-executive`) where every element is styled with custom CSS (`render css=".canvasRenderEl { background: linear-gradient(...); border-radius: 14px; box-shadow: ... }"`) and populated via live **Canvas ESSQL (`SELECT ... FROM "xml-insight-*"`)** queries.
+![16. Kibana Canvas Custom CSS Executive Workpad](docs/assets/screenshots/16-kibana-canvas-custom-css-workpad.png)
+
 ### 01. Nightly Overview
 ![01. Nightly Overview](docs/assets/screenshots/01-nightly-overview.png)
 

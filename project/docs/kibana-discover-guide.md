@@ -20,6 +20,8 @@ XML Insight Lab provisions **14 Kibana dashboards** showcasing **28 distinct vis
 | 12 | **Kibana Visualization Capabilities Showcase** | `/app/dashboards#/view/xml-insight-viz-showcase` | Flagship showcase I: 12 distinct Kibana visualization paradigms side by side on a single dashboard |
 | 13 | **Advanced Kibana Analytics (Vega, TSVB, Mosaic, Multi-Gauges & Parallel Flow)** | `/app/dashboards#/view/xml-insight-advanced-analytics` | Flagship showcase II: Interactive Markdown Hub, 100% Stacked Area, 360° Circle Gauge, TSVB KPI & Top-N Progress Bars, 4-in-1 Multi-Gauges, Mosaic (Marimekko), Vega Pareto Curve, Vega Campaign Swimlane & Vega 5-D Parallel Coordinates |
 | 14 | **Interactive Controls, Sliders, Buttons, Drilldowns & Vega Inputs** | `/app/dashboards#/view/xml-insight-interactive-showcase` | Flagship showcase III: Chained Hierarchical Dropdowns, Numeric Range Sliders, One-Click KQL Preset Buttons, Vega Built-In HTML Radio/Select/Range Inputs, Context Drilldowns & Data View Color/URL Formatters |
+| 15 | **Custom Dark-Theme, Neon Gradients & CSS Styling Showcase** | `/app/dashboards#/view/xml-insight-custom-css-showcase` | Flagship showcase IV: Dark-Slate (`#0f172a`) & Dark-Emerald (`#022c22`) Vega themes, multi-stop linear gradient bar fills, neon pass-rate scorecards & lollipop charts |
+| 16 | **Kibana Canvas — 100% Custom CSS Executive Workpad** | `/app/canvas#/workpad/workpad-xml-insight-executive/page/1` | Flagship showcase V: Pixel-accurate presentation slide styled with per-element CSS (`render css=".canvasRenderEl { ... }"`) and live Canvas ESSQL (`SELECT ... FROM "xml-insight-*"`) |
 
 ## Recommended Analysis Path
 
