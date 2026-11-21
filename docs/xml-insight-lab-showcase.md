@@ -10,36 +10,61 @@ title: "XML Insight Lab — Project Showcase"
 
 ---
 
-## Kibana Visualization Capabilities Matrix (15 Distinct Visualization Types)
+## Kibana Visualization Capabilities Matrix (23 Distinct Visualization Paradigms)
 
-To demonstrate the full visual analytics power of Kibana `8.17.4`, our 12 provisioned dashboards combine **15 distinct visualization paradigms** across **Kibana Lens**, **Classic Aggregation Visualizations**, and **Vega Custom Grammar**:
+To demonstrate the full visual analytics power of Kibana `8.17.4`, our 13 provisioned dashboards combine **23 distinct visualization & dashboard paradigms** across **Kibana Lens**, **TSVB (Time Series Visual Builder)**, **Classic Aggregation Visualizations**, **Markdown Navigation Hubs**, and **Vega-Lite Custom Grammar**:
 
 | # | Kibana Visualization Type | Technical Type (`visualizationType` / `visState.type`) | Where It Is Used in Our Dashboards |
 | :--- | :--- | :--- | :--- |
 | **1** | **KPI Metric Card** | `lens` → `lnsMetric` | Top KPI summary rows across Dashboards `01`, `02`, `05`, `09`, `10`, `11`, `12` |
-| **2** | **Arc Gauge** | `lens` → `lnsGauge` (`shape: "arc"`) | `Complete Plan Slots (38 / 40)` on Dashboard `12` |
+| **2** | **Arc Gauge (Semicircular Dial)** | `lens` → `lnsGauge` (`shape: "arc"`) | `Complete Plan Slots (38 / 40)` on Dashboard `12` |
 | **3** | **Horizontal Bullet Gauge** | `lens` → `lnsGauge` (`shape: "horizontalBullet"`) | `Received Plan Reports (39 / 40)` on Dashboard `12` |
-| **4** | **Hierarchical Treemap** | `lens` → `lnsPie` (`shape: "treemap"`) | `Error Category × Rule ID` (Dashboards `04`, `12`) & `Owner × Root Cause` (Dashboard `09`) |
-| **5** | **Waffle Grid Chart** | `lens` → `lnsPie` (`shape: "waffle"`) | `Diagnostic Message Disposition` (Dashboards `09`, `12`) & `Failure Share by Software Version` (Dashboard `05`) |
-| **6** | **Multi-Ring Sunburst / Donut** | `lens` → `lnsPie` (`shape: "donut"`) | `Bench → Suite Failure Sunburst` (Dashboards `06`, `12`), `Disposition` & `Owner` shares |
-| **7** | **Pie Chart** | `lens` → `lnsPie` (`shape: "pie"`) | `Init Result Share` (`03`) & `Error Trend NEW/RECURRING/FIXED` (`04`) |
-| **8** | **Vertical Stacked Bar Chart** | `lens` → `lnsXY` (`bar_stacked`) | Bench results, Version × Suite, Root Cause × Severity across Dashboards `01`, `02`, `05`, `09` |
-| **9** | **Horizontal Bar Chart** | `lens` → `lnsXY` (`bar_horizontal`) | Top Extracted Error Codes (`02`, `04`), Data Quality Flags (`05`), Matched Rule IDs (`09`) |
-| **10** | **100% Percentage Stacked Bar** | `lens` → `lnsXY` (`bar_percentage_stacked` & `bar_horizontal_percentage_stacked`) | `100% TestCase Outcome Share by Bench` (`03`, `12`) & `by Suite` (`02`) |
-| **11** | **Dual-Axis Combo Chart (Bars + Line)** | `lens` → `lnsXY` (`bar` + `line` overlay) | `Total Executions (Bars) vs. Failures (Line) by Suite` (Dashboards `02`, `12`) |
-| **12** | **Stacked Area & Multi-Series Line Trend** | `lens` → `lnsXY` (`area_stacked`, `line`) | Nightly TestCase status trends (`01`), Error trends (`02`), and Bench failure trends (`03`) |
-| **13** | **Tag Cloud (Word Cloud)** | `visualization` → `tagcloud` | `Matched Error Rules` (Dashboards `04`, `12`) & `Classified Root Causes` (Dashboard `09`) |
-| **14** | **2D Color Heatmap Matrix** | `visualization` → `heatmap` | `Bench × Suite Failures` (`03`, `12`), `Bench × Error Category` (`03`), `Software Version × TestCase` (`05`) |
-| **15** | **Vega-Lite Custom Bubble Matrix & Aggregated Lens Data Table** | `visualization` → `vega` & `lens` → `lnsDatatable` | Live ES-queried `Bench × Error Category Proportional Bubble Matrix` (`03`, `12`) & 28 clean `lnsDatatable` panels across all dashboards |
+| **4** | **Full 360° Circle Ring Gauge** | `lens` → `lnsGauge` (`shape: "circle"`) | `Relevant Faults (62)` on Dashboard `13` |
+| **5** | **Multi-Bucket Circular Gauges (4-in-1 Panel)** | `visualization` → `gauge` (`group` split by `test_bench.id`) | `Failures per Test Bench (lab-01..lab-04)` on Dashboards `08`, `13` |
+| **6** | **Hierarchical Treemap** | `lens` → `lnsPie` (`shape: "treemap"`) | `Error Category × Rule ID` (Dashboards `04`, `12`) & `Owner × Root Cause` (Dashboard `09`) |
+| **7** | **Mosaic / Marimekko 2D Proportional Chart** | `lens` → `lnsPie` (`shape: "mosaic"`) | `Error Category × Bench Proportion` on Dashboard `13` |
+| **8** | **Waffle Grid Chart (10×10 Tile Grid)** | `lens` → `lnsPie` (`shape: "waffle"`) | `Diagnostic Message Disposition` (Dashboards `09`, `12`) & `Failure Share by Software Version` (Dashboard `05`) |
+| **9** | **Multi-Ring Sunburst (2-Level Concentric Donut)** | `lens` → `lnsPie` (`shape: "donut"`, 2 rings) | `Bench → Suite Failure Sunburst` (Dashboards `06`, `12`) |
+| **10** | **1-Ring Donut Chart** | `lens` → `lnsPie` (`shape: "donut"`) | `Disposition Share`, `Owner Share`, `Plan Completeness Share` |
+| **11** | **Classic Pie Chart** | `lens` → `lnsPie` (`shape: "pie"`) | `Init Result Share` (`03`) & `Error Trend NEW/RECURRING/FIXED` (`04`) |
+| **12** | **Vertical Stacked Bar Chart** | `lens` → `lnsXY` (`bar_stacked`) | Bench results, Version × Suite, Root Cause × Severity across Dashboards `01`, `02`, `05`, `09` |
+| **13** | **Horizontal Bar Chart** | `lens` → `lnsXY` (`bar_horizontal`) | Top Extracted Error Codes (`02`, `04`), Data Quality Flags (`05`), Matched Rule IDs (`09`) |
+| **14** | **100% Percentage Stacked Bar (Vertical & Horizontal)** | `lens` → `lnsXY` (`bar_percentage_stacked`, `bar_horizontal_percentage_stacked`) | `100% TestCase Outcome Share by Bench` (`03`, `12`) & `by Suite` (`02`) |
+| **15** | **100% Percentage Stacked Area Trend** | `lens` → `lnsXY` (`area_percentage_stacked`) | `Daily TestCase Outcome Share Trend (0–100%)` on Dashboard `13` |
+| **16** | **Dual-Axis Combo Chart (Bars + Line)** | `lens` → `lnsXY` (`bar` + `line` overlay) | `Total Executions (Bars) vs. Failures (Line) by Suite` (Dashboards `02`, `12`) |
+| **17** | **Stacked Area & Multi-Series Line Trend** | `lens` → `lnsXY` (`area_stacked`, `line`) | Nightly TestCase status trends (`01`), Error trends (`02`), and Bench failure trends (`03`) |
+| **18** | **TSVB Top-N Color Progress Bars & TSVB KPI** | `visualization` → `metrics` (`type: "top_n"` & `type: "metric"`) | `Failures by Root Cause Progress Bars` & `Suite Failures KPI` on Dashboard `13` |
+| **19** | **Tag Cloud (Word Cloud)** | `visualization` → `tagcloud` | `Matched Error Rules` (Dashboards `04`, `12`) & `Classified Root Causes` (Dashboard `09`) |
+| **20** | **2D Color Heatmap Matrix** | `visualization` → `heatmap` | `Bench × Suite Failures` (`03`, `12`), `Bench × Error Category` (`03`), `Software Version × TestCase` (`05`) |
+| **21** | **Vega-Lite Custom Proportional Bubble Matrix** | `visualization` → `vega` (`circle` + `text` layers) | `Bench × Error Category Proportional Bubble Matrix` (`03`, `12`) |
+| **22** | **Vega-Lite Pareto Curve, Swimlane Matrix & 5-D Parallel Coordinates** | `visualization` → `vega` (dual-axis Pareto, health swimlane & multi-stage fold flow) | `Top Error Rules Pareto Curve`, `Campaign × Bench Health Swimlane` (`08`, `13`) & `5-D Parallel Coordinates Flow` (`13`) |
+| **23** | **Interactive Markdown Navigation Hub & Aggregated Lens Data Tables** | `visualization` → `markdown` & `lens` → `lnsDatatable` | Clickable drilldown navigation hub (`13`) & 28 clean `lnsDatatable` panels across all dashboards |
 
 ---
 
-## Complete Dashboard Gallery (All 12 Dashboards)
+## Complete Dashboard Gallery (All 13 Dashboards)
 
-### Featured: 12. Kibana Visualization Capabilities Showcase (`xml-insight-viz-showcase`)
-Our flagship capability showcase displaying **12 distinct Kibana visualization types side by side on a single dashboard**: KPI Metric (`lnsMetric`), Arc Gauge (`lnsGauge`), Horizontal Bullet Gauge (`lnsGauge`), Hierarchical Treemap (`lnsPie`), Waffle Grid (`lnsPie`), Multi-Ring Sunburst (`lnsPie`), 100% Percentage Stacked Bar (`lnsXY`), Dual-Axis Bar+Line Combo Chart (`lnsXY`), Tag Cloud (`tagcloud`), 2D Color Heatmap (`heatmap`), Vega-Lite Custom Bubble Matrix (`vega`), and an aggregated Lens Data Table (`lnsDatatable`).
+### Featured I: 12. Kibana Visualization Capabilities Showcase (`xml-insight-viz-showcase`)
+Our first flagship capability showcase displaying **12 distinct Kibana visualization types side by side**: KPI Metric (`lnsMetric`), Arc Gauge (`lnsGauge`), Horizontal Bullet Gauge (`lnsGauge`), Hierarchical Treemap (`lnsPie`), Waffle Grid (`lnsPie`), Multi-Ring Sunburst (`lnsPie`), 100% Percentage Stacked Bar (`lnsXY`), Dual-Axis Bar+Line Combo Chart (`lnsXY`), Tag Cloud (`tagcloud`), 2D Color Heatmap (`heatmap`), Vega-Lite Custom Bubble Matrix (`vega`), and an aggregated Lens Data Table (`lnsDatatable`).
 
 ![12. Kibana Visualization Capabilities Showcase](assets/screenshots/12-kibana-viz-capabilities-showcase.png)
+
+---
+
+### Featured II: 13. Advanced Kibana Analytics — Vega, TSVB, Mosaic, Multi-Gauges & Parallel Flow (`xml-insight-advanced-analytics`)
+Our second flagship showcase demonstrating **10 additional advanced Kibana paradigms**:
+1. **Interactive Markdown Navigation Hub (`markdown`)** with clickable cross-dashboard links and 3-layer domain table
+2. **100% Percentage Stacked Area Trend (`area_percentage_stacked`)** of daily testcase outcome shares
+3. **Full 360° Circle Ring Gauge (`lnsGauge`, `shape: "circle"`)** for actionable `RELEVANT` faults
+4. **TSVB KPI Card (`metrics`, `type: "metric"`)** across the entire time range
+5. **Multi-Bench Circular Gauges (`gauge`)** rendering 4 color-coded gauges (`lab-01`..`lab-04`) in a single panel
+6. **TSVB Top-N Color Progress Bars (`metrics`, `type: "top_n"`)** ranking failures by `error_mapping.root_cause`
+7. **Mosaic / Marimekko 2D Proportional Chart (`lnsPie`, `shape: "mosaic"`)** showing `Error Category × Bench` proportions
+8. **Vega-Lite Dual-Axis Pareto Curve (`vega`)** combining rule failure bars with a cumulative `0–100%` line
+9. **Vega-Lite Campaign × Bench Health Swimlane Matrix (`vega`)** coloring every nightly campaign slot as `HEALTHY`, `DEGRADED`, or `CRITICAL`
+10. **Vega-Lite 5-Dimension Parallel Coordinates Flow (`vega`)** tracing failure paths across `1_Bench → 2_Version → 3_Suite → 4_Category → 5_Owner`
+
+![13. Advanced Kibana Analytics](assets/screenshots/13-advanced-kibana-analytics.png)
 
 ---
 

@@ -1,6 +1,6 @@
 # Kibana Dashboards & Drilldown Guide
 
-XML Insight Lab provisions **12 Kibana dashboards** showcasing **15 distinct visualization paradigms** (`lnsDatatable`, `lnsMetric`, `lnsGauge` Arc & Bullet, `lnsPie` Treemap, Waffle Grid, Multi-Ring Sunburst, Donut & Pie, `lnsXY` Stacked Bar, Horizontal Bar, 100% Percentage Stacked Bar, Dual-Axis Combo Bar+Line, Stacked Area & Line, Classic `tagcloud`, Classic 2D Color `heatmap`, and custom `vega` Bubble Matrix) backed by **7 Data Views**. All dashboards focus strictly on **errors, test benches, suites, software versions, and root-cause analysis**.
+XML Insight Lab provisions **13 Kibana dashboards** showcasing **23 distinct visualization & dashboard paradigms** (`lnsDatatable`, `lnsMetric`, `lnsGauge` Arc, Horizontal Bullet & Full 360° Circle Ring, `lnsPie` Treemap, Mosaic/Marimekko, Waffle Grid, Multi-Ring Sunburst, Donut & Pie, `lnsXY` Stacked Bar, Horizontal Bar, 100% Percentage Stacked Bar, 100% Percentage Stacked Area, Dual-Axis Combo Bar+Line, Stacked Area & Line, TSVB `top_n` Progress Bars & `metric` KPI, Classic `tagcloud`, Classic 4-in-1 Multi-Bucket Circular `gauge`, Classic 2D Color `heatmap`, Interactive `markdown` Navigation Hub, and custom `vega` Bubble Matrix, Dual-Axis Pareto Curve, Campaign Swimlane Health Matrix & 5-Dimension Parallel Coordinates Flow) backed by **7 Data Views**. All dashboards focus strictly on **errors, test benches, suites, software versions, and root-cause analysis**.
 
 ## Provisioned Dashboards
 
@@ -15,9 +15,10 @@ XML Insight Lab provisions **12 Kibana dashboards** showcasing **15 distinct vis
 | 7 | **Software Version & Regression Lab** | `/app/dashboards#/view/xml-insight-version-regression` | Version KPIs, failures by Software Version × Suite & Error Category, `Version Health Summary` & `Version x Error Rule Breakdown` Lens tables, 2D Color Heatmap & Waffle Grid |
 | 8 | **Bench & Suite Failure Matrix** | `/app/dashboards#/view/xml-insight-bench-suite-matrix` | Aggregated Lens Data Tables (`lnsDatatable`) & breakdown per Bench × Suite × Error Category |
 | 9 | **TestCase & Error Matrix (Data Tables)** | `/app/dashboards#/view/xml-insight-testcase-matrix` | Aggregated `lnsDatatable` matrices for software regressions, error codes, retries, and message origins |
-| 10 | **Campaign & Bench Health Matrix (Data Tables)** | `/app/dashboards#/view/xml-insight-campaign-matrix` | Aggregated `lnsDatatable` matrices for campaign runs, plan completeness, suites, and import errors |
+| 10 | **Campaign & Bench Health Matrix (Data Tables)** | `/app/dashboards#/view/xml-insight-campaign-matrix` | Aggregated `lnsDatatable` matrices for campaign runs, plan completeness, suites, import errors, Vega Campaign Swimlane & 4-in-1 Multi-Bench Circular Gauges |
 | 11 | **Error Classification & Root Cause Analysis** | `/app/dashboards#/view/xml-insight-error-classification` | Config-driven error mapping categories, severities, dispositions, root causes, owners, message drilldown, Owner × Root Cause Treemap, Disposition Waffle & Root Cause Tag Cloud |
-| 12 | **Kibana Visualization Capabilities Showcase** | `/app/dashboards#/view/xml-insight-viz-showcase` | Master showcase displaying 12 distinct Kibana visualization paradigms side by side on a single dashboard |
+| 12 | **Kibana Visualization Capabilities Showcase** | `/app/dashboards#/view/xml-insight-viz-showcase` | Flagship showcase I: 12 distinct Kibana visualization paradigms side by side on a single dashboard |
+| 13 | **Advanced Kibana Analytics (Vega, TSVB, Mosaic, Multi-Gauges & Parallel Flow)** | `/app/dashboards#/view/xml-insight-advanced-analytics` | Flagship showcase II: Interactive Markdown Hub, 100% Stacked Area, 360° Circle Gauge, TSVB KPI & Top-N Progress Bars, 4-in-1 Multi-Gauges, Mosaic (Marimekko), Vega Pareto Curve, Vega Campaign Swimlane & Vega 5-D Parallel Coordinates |
 
 ## Recommended Analysis Path
 
