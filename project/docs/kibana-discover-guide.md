@@ -6,6 +6,7 @@ XML Insight Lab provisions **14 Kibana dashboards** showcasing **28 distinct vis
 
 | # | Dashboard | URL | Focus |
 | --- | --- | --- | --- |
+| **00** | **🏠 Home Portal & Interactive Dashboard Directory** | `/app/dashboards#/view/xml-insight-home` | **Central Landing Page:** Categorized clickable directory for all 17 dashboards & Canvas workpads, live KPIs & Dark-Theme Vega previews (every dashboard has a top `🏠 00. HOME PORTAL` return bar) |
 | 1 | **Nightly Overview** | `/app/dashboards#/view/xml-insight-nightly-overview` | Expected/received/missing/partial/invalid reports, bench results, `init`/`deinit` anomalies, aggregated plan, failure & import-error Lens tables |
 | 2 | **Suite Overview** | `/app/dashboards#/view/xml-insight-suite-overview` | Suites per bench, regular testcase results (`phase: "suite"`), `NEW`/`RECURRING`/`FIXED` error trends, Dual-Axis Combo Chart, 100% Outcome Share & failed suites Lens table |
 | 3 | **Run Details** | `/app/dashboards#/view/xml-insight-run-details` | Report metadata (`init` / `deinit` / `Passed TCs` / `Failed TCs`), included suites, and separate `deInitialization` evaluation (`phase: "deinit"`) via `lnsDatatable` |

@@ -49,7 +49,15 @@ To demonstrate the full visual analytics and interactive UI power of Kibana `8.1
 
 ---
 
-## Complete Dashboard & Canvas Gallery (15 Dashboards + 1 Custom CSS Canvas Workpad)
+## Complete Dashboard & Canvas Gallery (Home Portal + 15 Dashboards + 1 Custom CSS Canvas Workpad)
+
+### 🏠 00. Central Home Portal & Interactive Dashboard Directory (`xml-insight-home`)
+The central landing page and application launchpad (`/app/dashboards#/view/xml-insight-home`) for the entire XML Insight Lab suite. It displays live system health KPIs (`Total Runs`, `Failed TestCases`, `Actionable RELEVANT Faults`, `Active Error Rules`), four categorized interactive directory cards covering all **17 dashboards and Canvas workpads** (`Category A: Operational Overviews`, `Category B: Error Mapping & Regression`, `Category C: Aggregated Lens Matrices & Drilldowns`, `Category D: Kibana Visualization, Custom CSS, Canvas & UI Controls Showcases`), and two live Dark-Theme Vega preview matrices.
+- **Bidirectional Round-Trip Navigation:** Clicking any link on the Home Portal opens the target dashboard, and **every single dashboard (`01`–`17`) features a persistent top `🏠 00. HOME PORTAL (All Dashboards)` navigation bar** so you can jump back to the Home Portal or switch between any view with one click.
+
+![00. Central Home Portal & Interactive Dashboard Directory](assets/screenshots/00-home-portal-dashboard-directory.png)
+
+---
 
 ### Featured I: 12. Kibana Visualization Capabilities Showcase (`xml-insight-viz-showcase`)
 Our first flagship capability showcase displaying **12 distinct Kibana visualization types side by side**: KPI Metric (`lnsMetric`), Arc Gauge (`lnsGauge`), Horizontal Bullet Gauge (`lnsGauge`), Hierarchical Treemap (`lnsPie`), Waffle Grid (`lnsPie`), Multi-Ring Sunburst (`lnsPie`), 100% Percentage Stacked Bar (`lnsXY`), Dual-Axis Bar+Line Combo Chart (`lnsXY`), Tag Cloud (`tagcloud`), 2D Color Heatmap (`heatmap`), Vega-Lite Custom Bubble Matrix (`vega`), and an aggregated Lens Data Table (`lnsDatatable`).

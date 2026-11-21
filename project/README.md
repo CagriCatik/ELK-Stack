@@ -15,7 +15,8 @@ From `/Users/cc/Desktop/ELK-Stack/project`:
 ```
 
 - **Elasticsearch:** `http://127.0.0.1:9200`
-- **Kibana Dashboards:** `http://127.0.0.1:5601/app/dashboards#/list?_g=(filters:!(),refreshInterval:(pause:!t,value:1000),time:(from:now-7d,to:now))`
+- **Kibana Central Home Portal (Start Here):** `http://127.0.0.1:5601/app/dashboards#/view/xml-insight-home`
+- **All Kibana Dashboards List:** `http://127.0.0.1:5601/app/dashboards#/list?_g=(filters:!(),refreshInterval:(pause:!t,value:1000),time:(from:now-7d,to:now))`
 
 > **Local Development Security Note:** Host ports bind exclusively to `127.0.0.1` and `xpack.security.enabled=false` is configured solely for local single-node development.
 
@@ -30,7 +31,11 @@ From `/Users/cc/Desktop/ELK-Stack/project`:
 | `./scripts/stop.sh` | Stop containers while preserving `esdata` volume |
 | `./scripts/reset.sh` | **Destructive:** remove containers, `esdata` volume, and `./data/` |
 
-## Dashboard Screenshots (All 14 Dashboards & 28 Visualization/Interactivity Capabilities)
+## Dashboard Screenshots (Home Portal + 15 Dashboards + 1 Custom CSS Canvas Workpad)
+
+### 🏠 00. Central Home Portal & Interactive Dashboard Directory (`xml-insight-home`)
+Central landing page (`/app/dashboards#/view/xml-insight-home`) linking to all 17 dashboards and Canvas workpads by category, with live KPIs and Dark-Theme Vega preview charts. Every dashboard (`01`–`17`) includes a persistent top **`🏠 00. HOME PORTAL (All Dashboards)`** navigation bar to return here with one click.
+![00. Central Home Portal & Interactive Dashboard Directory](docs/assets/screenshots/00-home-portal-dashboard-directory.png)
 
 ### Featured I: 12. Kibana Visualization Capabilities Showcase
 Demonstrates 12 distinct Kibana visualization types side by side: KPI Metric (`lnsMetric`), Arc Gauge (`lnsGauge`), Horizontal Bullet Gauge (`lnsGauge`), Hierarchical Treemap (`lnsPie`), Waffle Grid (`lnsPie`), Multi-Ring Sunburst (`lnsPie`), 100% Percentage Stacked Bar (`lnsXY`), Dual-Axis Bar+Line Combo Chart (`lnsXY`), Tag Cloud (`tagcloud`), 2D Color Heatmap (`heatmap`), Vega-Lite Custom Bubble Matrix (`vega`), and Aggregated Lens Data Table (`lnsDatatable`).
